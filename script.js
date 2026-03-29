@@ -20,8 +20,8 @@ navLinks.forEach(link => {
 // ==========================================
 // 2. SMOOTH SCROLLING FOR NAVIGATION LINKS
 // ==========================================
-// We now rely on native CSS scroll-behavior for modern browsers, but keep JS fallback just in case
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+// We explicitly ignore the FAQ trigger link so it doesn't cause page jumps when opening the modal
+document.querySelectorAll('a[href^="#"]:not(.faq-trigger)').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
@@ -154,10 +154,39 @@ function resetInterval() { clearInterval(slideInterval); startInterval(); }
 if (slides.length > 0) { startInterval(); }
 
 // ==========================================
-// 5. FAQ ACCORDION LOGIC
+// 5. FAQ MODAL & ACCORDION LOGIC
 // ==========================================
+const faqModal = document.getElementById('faqModal');
+const openFaqBtns = document.querySelectorAll('.faq-trigger'); 
+const closeFaqBtn = document.getElementById('closeFaqBtn');
 const faqQuestions = document.querySelectorAll('.faq-question');
 
+// Open Modal
+openFaqBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        faqModal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Lock background scrolling
+    });
+});
+
+// Close Modal via X button
+if (closeFaqBtn) {
+    closeFaqBtn.addEventListener('click', () => {
+        faqModal.classList.remove('show');
+        document.body.style.overflow = 'auto'; // Restore background scrolling
+    });
+}
+
+// Close Modal by clicking outside the box
+window.addEventListener('click', (e) => {
+    if (e.target === faqModal) {
+        faqModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Accordion Expanding/Collapsing Logic
 faqQuestions.forEach(question => {
     question.addEventListener('click', () => {
         question.classList.toggle('active');

@@ -11,7 +11,6 @@
     --text-dark: #1A202C;
 }
 
-/* Native smooth scrolling for anchor links (SEO & UX boost) */
 html {
     scroll-behavior: smooth;
 }
@@ -42,15 +41,34 @@ h1, h2, h3, h4, h5 {
     padding: 0 20px;
 }
 
-/* Focus States for Accessibility */
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
     outline: 3px solid var(--safety-orange);
     outline-offset: 2px;
 }
 
 /* =========================================
-   2. BUTTONS
+   2. BUTTONS & TOP BAR
    ========================================= */
+.top-bar {
+    background-color: var(--safety-orange);
+    color: var(--white);
+    text-align: center;
+    padding: 10px 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.top-bar a {
+    color: var(--white);
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.top-bar a:hover {
+    color: var(--primary-navy);
+}
+
 .btn-primary, .btn-secondary {
     display: inline-block;
     padding: 12px 24px;
@@ -80,6 +98,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .btn-secondary:hover {
     background-color: var(--steel-grey);
+}
+
+.btn-large {
+    padding: 16px 40px;
+    font-size: 1.15rem;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px rgba(255, 102, 0, 0.3);
 }
 
 .full-width {
@@ -203,11 +228,89 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* =========================================
-   6. ABOUT SECTION
+   6. HOW IT WORKS (PROCESS) SECTION
+   ========================================= */
+.process-section {
+    padding: 80px 0;
+    background-color: var(--white);
+    text-align: center;
+}
+
+.process-intro {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    font-size: 1.1rem;
+    color: var(--steel-grey);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    position: relative;
+    padding-top: 20px;
+}
+
+.process-step {
+    background: var(--light-bg);
+    padding: 40px 20px;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    border-top: 4px solid var(--primary-navy);
+    transition: transform 0.3s ease;
+}
+
+.process-step:hover {
+    transform: translateY(-5px);
+    border-top-color: var(--safety-orange);
+}
+
+.step-icon {
+    font-size: 2.5rem;
+    color: var(--primary-navy);
+    margin-bottom: 20px;
+}
+
+.step-number {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--safety-orange);
+    color: var(--white);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border: 4px solid var(--white);
+}
+
+.process-step h4 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: var(--primary-navy);
+}
+
+.process-step p {
+    font-size: 0.95rem;
+    color: var(--steel-grey);
+}
+
+.process-cta {
+    margin-top: 50px;
+}
+
+/* =========================================
+   7. ABOUT SECTION
    ========================================= */
 .about-section {
     padding: 80px 0;
-    background-color: var(--white);
+    background-color: var(--light-bg);
 }
 
 .about-container {
@@ -227,11 +330,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* =========================================
-   7. SERVICES SECTION
+   8. SERVICES SECTION
    ========================================= */
 .services {
     padding: 80px 0;
-    background-color: var(--light-bg);
+    background-color: var(--white);
 }
 
 .section-title {
@@ -247,7 +350,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 .service-card {
-    background: var(--white);
+    background: var(--light-bg);
     border: 1px solid #E2E8F0;
     padding: 30px;
     border-radius: 8px;
@@ -262,7 +365,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 
 /* =========================================
-   8. CONTACT FORM
+   9. CONTACT FORM
    ========================================= */
 .contact {
     background-color: var(--primary-navy);
@@ -323,7 +426,7 @@ select:disabled {
 }
 
 /* =========================================
-   9. FOOTER
+   10. FOOTER
    ========================================= */
 .site-footer {
     background-color: #061124; 
@@ -351,7 +454,7 @@ select:disabled {
 }
 
 /* =========================================
-   10. MOBILE RESPONSIVENESS
+   11. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 768px) {
     .nav-menu ul {
@@ -382,8 +485,12 @@ select:disabled {
         flex-direction: column;
     }
 
-    .trust-grid, .contact-container, .footer-grid, .project-grid {
+    .trust-grid, .contact-container, .footer-grid, .project-grid, .process-grid {
         grid-template-columns: 1fr;
+    }
+
+    .process-grid {
+        gap: 50px; 
     }
 
     .input-group {
@@ -397,7 +504,7 @@ select:disabled {
 }
 
 /* =========================================
-   11. TESTIMONIAL CAROUSEL
+   12. TESTIMONIAL CAROUSEL
    ========================================= */
 .testimonials-section {
     padding: 80px 0;
@@ -497,7 +604,7 @@ select:disabled {
 }
 
 /* =========================================
-   12. PROJECT GALLERY 
+   13. PROJECT GALLERY 
    ========================================= */
 .projects-section {
     padding: 80px 0;
@@ -570,34 +677,7 @@ select:disabled {
 }
 
 /* =========================================
-   13. FORM SUCCESS STATE (In-Page Version)
-   ========================================= */
-.form-success-message {
-    text-align: center;
-    padding: 40px 20px;
-    animation: fadeEffect 0.5s ease-in-out;
-}
-
-.success-icon {
-    font-size: 3rem;
-    color: var(--safety-orange);
-    margin-bottom: 20px;
-}
-
-.form-success-message h3 {
-    font-size: 1.8rem;
-    color: var(--primary-navy);
-    margin-bottom: 15px;
-}
-
-.form-success-message p {
-    color: var(--steel-grey);
-    font-size: 1.1rem;
-    line-height: 1.6;
-}
-
-/* =========================================
-   14. UPDATED PAYMENT INFO STYLES
+   14. PAYMENT INFO STYLES
    ========================================= */
 .payment-info {
     display: flex;
@@ -726,21 +806,67 @@ select:disabled {
 }
 
 /* =========================================
-   17. FAQ SECTION (SEO Boost)
+   17. FAQ MODAL OVERLAY STYLES
    ========================================= */
-.faq-section {
-    padding: 80px 0;
-    background-color: var(--white);
+.modal {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(11, 32, 70, 0.85); /* Tinted Navy */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-.faq-container {
-    max-width: 800px;
-    margin: 0 auto;
+.modal.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--white);
+    margin: auto;
+    padding: 40px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.close-modal {
+    color: #a0aec0;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 2.5rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.close-modal:hover {
+    color: var(--safety-orange);
 }
 
 .faq-item {
     border-bottom: 1px solid #E2E8F0;
-    padding: 15px 0;
+    padding: 10px 0;
 }
 
 .faq-question {
@@ -748,14 +874,14 @@ select:disabled {
     background: none;
     border: none;
     text-align: left;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     font-weight: 600;
     color: var(--primary-navy);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    padding: 15px 0;
     font-family: 'Inter', sans-serif;
 }
 
@@ -778,85 +904,6 @@ select:disabled {
 
 .faq-answer p {
     padding-bottom: 15px;
-}
-
-/* =========================================
-   18. HOW IT WORKS (PROCESS) SECTION
-   ========================================= */
-.process-section {
-    padding: 80px 0;
-    background-color: var(--light-bg);
-    text-align: center;
-}
-
-.process-intro {
-    max-width: 600px;
-    margin: 0 auto 40px auto;
-    font-size: 1.1rem;
-    color: var(--steel-grey);
-}
-
-.process-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    position: relative;
-    padding-top: 20px;
-}
-
-.process-step {
-    background: var(--white);
-    padding: 40px 20px;
-    border-radius: 8px;
-    position: relative;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    border-top: 4px solid var(--primary-navy);
-    transition: transform 0.3s ease;
-}
-
-.process-step:hover {
-    transform: translateY(-5px);
-    border-top-color: var(--safety-orange);
-}
-
-.step-icon {
-    font-size: 2.5rem;
-    color: var(--primary-navy);
-    margin-bottom: 20px;
-}
-
-.step-number {
-    position: absolute;
-    top: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--safety-orange);
-    color: var(--white);
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    font-weight: bold;
-    font-size: 1.2rem;
-    border: 4px solid var(--light-bg);
-}
-
-.process-step h4 {
-    margin-bottom: 15px;
-    font-size: 1.3rem;
-    color: var(--primary-navy);
-}
-
-.process-step p {
-    font-size: 0.95rem;
-    color: var(--steel-grey);
-}
-
-@media (max-width: 768px) {
-    .process-grid {
-        grid-template-columns: 1fr;
-        gap: 50px; 
-    }
+    font-size: 1.05rem;
+    line-height: 1.6;
 }
