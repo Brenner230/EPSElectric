@@ -4,20 +4,11 @@
 const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('navMenu');
 
-// Listen for a click on the hamburger icon
 hamburger.addEventListener('click', () => {
-    // Toggle the 'active' class to show/hide the menu
     navMenu.classList.toggle('active');
-    
-    // Change the icon from hamburger to an 'X' when open
-    if (navMenu.classList.contains('active')) {
-        hamburger.innerHTML = '✕';
-    } else {
-        hamburger.innerHTML = '☰';
-    }
+    hamburger.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
 });
 
-// Close the mobile menu automatically if a link is clicked
 const navLinks = document.querySelectorAll('.nav-menu a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -31,55 +22,93 @@ navLinks.forEach(link => {
 // ==========================================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault(); // Stop the default sudden jump
-        
+        e.preventDefault();
         const targetId = this.getAttribute('href');
         const targetElement = document.querySelector(targetId);
-        
         if (targetElement) {
-            // Calculate the header height so it doesn't cover the section title
             const headerHeight = document.querySelector('.site-header').offsetHeight;
             const elementPosition = targetElement.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
         }
     });
 });
 
 // ==========================================
-// 3. INQUIRY FORM HANDLING (In-Page Success State)
+// 3. ENHANCED FORM LOGIC (Formatting & Logic)
 // ==========================================
+
+// --- A. PHONE NUMBER FORMATTER ---
+const phoneInput = document.getElementById('phone');
+if (phoneInput) {
+    phoneInput.addEventListener('input', (e) => {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
+}
+
+// --- B. DYNAMIC SERVICE DROPDOWNS ---
+const categorySelect = document.getElementById('categorySelect');
+const serviceSelect = document.getElementById('serviceSelect');
+
+const services = {
+    Residential: [
+        "High-End Remodel",
+        "Panel Upgrade / Heavy-Up",
+        "EV Charger Installation",
+        "Landscape Lighting",
+        "A/V & Smart Home",
+        "General Troubleshooting"
+    ],
+    Commercial: [
+        "Tenant Improvements",
+        "Commercial Lighting Retrofit",
+        "Dedicated Circuits",
+        "Code Compliance Audit",
+        "Service Contract Inquiry"
+    ]
+};
+
+if (categorySelect && serviceSelect) {
+    categorySelect.addEventListener('change', function() {
+        const selectedCategory = this.value;
+        serviceSelect.innerHTML = '<option value="">Select a Service...</option>';
+        if (selectedCategory) {
+            serviceSelect.disabled = false;
+            services[selectedCategory].forEach(service => {
+                const option = document.createElement('option');
+                option.value = service;
+                option.textContent = service;
+                serviceSelect.appendChild(option);
+            });
+        } else {
+            serviceSelect.disabled = true;
+        }
+    });
+}
+
+// --- C. FORM SUBMISSION (Success State) ---
 const leadForm = document.getElementById('leadForm');
 const contactFormContainer = document.querySelector('.contact-form');
 
 if (leadForm) {
     leadForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent the default page redirect
+        e.preventDefault();
         
-        // Change button text to show it's working
         const submitBtn = leadForm.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.innerHTML;
         submitBtn.innerHTML = 'Sending Request...';
         
         const formData = new FormData(leadForm);
         const object = Object.fromEntries(formData);
-        const json = JSON.stringify(object);
 
         fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(object)
         })
         .then(async (response) => {
             if (response.status == 200) {
-                // SUCCESS: Replace the form with a clean success message
                 contactFormContainer.innerHTML = `
                     <div class="form-success-message">
                         <div class="success-icon">✔</div>
@@ -89,17 +118,13 @@ if (leadForm) {
                     </div>
                 `;
             } else {
-                // Error handling
-                console.log(response);
                 alert("Something went wrong. Please try calling us directly at (443) 465-7769.");
             }
         })
         .catch(error => {
-            console.log(error);
             alert("Something went wrong. Please try calling us directly at (443) 465-7769.");
         })
         .finally(() => {
-            // Reset button text (though usually hidden by success state)
             submitBtn.innerHTML = originalBtnText;
         });
     });
@@ -116,56 +141,25 @@ let currentSlide = 0;
 let slideInterval;
 
 function showSlide(index) {
-    // Remove active class from all slides and dots
     slides.forEach(slide => slide.classList.remove('active'));
     dots.forEach(dot => dot.classList.remove('active'));
-
-    // Handle wrap-around (going past the last or before the first)
     currentSlide = (index + slides.length) % slides.length; 
-    
-    // Add active class to the current target
     slides[currentSlide].classList.add('active');
     dots[currentSlide].classList.add('active');
 }
 
-function nextSlide() {
-    showSlide(currentSlide + 1);
-}
+function nextSlide() { showSlide(currentSlide + 1); }
+function prevSlide() { showSlide(currentSlide - 1); }
 
-function prevSlide() {
-    showSlide(currentSlide - 1);
-}
-
-// Event Listeners for manual clicking
 if (nextBtn && prevBtn) {
-    nextBtn.addEventListener('click', () => {
-        nextSlide();
-        resetInterval(); // Pause auto-play when user clicks
-    });
-    prevBtn.addEventListener('click', () => {
-        prevSlide();
-        resetInterval(); 
-    });
+    nextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
+    prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
 }
 
 dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        showSlide(index);
-        resetInterval();
-    });
+    dot.addEventListener('click', () => { showSlide(index); resetInterval(); });
 });
 
-// Auto-play feature
-function startInterval() {
-    slideInterval = setInterval(nextSlide, 6000); // Changes slide every 6 seconds
-}
-
-function resetInterval() {
-    clearInterval(slideInterval);
-    startInterval();
-}
-
-// Start the auto-play when the page loads
-if (slides.length > 0) {
-    startInterval();
-}
+function startInterval() { slideInterval = setInterval(nextSlide, 6000); }
+function resetInterval() { clearInterval(slideInterval); startInterval(); }
+if (slides.length > 0) { startInterval(); }

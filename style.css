@@ -1,6 +1,4 @@
-/* =========================================
-   1. BASE STYLES & VARIABLES
-   ========================================= */
+/* --- All existing styles from your style.css --- */
 :root {
     --primary-navy: #0B2046;
     --safety-orange: #FF6600;
@@ -37,9 +35,6 @@ h1, h2, h3, h4, h5 {
     padding: 0 20px;
 }
 
-/* =========================================
-   2. BUTTONS
-   ========================================= */
 .btn-primary, .btn-secondary {
     display: inline-block;
     padding: 12px 24px;
@@ -75,9 +70,6 @@ h1, h2, h3, h4, h5 {
     width: 100%;
 }
 
-/* =========================================
-   3. HEADER & NAVIGATION
-   ========================================= */
 .site-header {
     background-color: var(--white);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -132,9 +124,6 @@ h1, h2, h3, h4, h5 {
     color: var(--primary-navy);
 }
 
-/* =========================================
-   4. HERO SECTION
-   ========================================= */
 .hero {
     background: linear-gradient(rgba(11, 32, 70, 0.8), rgba(11, 32, 70, 0.8)), url('images/hero-electrician.jpg') center/cover no-repeat;
     background-color: var(--primary-navy); 
@@ -165,9 +154,6 @@ h1, h2, h3, h4, h5 {
     gap: 15px;
 }
 
-/* =========================================
-   5. TRUST BAR (Perks)
-   ========================================= */
 .trust-bar {
     background-color: var(--light-bg);
     padding: 40px 0;
@@ -191,9 +177,6 @@ h1, h2, h3, h4, h5 {
     font-size: 0.95rem;
 }
 
-/* =========================================
-   6. ABOUT SECTION
-   ========================================= */
 .about-section {
     padding: 80px 0;
     background-color: var(--white);
@@ -215,9 +198,6 @@ h1, h2, h3, h4, h5 {
     margin-bottom: 15px;
 }
 
-/* =========================================
-   7. SERVICES SECTION
-   ========================================= */
 .services {
     padding: 80px 0;
     background-color: var(--light-bg);
@@ -250,9 +230,6 @@ h1, h2, h3, h4, h5 {
     border-top-color: var(--safety-orange);
 }
 
-/* =========================================
-   8. CONTACT FORM
-   ========================================= */
 .contact {
     background-color: var(--primary-navy);
     color: var(--white);
@@ -301,9 +278,6 @@ textarea {
     resize: vertical;
 }
 
-/* =========================================
-   9. FOOTER
-   ========================================= */
 .site-footer {
     background-color: #061124; 
     color: var(--white);
@@ -329,9 +303,6 @@ textarea {
     color: var(--steel-grey);
 }
 
-/* =========================================
-   11. TESTIMONIALS CAROUSEL
-   ========================================= */
 .testimonials-section {
     padding: 80px 0;
     background-color: var(--white);
@@ -390,7 +361,6 @@ textarea {
     color: var(--steel-grey);
 }
 
-/* Carousel Navigation */
 .carousel-controls {
     display: flex;
     justify-content: center;
@@ -430,9 +400,6 @@ textarea {
     background-color: var(--safety-orange);
 }
 
-/* =========================================
-   12. PROJECT GALLERY SECTION
-   ========================================= */
 .projects-section {
     padding: 80px 0;
     background-color: var(--light-bg);
@@ -464,7 +431,6 @@ textarea {
     transition: transform 0.5s ease;
 }
 
-/* Subtle zoom effect on hover for a premium feel */
 .project-card:hover .project-image {
     transform: scale(1.05);
 }
@@ -472,7 +438,7 @@ textarea {
 .project-info {
     padding: 25px;
     position: relative;
-    background: var(--white); /* Ensure background covers zoomed image */
+    background: var(--white);
     z-index: 2; 
 }
 
@@ -500,9 +466,6 @@ textarea {
     line-height: 1.5;
 }
 
-/* =========================================
-   13. FORM SUCCESS STATE
-   ========================================= */
 .form-success-message {
     text-align: center;
     padding: 40px 20px;
@@ -527,9 +490,6 @@ textarea {
     line-height: 1.6;
 }
 
-/* =========================================
-   10. MOBILE RESPONSIVENESS
-   ========================================= */
 @media (max-width: 768px) {
     .nav-menu ul {
         display: none; 
@@ -576,12 +536,27 @@ textarea {
         text-align: center;
     }
 
-    /* Shrink the carousel padding for smaller phone screens */
     .testimonial-carousel {
         padding: 30px 20px;
     }
     
     .review-text {
         font-size: 1.05rem;
+    }
+}
+
+.full-width-input {
+    grid-column: span 2;
+}
+
+select:disabled {
+    background-color: #f1f1f1;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+@media (max-width: 768px) {
+    .full-width-input {
+        grid-column: span 1;
     }
 }
