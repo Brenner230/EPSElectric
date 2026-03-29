@@ -69,3 +69,68 @@ if (contactForm) {
         contactForm.reset();
     });
 }
+
+// ==========================================
+// 4. TESTIMONIAL CAROUSEL ENGINE
+// ==========================================
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.dot');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+let currentSlide = 0;
+let slideInterval;
+
+function showSlide(index) {
+    // Remove active class from all slides and dots
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    // Handle wrap-around (going past the last or before the first)
+    currentSlide = (index + slides.length) % slides.length; 
+    
+    // Add active class to the current target
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+// Event Listeners for manual clicking
+if (nextBtn && prevBtn) {
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetInterval(); // Pause auto-play when user clicks
+    });
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetInterval(); 
+    });
+}
+
+dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        showSlide(index);
+        resetInterval();
+    });
+});
+
+// Auto-play feature
+function startInterval() {
+    slideInterval = setInterval(nextSlide, 6000); // Changes slide every 6 seconds
+}
+
+function resetInterval() {
+    clearInterval(slideInterval);
+    startInterval();
+}
+
+// Start the auto-play when the page loads
+if (slides.length > 0) {
+    startInterval();
+}
