@@ -11,6 +11,11 @@
     --text-dark: #1A202C;
 }
 
+/* Native smooth scrolling for anchor links (SEO & UX boost) */
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -35,6 +40,12 @@ h1, h2, h3, h4, h5 {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+}
+
+/* Focus States for Accessibility */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 3px solid var(--safety-orange);
+    outline-offset: 2px;
 }
 
 /* =========================================
@@ -486,7 +497,7 @@ select:disabled {
 }
 
 /* =========================================
-   12. PROJECT GALLERY (UPDATED FOR SEO IMAGES)
+   12. PROJECT GALLERY 
    ========================================= */
 .projects-section {
     padding: 80px 0;
@@ -650,7 +661,7 @@ select:disabled {
 }
 
 /* =========================================
-   15. NEW: SERVICE AREA SECTION
+   15. SERVICE AREA SECTION
    ========================================= */
 .service-area-section {
     padding: 80px 0;
@@ -715,7 +726,62 @@ select:disabled {
 }
 
 /* =========================================
-   17. HOW IT WORKS (PROCESS) SECTION
+   17. FAQ SECTION (SEO Boost)
+   ========================================= */
+.faq-section {
+    padding: 80px 0;
+    background-color: var(--white);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid #E2E8F0;
+    padding: 15px 0;
+}
+
+.faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-navy);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.faq-icon {
+    font-size: 1.5rem;
+    color: var(--safety-orange);
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    color: var(--steel-grey);
+}
+
+.faq-answer p {
+    padding-bottom: 15px;
+}
+
+/* =========================================
+   18. HOW IT WORKS (PROCESS) SECTION
    ========================================= */
 .process-section {
     padding: 80px 0;
