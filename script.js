@@ -38,7 +38,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // 3. INQUIRY FORM LOGIC (GA Redirect Version)
 // ==========================================
 
-// --- A. PHONE NUMBER FORMATTER ---
 const phoneInput = document.getElementById('phone');
 if (phoneInput) {
     phoneInput.addEventListener('input', (e) => {
@@ -47,7 +46,6 @@ if (phoneInput) {
     });
 }
 
-// --- B. DYNAMIC SERVICE DROPDOWNS ---
 const categorySelect = document.getElementById('categorySelect');
 const serviceSelect = document.getElementById('serviceSelect');
 
@@ -87,7 +85,6 @@ if (categorySelect && serviceSelect) {
     });
 }
 
-// --- C. FORM SUBMISSION WITH GA REDIRECT ---
 const leadForm = document.getElementById('leadForm');
 
 if (leadForm) {
@@ -108,7 +105,6 @@ if (leadForm) {
         })
         .then(async (response) => {
             if (response.status == 200) {
-                // REDIRECT TO SUCCESS PAGE FOR GOOGLE ANALYTICS
                 window.location.href = 'success.html';
             } else {
                 alert("Something went wrong. Please try calling us directly at (443) 465-7769.");
@@ -158,33 +154,56 @@ function resetInterval() { clearInterval(slideInterval); startInterval(); }
 if (slides.length > 0) { startInterval(); }
 
 // ==========================================
-// 5. INTERACTIVE SERVICE AREA MAP (Leaflet.js)
+// 5. ADVANCED INTERACTIVE SERVICE AREA MAP 
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
     const mapContainer = document.getElementById('serviceMap');
     
     if (mapContainer) {
-        // Initialize the map centered on Frederick, MD (Coordinates: 39.4143, -77.4105)
-        // Zoom level set to 8 for a clear view of the 1.5 hour radius
-        const map = L.map('serviceMap').setView([39.4143, -77.4105], 8);
+        // Initialize map centered slightly to encompass the full region properly
+        const map = L.map('serviceMap').setView([39.2, -76.5], 7);
 
-        // Load map tiles from CartoDB Voyager to bypass OpenStreetMap's local file 403 error
+        // Load reliable CartoDB base map
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
             subdomains: 'abcd',
             maxZoom: 20
         }).addTo(map);
 
-        // Draw a shaded circle to represent the 1.5-hour driving radius
-        // 135,000 meters = approx. 84 miles, covering the requested territory beautifully
-        const serviceCircle = L.circle([39.4143, -77.4105], {
-            color: '#0B2046',        // Navy border
-            fillColor: '#FF6600',    // EPS Orange fill
-            fillOpacity: 0.2,        // Transparency
-            radius: 135000            
+        // 1. Draw the "Partial Coverage" Circle (This sits UNDER the solid states)
+        const partialRadius = L.circle([39.4143, -77.4105], {
+            color: '#0B2046',
+            weight: 2,
+            dashArray: '5, 5', // Dashes indicate partial coverage
+            fillColor: '#FF6600',
+            fillOpacity: 0.15,
+            radius: 135000 // 1.5 Hour Radius
         }).addTo(map);
+        
+        partialRadius.bindPopup("<b>Partial Coverage Area</b><br>Covering select counties within 1.5 hours of Frederick, MD.");
 
-        // Add a popup when someone clicks the shaded area
-        serviceCircle.bindPopup("<b>Eminent Power Solutions</b><br>Mid-Atlantic Service Area HQ in Frederick, MD.");
+        // 2. Fetch official US State Boundaries to render MD, DC, and DE as solid blocks
+        fetch('https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json')
+            .then(response => response.json())
+            .then(data => {
+                L.geoJSON(data, {
+                    // Filter down to only the full coverage states
+                    filter: function(feature) {
+                        return ['Maryland', 'District of Columbia', 'Delaware'].includes(feature.properties.name);
+                    },
+                    style: function(feature) {
+                        return {
+                            color: '#0B2046', // Navy border
+                            weight: 2,
+                            fillColor: '#FF6600', // EPS Solid Orange
+                            fillOpacity: 0.55
+                        };
+                    },
+                    onEachFeature: function(feature, layer) {
+                        layer.bindPopup("<b>" + feature.properties.name + "</b><br>Full Coverage Region");
+                    }
+                }).addTo(map);
+            })
+            .catch(err => console.error("Error loading state boundary data: ", err));
     }
 });
