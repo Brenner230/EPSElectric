@@ -35,7 +35,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ==========================================
-// 3. ENHANCED FORM LOGIC (Formatting & Logic)
+// 3. INQUIRY FORM LOGIC (GA Redirect Version)
 // ==========================================
 
 // --- A. PHONE NUMBER FORMATTER ---
@@ -87,9 +87,8 @@ if (categorySelect && serviceSelect) {
     });
 }
 
-// --- C. FORM SUBMISSION (Success State) ---
+// --- C. FORM SUBMISSION WITH GA REDIRECT ---
 const leadForm = document.getElementById('leadForm');
-const contactFormContainer = document.querySelector('.contact-form');
 
 if (leadForm) {
     leadForm.addEventListener('submit', function(e) {
@@ -109,14 +108,8 @@ if (leadForm) {
         })
         .then(async (response) => {
             if (response.status == 200) {
-                contactFormContainer.innerHTML = `
-                    <div class="form-success-message">
-                        <div class="success-icon">✔</div>
-                        <h3>Request Received</h3>
-                        <p>Thank you! Your project details have been sent to Eric. We will review your request and get back to you shortly.</p>
-                        <button onclick="window.location.reload()" class="btn-secondary" style="margin-top: 20px; width: auto;">Send Another Request</button>
-                    </div>
-                `;
+                // REDIRECT TO SUCCESS PAGE FOR GOOGLE ANALYTICS
+                window.location.href = 'success.html';
             } else {
                 alert("Something went wrong. Please try calling us directly at (443) 465-7769.");
             }
