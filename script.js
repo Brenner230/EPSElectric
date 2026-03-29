@@ -51,22 +51,57 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ==========================================
-// 3. INQUIRY FORM HANDLING (MVP Version)
+// 3. INQUIRY FORM HANDLING (In-Page Success State)
 // ==========================================
-const contactForm = document.querySelector('.contact-form form');
+const leadForm = document.getElementById('leadForm');
+const contactFormContainer = document.querySelector('.contact-form');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent the page from reloading
+if (leadForm) {
+    leadForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the default page redirect
         
-        // Get the user's name to personalize the message
-        const customerName = contactForm.querySelector('input[name="name"]').value;
+        // Change button text to show it's working
+        const submitBtn = leadForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending Request...';
         
-        // Updated to reflect the DMV market
-        alert(`Thank you, ${customerName}! Your request has been sent to Eminent Power Solutions. We will contact you shortly to discuss your project in the DMV area.`);
-        
-        // Clear the form fields after submission
-        contactForm.reset();
+        const formData = new FormData(leadForm);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        })
+        .then(async (response) => {
+            if (response.status == 200) {
+                // SUCCESS: Replace the form with a clean success message
+                contactFormContainer.innerHTML = `
+                    <div class="form-success-message">
+                        <div class="success-icon">✔</div>
+                        <h3>Request Received</h3>
+                        <p>Thank you! Your project details have been sent to Eric. We will review your request and get back to you shortly.</p>
+                        <button onclick="window.location.reload()" class="btn-secondary" style="margin-top: 20px; width: auto;">Send Another Request</button>
+                    </div>
+                `;
+            } else {
+                // Error handling
+                console.log(response);
+                alert("Something went wrong. Please try calling us directly at (443) 465-7769.");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            alert("Something went wrong. Please try calling us directly at (443) 465-7769.");
+        })
+        .finally(() => {
+            // Reset button text (though usually hidden by success state)
+            submitBtn.innerHTML = originalBtnText;
+        });
     });
 }
 

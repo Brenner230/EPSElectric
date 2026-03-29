@@ -501,6 +501,33 @@ textarea {
 }
 
 /* =========================================
+   13. FORM SUCCESS STATE
+   ========================================= */
+.form-success-message {
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeEffect 0.5s ease-in-out;
+}
+
+.success-icon {
+    font-size: 3rem;
+    color: var(--safety-orange);
+    margin-bottom: 20px;
+}
+
+.form-success-message h3 {
+    font-size: 1.8rem;
+    color: var(--primary-navy);
+    margin-bottom: 15px;
+}
+
+.form-success-message p {
+    color: var(--steel-grey);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* =========================================
    10. MOBILE RESPONSIVENESS
    ========================================= */
 @media (max-width: 768px) {
