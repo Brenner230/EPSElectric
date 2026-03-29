@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eminent Power Solutions | Expert Electrician serving the DMV</title>
+    <title>Eminent Power Solutions | Electrician for MD, D.C., VA & DE</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 </head>
 <body>
 
@@ -20,6 +22,7 @@
                 <ul>
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#service-area">Service Area</a></li>
                     <li><a href="#projects">Recent Work</a></li>
                     <li><a href="#reviews">Reviews</a></li>
                     <li><a href="#contact" class="btn-primary">Request a Quote</a></li>
@@ -33,8 +36,8 @@
 
     <section class="hero">
         <div class="container hero-content">
-            <h1>Master Craftsmanship.<br><span class="highlight">Powering the DMV.</span></h1>
-            <p>Providing licensed, fully insured, top-tier electrical services for homes and businesses across Washington D.C., Maryland, and Virginia. We do it right the first time.</p>
+            <h1>Master Craftsmanship.<br><span class="highlight">Powering MD, D.C., VA, & DE.</span></h1>
+            <p>Providing licensed, fully insured, top-tier electrical services for homes and businesses. Based in Frederick, MD, we deliver master-level results across the Mid-Atlantic region.</p>
             <div class="hero-actions">
                 <a href="#contact" class="btn-primary">Get Your Free Estimate</a>
                 <a href="tel:4434657769" class="btn-secondary">Call Now: +1 (443) 465-7769</a>
@@ -50,7 +53,7 @@
             </div>
             <div class="trust-item">
                 <h3>✔ Fully Licensed & Insured</h3>
-                <p>Complete peace of mind. Certified to operate across D.C., Maryland, and Virginia.</p>
+                <p>Complete peace of mind. Certified to operate across Maryland, Virginia, D.C., and Delaware.</p>
             </div>
             <div class="trust-item">
                 <h3>✔ Free Estimates</h3>
@@ -63,7 +66,7 @@
         <div class="container about-container">
             <div class="about-text">
                 <h2>Backed by Industry Authority</h2>
-                <p><strong>Eminent Power Solutions (EPS)</strong> was founded by CEO <strong>Eric Pumphrey</strong> to bring high-level, commercial-grade electrical standards directly to the DMV area. </p>
+                <p><strong>Eminent Power Solutions (EPS)</strong> was founded by CEO <strong>Eric Pumphrey</strong> to bring high-level, commercial-grade electrical standards directly to the region. </p>
                 <p>While EPS is a fresh, dynamic company, Eric brings over 15 years of deep industry experience to every job site. His background includes overseeing and executing large-scale, complex projects across both the public and private sectors. When you hire EPS, you aren't just getting an electrician; you are getting a seasoned project leader who understands how to deliver flawless, code-compliant results on time and on budget.</p>
             </div>
         </div>
@@ -96,6 +99,38 @@
                 <div class="service-card">
                     <h4>EV Charging Stations</h4>
                     <p>Certified Level 2 home and commercial charging installations to get you back on the road faster.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="service-area" class="service-area-section">
+        <div class="container">
+            <h2 class="section-title">Where We Work</h2>
+            <p class="service-intro">Headquartered in Frederick, MD, Eminent Power Solutions provides professional electrical contracting across a 1.5-hour driving radius throughout the broader Mid-Atlantic.</p>
+            
+            <div id="serviceMap" class="interactive-map"></div>
+
+            <div class="area-grid">
+                <div class="area-card">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <h4>Maryland</h4>
+                    <p>Providing statewide coverage, from Western Maryland to the Eastern Shore, dispatched from our Frederick HQ.</p>
+                </div>
+                <div class="area-card">
+                    <i class="fa-solid fa-house-chimney-window"></i>
+                    <h4>Virginia</h4>
+                    <p>Comprehensive service across all of Northern Virginia, extending southward down to Fredericksburg.</p>
+                </div>
+                <div class="area-card">
+                    <i class="fa-solid fa-monument"></i>
+                    <h4>Washington D.C.</h4>
+                    <p>Serving all quadrants of the District with prompt, highly-regulated, and code-compliant service.</p>
+                </div>
+                <div class="area-card">
+                    <i class="fa-solid fa-water"></i>
+                    <h4>Delaware</h4>
+                    <p>Full statewide service coverage, supporting residential and commercial projects across DE.</p>
                 </div>
             </div>
         </div>
@@ -173,11 +208,38 @@
         </div>
     </section>
 
+    <section id="process" class="process-section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <p class="process-intro">Our streamlined approach takes the guesswork out of getting your electrical needs solved.</p>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fa-solid fa-file-signature"></i></div>
+                    <h4>Request a Quote</h4>
+                    <p>Fill out the form below or call us to describe your project. We'll listen to your needs and set up a convenient time to visit.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <h4>On-Site Inspection</h4>
+                    <p>Our experts arrive on-site to accurately assess the situation, verify requirements, and provide a transparent, upfront estimate.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h4>Professional Repair</h4>
+                    <p>We execute the work flawlessly with high-grade materials, leaving your home safe, fully functional, and code-compliant.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="contact">
         <div class="container contact-container">
             <div class="contact-text">
                 <h2>Ready to Start Your Project?</h2>
-                <p>Fill out the form with your project details. We offer free estimates across the DMV and will get back to you promptly to schedule an inspection.</p>
+                <p>Fill out the form with your project details. We offer free estimates and will get back to you promptly to discuss your electrical needs.</p>
             </div>
             <div class="contact-form">
                 <form id="leadForm" action="https://api.web3forms.com/submit" method="POST">
@@ -233,11 +295,13 @@
                 <h3>Eminent Power Solutions</h3>
                 <p>Master-level electrical contracting led by Eric Pumphrey.</p>
             </div>
-            <div class="footer-contact" id="service-area">
-                <h4>Contact & Service Area</h4>
-                <p>Proudly serving Washington D.C., Maryland, and Northern Virginia.</p>
+            <div class="footer-contact">
+                <h4>Service Regions</h4>
+                <p><strong>Maryland:</strong> Statewide coverage.</p>
+                <p><strong>Virginia:</strong> Northern VA down to Fredericksburg.</p>
+                <p><strong>Delaware & D.C.:</strong> Full coverage.</p>
                 <br>
-                <p><strong>Office:</strong><br>1209 N East St, Ste A #269<br>Frederick, MD 21701</p>
+                <p><strong>Headquarters:</strong><br>1209 N East St, Ste A #269<br>Frederick, MD 21701</p>
                 <p><strong>Phone:</strong> +1 (443) 465-7769</p>
                 <p><strong>Email:</strong> service@epsdmv.com</p>
             </div>
@@ -263,6 +327,7 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="script.js"></script>
 </body>
 </html>

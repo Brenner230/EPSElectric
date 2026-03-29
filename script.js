@@ -156,3 +156,35 @@ dots.forEach((dot, index) => {
 function startInterval() { slideInterval = setInterval(nextSlide, 6000); }
 function resetInterval() { clearInterval(slideInterval); startInterval(); }
 if (slides.length > 0) { startInterval(); }
+
+// ==========================================
+// 5. INTERACTIVE SERVICE AREA MAP (Leaflet.js)
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const mapContainer = document.getElementById('serviceMap');
+    
+    if (mapContainer) {
+        // Initialize the map centered on Frederick, MD (Coordinates: 39.4143, -77.4105)
+        // Zoom level set to 8 for a clear view of the 1.5 hour radius
+        const map = L.map('serviceMap').setView([39.4143, -77.4105], 8);
+
+        // Load map tiles from CartoDB Voyager to bypass OpenStreetMap's local file 403 error
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 20
+        }).addTo(map);
+
+        // Draw a shaded circle to represent the 1.5-hour driving radius
+        // 135,000 meters = approx. 84 miles, covering the requested territory beautifully
+        const serviceCircle = L.circle([39.4143, -77.4105], {
+            color: '#0B2046',        // Navy border
+            fillColor: '#FF6600',    // EPS Orange fill
+            fillOpacity: 0.2,        // Transparency
+            radius: 135000            
+        }).addTo(map);
+
+        // Add a popup when someone clicks the shaded area
+        serviceCircle.bindPopup("<b>Eminent Power Solutions</b><br>Mid-Atlantic Service Area HQ in Frederick, MD.");
+    }
+});
