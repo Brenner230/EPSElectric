@@ -1,4 +1,4 @@
-/* --- All existing styles from your style.css --- */
+/* --- Keep all existing styles from your style.css --- */
 :root {
     --primary-navy: #0B2046;
     --safety-orange: #FF6600;
@@ -555,8 +555,78 @@ select:disabled {
     opacity: 0.7;
 }
 
+/* =========================================
+   14. UPDATED PAYMENT INFO STYLES
+   ========================================= */
+.payment-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+}
+
+.payment-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.payment-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #cbd5e0; /* Match standard grey */
+    text-transform: uppercase;
+}
+
+.payment-logos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    color: var(--white); 
+}
+
+/* Font Awesome Icon Styling */
+.payment-logos i {
+    font-size: 35px; /* Perfect, crisp height */
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.payment-logos:hover i {
+    color: var(--safety-orange);
+    transform: translateY(-2px);
+}
+
+.highlight-group {
+    background: rgba(255, 102, 0, 0.05);
+    padding: 8px 16px;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 102, 0, 0.2);
+}
+
+.highlight-group .payment-label {
+    color: var(--white);
+}
+
+.discount-badge {
+    background-color: var(--safety-orange);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 @media (max-width: 768px) {
     .full-width-input {
         grid-column: span 1;
+    }
+    
+    .payment-group {
+        flex-direction: column;
+        gap: 8px;
     }
 }
