@@ -20,8 +20,8 @@ navLinks.forEach(link => {
 // ==========================================
 // 2. SMOOTH SCROLLING FOR NAVIGATION LINKS
 // ==========================================
-// We explicitly ignore the FAQ trigger link so it doesn't cause page jumps when opening the modal
-document.querySelectorAll('a[href^="#"]:not(.faq-trigger)').forEach(anchor => {
+// Ignore modal triggers so the page doesn't jump
+document.querySelectorAll('a[href^="#"]:not(.modal-trigger)').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
@@ -154,39 +154,45 @@ function resetInterval() { clearInterval(slideInterval); startInterval(); }
 if (slides.length > 0) { startInterval(); }
 
 // ==========================================
-// 5. FAQ MODAL & ACCORDION LOGIC
+// 5. DYNAMIC MODAL SYSTEM (FAQ, Privacy, Terms)
 // ==========================================
-const faqModal = document.getElementById('faqModal');
-const openFaqBtns = document.querySelectorAll('.faq-trigger'); 
-const closeFaqBtn = document.getElementById('closeFaqBtn');
-const faqQuestions = document.querySelectorAll('.faq-question');
+const modalTriggers = document.querySelectorAll('.modal-trigger');
+const closeBtns = document.querySelectorAll('.close-modal');
+const modals = document.querySelectorAll('.modal');
 
-// Open Modal
-openFaqBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+// Open specific modal based on href
+modalTriggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        faqModal.classList.add('show');
-        document.body.style.overflow = 'hidden'; // Lock background scrolling
+        const targetId = trigger.getAttribute('href').substring(1);
+        const targetModal = document.getElementById(targetId);
+        if (targetModal) {
+            targetModal.classList.add('show');
+            document.body.style.overflow = 'hidden'; 
+        }
     });
 });
 
-// Close Modal via X button
-if (closeFaqBtn) {
-    closeFaqBtn.addEventListener('click', () => {
-        faqModal.classList.remove('show');
-        document.body.style.overflow = 'auto'; // Restore background scrolling
+// Close Modals via X button
+closeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        modals.forEach(modal => modal.classList.remove('show'));
+        document.body.style.overflow = 'auto'; 
     });
-}
+});
 
-// Close Modal by clicking outside the box
+// Close Modals by clicking outside
 window.addEventListener('click', (e) => {
-    if (e.target === faqModal) {
-        faqModal.classList.remove('show');
-        document.body.style.overflow = 'auto';
-    }
+    modals.forEach(modal => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+    });
 });
 
-// Accordion Expanding/Collapsing Logic
+// FAQ Accordion Logic
+const faqQuestions = document.querySelectorAll('.faq-question');
 faqQuestions.forEach(question => {
     question.addEventListener('click', () => {
         question.classList.toggle('active');
@@ -200,7 +206,30 @@ faqQuestions.forEach(question => {
 });
 
 // ==========================================
-// 6. ADVANCED INTERACTIVE SERVICE AREA MAP 
+// 6. COOKIE CONSENT LOGIC
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const cookieBanner = document.getElementById('cookieBanner');
+    const acceptCookiesBtn = document.getElementById('acceptCookies');
+
+    if (cookieBanner && acceptCookiesBtn) {
+        // Check if user has already accepted
+        if (!localStorage.getItem('cookieConsent')) {
+            // Delay showing the banner slightly for better UX
+            setTimeout(() => {
+                cookieBanner.classList.add('show');
+            }, 1500);
+        }
+
+        acceptCookiesBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'true');
+            cookieBanner.classList.remove('show');
+        });
+    }
+});
+
+// ==========================================
+// 7. ADVANCED INTERACTIVE SERVICE AREA MAP 
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
     const mapContainer = document.getElementById('serviceMap');

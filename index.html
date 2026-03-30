@@ -25,6 +25,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+
     <script type="application/ld+json">
     [
       {
@@ -153,7 +155,7 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#service-area">Service Area</a></li>
                     <li><a href="#projects">Recent Work</a></li>
-                    <li><a href="#faqModal" class="faq-trigger">FAQ</a></li>
+                    <li><a href="#faqModal" class="modal-trigger">FAQ</a></li>
                     <li><a href="#contact" class="btn-primary">Request a Quote</a></li>
                 </ul>
             </nav>
@@ -379,6 +381,8 @@
                         <input type="hidden" name="access_key" value="0dd69a78-82ac-4cfc-b9a8-65d61ebed62b">
                         <input type="hidden" name="subject" value="New Website Lead - Eminent Power Solutions">
                         
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        
                         <div class="input-group">
                             <input type="text" name="first_name" placeholder="First Name" required aria-label="First Name">
                             <input type="text" name="last_name" placeholder="Last Name" required aria-label="Last Name">
@@ -416,6 +420,9 @@
                         </div>
 
                         <textarea name="message" rows="4" placeholder="Briefly describe what you need help with..." required aria-label="Project Message"></textarea>
+                        
+                        <div class="h-captcha" data-captcha="true" style="margin-bottom: 15px;"></div>
+
                         <button type="submit" class="btn-primary full-width">Request Free Estimate</button>
                     </form>
                 </div>
@@ -458,13 +465,22 @@
                 </div>
             </div>
             <p>Eminent Power Solutions LLC is a licensed entity in active Good Standing with the State of Maryland. | MD Dept ID: W25910415</p>
-            <p>&copy; 2026 Eminent Power Solutions LLC. All rights reserved.</p>
+            <p>&copy; 2026 Eminent Power Solutions LLC. All rights reserved. | <a href="#privacyModal" class="modal-trigger" style="color: var(--steel-grey);">Privacy Policy</a> | <a href="#termsModal" class="modal-trigger" style="color: var(--steel-grey);">Terms of Service</a></p>
         </div>
     </footer>
 
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-text">
+            <p>We use cookies to enhance your browsing experience, analyze our traffic, and provide a secure platform. By clicking "Accept All", you consent to our use of cookies. <a href="#privacyModal" class="modal-trigger" style="color: var(--white); text-decoration: underline;">Read our Privacy Policy</a>.</p>
+        </div>
+        <div class="cookie-btns">
+            <button id="acceptCookies" class="btn-primary">Accept All</button>
+        </div>
+    </div>
+
     <div id="faqModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
         <div class="modal-content">
-            <span class="close-modal" id="closeFaqBtn" aria-label="Close FAQ">&times;</span>
+            <span class="close-modal" aria-label="Close Modal">&times;</span>
             <h2 class="section-title" style="margin-bottom: 20px; font-size: 2rem;">Frequently Asked Questions</h2>
             <div class="faq-container">
                 <div class="faq-item">
@@ -509,6 +525,48 @@
                         <p>Yes, we specialize in certified Level 2 home and commercial EV charging installations. We assess your panel's load capacity and install dedicated circuits to get you back on the road faster.</p>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="privacyModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-content text-modal">
+            <span class="close-modal" aria-label="Close Modal">&times;</span>
+            <h2 class="section-title" style="margin-bottom: 20px; font-size: 2rem;">Privacy Policy</h2>
+            <div class="legal-text">
+                <p><strong>Effective Date: March 2026</strong></p>
+                <p>Eminent Power Solutions LLC ("we," "our," or "us") respects your privacy. This Privacy Policy outlines how we collect, use, and protect your information when you visit epsdmv.com.</p>
+                <h3>1. Information We Collect</h3>
+                <p>When you request a free estimate via our contact form, we collect personal information including your first and last name, email address, phone number, and physical service address.</p>
+                <h3>2. How We Use Your Information</h3>
+                <p>We use this information exclusively to respond to your inquiries, schedule on-site electrical inspections, provide estimates, and fulfill contracted services. We do not sell, rent, or lease your personal information to third parties.</p>
+                <h3>3. Cookies and Tracking</h3>
+                <p>Our website uses essential cookies to ensure site functionality, protect against spam (via hCaptcha), and analyze general website traffic to improve user experience.</p>
+                <h3>4. Data Protection</h3>
+                <p>We implement standard security measures to protect your data during transmission and storage. Form submissions are securely processed through Web3Forms.</p>
+                <h3>5. Contact Us</h3>
+                <p>If you have any questions about this Privacy Policy, please contact us at service@epsdmv.com.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-content text-modal">
+            <span class="close-modal" aria-label="Close Modal">&times;</span>
+            <h2 class="section-title" style="margin-bottom: 20px; font-size: 2rem;">Terms of Service</h2>
+            <div class="legal-text">
+                <p><strong>Effective Date: March 2026</strong></p>
+                <p>By using the Eminent Power Solutions LLC website (epsdmv.com) and requesting our services, you agree to the following terms and conditions:</p>
+                <h3>1. Services and Estimates</h3>
+                <p>Eminent Power Solutions LLC provides professional electrical contracting services. All estimates provided via the website or over the phone are preliminary and subject to change upon a formal on-site inspection. Formal written estimates are valid for 30 days from the date of issue.</p>
+                <h3>2. Payment Terms</h3>
+                <p>We accept major credit cards (Visa, Mastercard, Amex, Discover). A 5% discount is applied exclusively to final balances paid in full via cash or physical check. Payment is due upon completion of the agreed-upon services unless otherwise stipulated in a signed commercial contract.</p>
+                <h3>3. Licensing and Compliance</h3>
+                <p>We perform all work strictly according to local, state, and national electrical codes (NEC). We are a licensed entity in active Good Standing with the State of Maryland (MD Dept ID: W25910415).</p>
+                <h3>4. Limitation of Liability</h3>
+                <p>Eminent Power Solutions LLC is fully insured. However, we are not liable for pre-existing electrical code violations, structural damage, or failures of existing equipment not explicitly covered in our service agreement.</p>
+                <h3>5. Jurisdiction</h3>
+                <p>These terms shall be governed by and construed in accordance with the laws of the State of Maryland.</p>
             </div>
         </div>
     </div>
