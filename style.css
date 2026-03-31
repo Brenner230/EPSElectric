@@ -565,7 +565,10 @@ select:disabled { background-color: #f1f1f1; cursor: not-allowed; opacity: 0.7; 
 .quiz-container { background: var(--light-bg); padding: 40px; border-radius: 12px; border-top: 5px solid var(--primary-navy); min-height: 300px; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
 .quiz-step { animation: fadeIn 0.5s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-.quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+
+/* UPDATED TO DYNAMIC REPEAT TO HANDLE 2 OR 3 BUTTONS PERFECTLY */
+.quiz-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
+
 .quiz-opt { background: var(--white); border: 2px solid #cbd5e0; padding: 20px; border-radius: 8px; cursor: pointer; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 1.1rem; color: var(--primary-navy); transition: all 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
 .quiz-opt:hover { border-color: var(--safety-orange); color: var(--safety-orange); transform: translateY(-2px); }
 

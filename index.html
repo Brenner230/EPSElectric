@@ -75,20 +75,29 @@
                     </div>
 
                     <div class="quiz-step" data-step="2" style="display: none;">
-                        <h3 style="text-align: center; margin-bottom: 20px;">What do you need help with?</h3>
+                        <h3 style="text-align: center; margin-bottom: 20px;">Which category best fits your needs?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-opt" data-value="Power & Infrastructure">⚡ Power & Infrastructure</button>
+                            <button class="quiz-opt" data-value="Remodeling & Lifestyle">🔨 Remodeling & Lifestyle</button>
+                            <button class="quiz-opt" data-value="Safety & Historic Homes">🛡️ Safety & Historic Homes</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-step" data-step="3" style="display: none;">
+                        <h3 style="text-align: center; margin-bottom: 20px;">What specific service do you need?</h3>
                         <div class="quiz-options" id="quiz-services">
                             </div>
                     </div>
 
-                    <div class="quiz-step" data-step="3" style="display: none;">
-    <h3 style="text-align: center; margin-bottom: 20px;">Is this an emergency?</h3>
-    <div class="quiz-options">
-        <button class="quiz-opt" data-value="Yes">🚨 Yes, 2-Hour Response</button>
-        <button class="quiz-opt" data-value="No">📅 No, Standard Estimate</button>
-    </div>
-</div>
-
                     <div class="quiz-step" data-step="4" style="display: none;">
+                        <h3 style="text-align: center; margin-bottom: 20px;">Is this an emergency?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-opt" data-value="Yes">🚨 Yes, 2-Hour Response</button>
+                            <button class="quiz-opt" data-value="No">📅 No, Standard Estimate</button>
+                        </div>
+                    </div>
+
+                    <div class="quiz-step" data-step="5" style="display: none;">
                         <h3 style="text-align: center; margin-bottom: 10px;">Contact Details</h3>
                         <p style="text-align: center; margin-bottom: 20px; color: var(--steel-grey);">We'll use these details to provide your tailored estimate.</p>
                         <form id="quizForm" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">

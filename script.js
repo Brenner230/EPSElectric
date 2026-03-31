@@ -5,16 +5,14 @@ document.addEventListener("DOMContentLoaded", function() {
     const headerPlaceholder = document.getElementById('header-placeholder');
     
     if (headerPlaceholder) {
-        // Fetch the universal header file
         fetch('header.html')
             .then(response => response.text())
             .then(data => {
                 headerPlaceholder.innerHTML = data;
-                initializeNavigation(); // Start menu logic only AFTER header loads
+                initializeNavigation(); 
             })
             .catch(error => console.error("Error loading header:", error));
     } else {
-        // Fallback just in case a page hardcoded the header
         initializeNavigation();
     }
 });
@@ -23,7 +21,6 @@ function initializeNavigation() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
 
-    // A. Hamburger Menu Toggle
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
@@ -31,30 +28,25 @@ function initializeNavigation() {
         });
     }
 
-    // B. Dynamically Set Active Page Highlight
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-menu a');
     
     navLinks.forEach(link => {
-        // If the href exactly matches the current URL file name, highlight it
         if (link.getAttribute('href') === currentPage) {
             link.classList.add('active-page');
         }
         
-        // Close menu on mobile when a link is clicked
         link.addEventListener('click', () => {
             if(navMenu) navMenu.classList.remove('active');
             if(hamburger) hamburger.innerHTML = '☰';
         });
     });
 
-    // C. Multi-Page Smooth Scrolling
     document.querySelectorAll('a[href*="#"]:not(.modal-trigger)').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             const targetPath = this.pathname.replace(/^\//, '');
             const currentPath = location.pathname.replace(/^\//, '');
             
-            // Only smooth scroll if we are staying on the same page
             if ((targetPath === currentPath || targetPath === '') && location.hostname == this.hostname) {
                 const targetId = this.hash;
                 if (targetId) {
@@ -75,7 +67,7 @@ function initializeNavigation() {
 }
 
 // ==========================================
-// 3. INQUIRY FORM LOGIC 
+// 3. INQUIRY FORM LOGIC (For contact.html)
 // ==========================================
 const phoneInput = document.getElementById('phone');
 if (phoneInput) {
@@ -88,7 +80,6 @@ if (phoneInput) {
 const categorySelect = document.getElementById('categorySelect');
 const serviceSelect = document.getElementById('serviceSelect');
 
-// UPDATED TO MATCH NEW SEO ARCHITECTURE
 const services = {
     Residential: [
         "Panel Upgrades & Heavy-Ups",
@@ -198,7 +189,7 @@ function resetInterval() { clearInterval(slideInterval); startInterval(); }
 if (slides.length > 0) { startInterval(); }
 
 // ==========================================
-// 5. DYNAMIC MODAL SYSTEM (FAQ, Privacy, Terms)
+// 5. DYNAMIC MODAL SYSTEM
 // ==========================================
 const modalTriggers = document.querySelectorAll('.modal-trigger');
 const closeBtns = document.querySelectorAll('.close-modal');
@@ -322,12 +313,11 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ==========================================
-// 8. PORTFOLIO LIGHTBOX (For portfolio.html)
+// 8. PORTFOLIO LIGHTBOX 
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
     const portfolioImages = document.querySelectorAll('.portfolio-lightbox-trigger');
     if (portfolioImages.length > 0) {
-        // Create lightbox elements
         const lightboxOverlay = document.createElement('div');
         lightboxOverlay.className = 'portfolio-lightbox-overlay';
         const lightboxImg = document.createElement('img');
@@ -353,25 +343,18 @@ document.addEventListener("DOMContentLoaded", function() {
 // ==========================================
 // 9. ZIP CODE VALIDATION & INTERACTIVE QUIZ
 // ==========================================
-
-// We use the first 3 digits (Prefix) to determine the region. 
-// This covers thousands of zip codes automatically without hardcoding them all.
-
-// Areas roughly within 1.5 hours of Frederick, MD (Qualifies for 2-Hour Emergency Window)
 const emergencyPrefixes = [
-    "217", "208", "209", "210", "211", "212", "214", "207", // MD (Frederick, Montgomery, Baltimore, PG, Anne Arundel)
-    "200", "202", "203", "204", "205", // Washington D.C.
-    "201", "220", "221", "222", "223", "226", // Northern VA (Arlington, Alexandria, Fairfax, Loudoun, Winchester)
-    "172", "173", // Southern PA (Waynesboro, Gettysburg)
-    "254" // WV Eastern Panhandle (Martinsburg, Harpers Ferry)
+    "217", "208", "209", "210", "211", "212", "214", "207", 
+    "200", "202", "203", "204", "205", 
+    "201", "220", "221", "222", "223", "226", 
+    "172", "173", "254" 
 ]; 
 
-// Areas outside 1.5 hours, but still covered for standard projects/estimates
 const standardPrefixes = [
-    "215", "216", "218", "219", // MD (Far West & Eastern Shore)
-    "197", "198", "199", // Delaware (Full State)
-    "170", "171", "174", "175", "190", "193", // PA (Harrisburg, York, Lancaster, Philly suburbs)
-    "224", "225", "227", "228" // VA (Fredericksburg, Culpeper, Harrisonburg)
+    "215", "216", "218", "219", 
+    "197", "198", "199", 
+    "170", "171", "174", "175", "190", "193", 
+    "224", "225", "227", "228" 
 ]; 
 
 function validateZip(zip) {
@@ -379,7 +362,6 @@ function validateZip(zip) {
         return { status: "none", msg: "Please enter a valid 5-digit zip code." };
     }
 
-    // Extract the first 3 digits of the entered zip code
     const prefix = zip.substring(0, 3);
 
     if (emergencyPrefixes.includes(prefix)) {
@@ -391,7 +373,6 @@ function validateZip(zip) {
     }
 }
 
-// Zip Checker on Homepage
 const checkZipBtn = document.getElementById('checkZipBtn');
 if (checkZipBtn) {
     checkZipBtn.addEventListener('click', () => {
@@ -414,45 +395,78 @@ if (checkZipBtn) {
     });
 }
 
-// Interactive Quiz Logic
-let quizData = { type: "", service: "", emergency: "" };
+// ----------------------------------------
+// NEW: 3-Tier Quiz Logic
+// ----------------------------------------
+let quizData = { type: "", category: "", service: "", emergency: "" };
 const quizSteps = document.querySelectorAll('.quiz-step');
 const quizServices = document.getElementById('quiz-services');
 
-document.querySelectorAll('.quiz-opt').forEach(button => {
-    button.addEventListener('click', function() {
+// Data maps to the mega-menu
+const quizServiceData = {
+    "Power & Infrastructure": [
+        "Panel Upgrades & Heavy-Ups",
+        "EV Charging Stations",
+        "Whole-Home Generators",
+        "Surge Protection",
+        "Underground Wiring"
+    ],
+    "Remodeling & Lifestyle": [
+        "High-End Remodels",
+        "Indoor Lighting",
+        "Landscape & Security",
+        "Hot Tub & Pool Wiring",
+        "Smart Home & A/V",
+        "Appliance Circuits"
+    ],
+    "Safety & Historic Homes": [
+        "Troubleshooting & Repair",
+        "Safety Inspections",
+        "Code Corrections",
+        "Knob & Tube Replacement",
+        "Aluminum Wiring Repair",
+        "GFCI/AFCI Outlets",
+        "Smoke/CO Detectors"
+    ]
+};
+
+// Bind to non-dynamic steps (Step 1, 2, 4)
+document.querySelectorAll('.quiz-step:not([data-step="3"]) .quiz-opt').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
         const step = this.closest('.quiz-step');
         const stepNum = parseInt(step.dataset.step);
         const value = this.dataset.value;
 
         if (stepNum === 1) {
             quizData.type = value;
-            populateQuizServices(value);
+            goToStep(2);
         } else if (stepNum === 2) {
-            quizData.service = value;
-        } else if (stepNum === 3) {
+            quizData.category = value;
+            populateQuizServices(value);
+            goToStep(3);
+        } else if (stepNum === 4) {
             quizData.emergency = value;
+            goToStep(5);
         }
-
-        goToStep(stepNum + 1);
     });
 });
 
-function populateQuizServices(type) {
-    const options = type === "Residential" 
-        ? ["Panel Upgrade", "EV Charger", "Lighting", "Remodeling Wiring"] 
-        : ["Tenant Improvement", "Commercial Lighting", "Code Audit", "Dedicated Circuits"];
+// Populate Step 3 based on Step 2 selection
+function populateQuizServices(category) {
+    const options = quizServiceData[category] || [];
     
     if (quizServices) {
         quizServices.innerHTML = options.map(opt => 
             `<button class="quiz-opt" data-value="${opt}">${opt}</button>`
         ).join('');
 
-        // Re-attach listeners to the new buttons
+        // Attach listeners to newly created buttons
         quizServices.querySelectorAll('.quiz-opt').forEach(btn => {
-            btn.addEventListener('click', function() {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
                 quizData.service = this.dataset.value;
-                goToStep(3);
+                goToStep(4);
             });
         });
     }
@@ -470,7 +484,6 @@ function goToStep(num) {
     }
 }
 
-// Form Submission with Strict Zip Block
 const quizForm = document.getElementById('quizForm');
 if (quizForm) {
     quizForm.addEventListener('submit', function(e) {
@@ -478,12 +491,11 @@ if (quizForm) {
         const validation = validateZip(zip);
         
         if (validation.status === "none") {
-            e.preventDefault(); // Stop the form from submitting
+            e.preventDefault();
             alert("We apologize, but we do not currently offer services in your zip code (" + zip + ").");
         } else {
-            e.preventDefault(); // Temporarily prevent submission to show success message
+            e.preventDefault(); 
             alert("Success! Your " + quizData.type + " project request for " + quizData.service + " has been received.");
-            // You can integrate web3forms here later!
         }
     });
 }
