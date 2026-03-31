@@ -349,3 +349,145 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+
+// ==========================================
+// 9. ZIP CODE VALIDATION & INTERACTIVE QUIZ
+// ==========================================
+
+// Define the Zip Codes (You can add more to these lists later!)
+const emergencyZips = ["21701", "21702", "21703", "21704"]; 
+const standardZips = ["19701", "19702", "19901", "20814", "20815", "20850"]; 
+
+function validateZip(zip) {
+    if (emergencyZips.includes(zip)) {
+        return { status: "emergency", msg: "✅ FULL EMERGENCY COVERAGE: You are within our 1.5-hour rapid response zone!" };
+    } else if (standardZips.includes(zip)) {
+        return { status: "standard", msg: "✔️ STANDARD COVERAGE: We serve your area for standard projects and estimates." };
+    } else {
+        return { status: "none", msg: "❌ OUTSIDE SERVICE AREA: We currently do not serve this zip code." };
+    }
+}
+
+// Zip Checker on Homepage
+const checkZipBtn = document.getElementById('checkZipBtn');
+if (checkZipBtn) {
+    checkZipBtn.addEventListener('click', () => {
+        const zip = document.getElementById('zipInput').value;
+        const resultDiv = document.getElementById('zipResult');
+        const validation = validateZip(zip);
+        
+        resultDiv.innerHTML = validation.msg;
+        resultDiv.style.display = "block";
+        
+        if (validation.status === "emergency") {
+            resultDiv.style.background = "#dcfce7"; resultDiv.style.color = "#166534";
+        } else if (validation.status === "standard") {
+            resultDiv.style.background = "#e0f2fe"; resultDiv.style.color = "#075985";
+        } else {
+            resultDiv.style.background = "#fee2e2"; resultDiv.style.color = "#991b1b";
+        }
+    });
+}
+
+// Interactive Quiz Logic
+let quizData = { type: "", service: "", emergency: "" };
+const quizSteps = document.querySelectorAll('.quiz-step');
+const quizServices = document.getElementById('quiz-services');
+
+document.querySelectorAll('.quiz-opt').forEach(button => {
+    button.addEventListener('click', function() {
+        const step = this.closest('.quiz-step');
+        const stepNum = parseInt(step.dataset.step);
+        const value = this.dataset.value;
+
+        if (stepNum === 1) {
+            quizData.type = value;
+            populateQuizServices(value);
+        } else if (stepNum === 2) {
+            quizData.service = value;
+        } else if (stepNum === 3) {
+            quizData.emergency = value;
+        }
+
+        goToStep(stepNum + 1);
+    });
+});
+
+function populateQuizServices(type) {
+    const options = type === "Residential" 
+        ? ["Panel Upgrade", "EV Charger", "Lighting", "Remodeling Wiring"] 
+        : ["Tenant Improvement", "Commercial Lighting", "Code Audit", "Dedicated Circuits"];
+    
+    if (quizServices) {
+        quizServices.innerHTML = options.map(opt => 
+            `<button class="quiz-opt" data-value="${opt}">${opt}</button>`
+        ).join('');
+
+        // Re-attach listeners to the new buttons
+        quizServices.querySelectorAll('.quiz-opt').forEach(btn => {
+            btn.addEventListener('click', function() {
+                quizData.service = this.dataset.value;
+                goToStep(3);
+            });
+        });
+    }
+}
+
+function goToStep(num) {
+    quizSteps.forEach(s => {
+        s.classList.remove('active');
+        s.style.display = 'none';
+    });
+    const nextStep = document.querySelector(`.quiz-step[data-step="${num}"]`);
+    if (nextStep) {
+        nextStep.classList.add('active');
+        nextStep.style.display = 'block';
+    }
+}
+
+// Form Submission with Strict Zip Block
+const quizForm = document.getElementById('quizForm');
+if (quizForm) {
+    quizForm.addEventListener('submit', function(e) {
+        const zip = document.getElementById('quizZip').value;
+        const validation = validateZip(zip);
+        
+        if (validation.status === "none") {
+            e.preventDefault(); // Stop the form from submitting
+            alert("We apologize, but we do not currently offer services in your zip code (" + zip + ").");
+        } else {
+            e.preventDefault(); // Temporarily prevent submission to show success message
+            alert("Success! Your " + quizData.type + " project request for " + quizData.service + " has been received.");
+            // You can integrate web3forms here later!
+        }
+    });
+}
+
+// ==========================================
+// 10. SCROLL PROGRESS BAR & SOCIAL TICKER
+// ==========================================
+window.addEventListener('scroll', function() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    const bar = document.getElementById("scroll-progress-bar");
+    if (bar) bar.style.width = scrolled + "%";
+});
+
+const tickerPhrases = [
+    "5.0 Rating | Recent 5-Star Review from Vicki L.",
+    "Emergency Support available in Frederick, MD & DC",
+    "Serving MD, D.C., DE, VA & PA since 2011"
+];
+let tickerIdx = 0;
+setInterval(() => {
+    const span = document.querySelector('.ticker-content span');
+    if (span) {
+        tickerIdx = (tickerIdx + 1) % tickerPhrases.length;
+        span.style.opacity = 0;
+        setTimeout(() => {
+            span.innerText = tickerPhrases[tickerIdx];
+            span.style.opacity = 1;
+        }, 500);
+    }
+}, 6000);

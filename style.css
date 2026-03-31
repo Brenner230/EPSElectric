@@ -552,3 +552,41 @@ select:disabled { background-color: #f1f1f1; cursor: not-allowed; opacity: 0.7; 
     font-size: 1.05rem;
     border: 1px solid #cbd5e0;
 }
+
+/* =========================================
+   21. NEW INTERACTIVE FEATURES (FAB, QUIZ, TICKER)
+   ========================================= */
+
+/* Scroll Progress */
+#scroll-progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 5px; z-index: 9999; background: transparent; }
+#scroll-progress-bar { height: 100%; background: var(--safety-orange); width: 0%; transition: width 0.1s ease; }
+
+/* Quiz Styles */
+.quiz-container { background: var(--light-bg); padding: 40px; border-radius: 12px; border-top: 5px solid var(--primary-navy); min-height: 300px; max-width: 800px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+.quiz-step { animation: fadeIn 0.5s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+.quiz-opt { background: var(--white); border: 2px solid #cbd5e0; padding: 20px; border-radius: 8px; cursor: pointer; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 1.1rem; color: var(--primary-navy); transition: all 0.2s ease; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.quiz-opt:hover { border-color: var(--safety-orange); color: var(--safety-orange); transform: translateY(-2px); }
+
+/* FAB (Floating Action Button) */
+.fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 2000; }
+.fab-btn { background: var(--safety-orange); color: var(--white); padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4); display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.3s ease, background 0.3s ease; }
+.fab-btn:hover { transform: scale(1.05); background: var(--orange-hover); color: var(--white); }
+.fab-call { background: var(--primary-navy); box-shadow: 0 4px 15px rgba(11, 32, 70, 0.4); }
+.fab-call:hover { background: var(--steel-grey); }
+
+/* Social Ticker */
+.social-ticker { position: fixed; bottom: 30px; left: 30px; background: rgba(11, 32, 70, 0.95); color: var(--white); padding: 12px 20px; border-radius: 50px; z-index: 1999; border-left: 4px solid var(--safety-orange); font-size: 0.95rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); pointer-events: none; }
+.ticker-content span { transition: opacity 0.5s ease; }
+
+/* Mobile Adjustments for FAB & Ticker */
+.mobile-only { display: none; }
+
+@media (max-width: 768px) {
+    .mobile-only { display: flex; }
+    .fab-container { left: 20px; right: 20px; bottom: 20px; flex-direction: row; }
+    .fab-btn { flex: 1; padding: 12px; font-size: 0.95rem; }
+    .social-ticker { display: none; /* Hide ticker on mobile to save screen space */ }
+    .quiz-options { grid-template-columns: 1fr; }
+}

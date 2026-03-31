@@ -6,14 +6,7 @@
     <meta name="theme-color" content="#0B2046">
     
     <title>Eminent Power Solutions | Electrician for MD, D.C., DE, VA & PA</title>
-    <meta name="title" content="Eminent Power Solutions | Electrician for MD, D.C., DE, VA & PA">
-    <meta name="description" content="Master-level, licensed electrical contractor providing full coverage in MD, D.C., DE, and partial coverage in VA and PA. Call for a free estimate today.">
-    <meta name="keywords" content="electrician near me, commercial electrician, residential electrician, panel upgrade, EV charger installation, DMV electrician, Frederick MD electrician, emergency electrician">
-    <meta name="author" content="Eminent Power Solutions">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://epsdmv.com/">
-
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6600'%3E%3Cpath d='M13 2L3 14h9v8l10-12h-9V2z'/%3E%3C/svg%3E">
+    <meta name="description" content="Master-level electrical contractor. Full emergency coverage within 1.5 hours of Frederick, MD. Serving MD, D.C., DE, VA & PA.">
     
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
@@ -21,16 +14,32 @@
 </head>
 <body>
 
+    <div id="scroll-progress-container"><div id="scroll-progress-bar"></div></div>
+
     <div id="header-placeholder"></div>
     
     <main>
         <section class="hero">
             <div class="container hero-content">
                 <h1>Master Craftsmanship.<br><span class="highlight">Full Coverage in MD, D.C., DE.<br>Serving VA & PA.</span></h1>
-                <p>Providing licensed, fully insured, top-tier electrical services for homes and businesses. Based in Frederick, MD, we deliver master-level results across the Mid-Atlantic.</p>
+                <p>Providing licensed, fully insured, top-tier electrical services. Based in Frederick, MD, we offer full emergency coverage for all locations within a 1.5-hour radius.</p>
                 <div class="hero-actions">
-                    <a href="contact.html" class="btn-primary">Get Your Free Estimate</a>
-                    <a href="tel:4434657769" class="btn-secondary">Call Now: +1 (443) 465-7769</a>
+                    <a href="#quiz-section" class="btn-primary">Start Your Project Quiz</a>
+                    <a href="tel:4434657769" class="btn-secondary">Emergency Call: (443) 465-7769</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="zip-validator-section" style="background-color: var(--light-bg); padding: 40px 0; border-bottom: 3px solid var(--safety-orange);">
+            <div class="container">
+                <div class="validator-box" style="background: var(--white); padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; max-width: 600px; margin: 0 auto;">
+                    <h3 style="font-family: 'Oswald', sans-serif; color: var(--primary-navy); font-size: 1.5rem; margin-bottom: 10px;">Check Emergency Coverage</h3>
+                    <p style="color: var(--steel-grey); margin-bottom: 20px;">Enter your zip code to see if you qualify for our 1.5-hour rapid emergency response.</p>
+                    <div class="validator-input-group" style="display: flex; gap: 10px; justify-content: center;">
+                        <input type="text" id="zipInput" placeholder="Enter Zip Code" maxlength="5" style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px; width: 60%;">
+                        <button id="checkZipBtn" class="btn-primary" style="padding: 12px 24px;">Check Availability</button>
+                    </div>
+                    <div id="zipResult" class="zip-result-message" style="margin-top: 15px; font-weight: 600; padding: 10px; border-radius: 4px; display: none;"></div>
                 </div>
             </div>
         </section>
@@ -52,113 +61,44 @@
             </div>
         </section>
 
-        <section id="process" class="process-section">
+        <section id="quiz-section" class="quiz-section" style="padding: 80px 0; background-color: var(--white);">
             <div class="container">
-                <h2 class="section-title">How It Works</h2>
-                <p class="process-intro">Our streamlined approach takes the guesswork out of getting your electrical needs solved.</p>
-                <div class="process-grid">
-                    <div class="process-step">
-                        <div class="step-number">1</div>
-                        <div class="step-icon"><i class="fa-solid fa-file-signature"></i></div>
-                        <h4>Request a Quote</h4>
-                        <p>Fill out our simple online form or call us to describe your project. We'll set up a convenient time to visit.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">2</div>
-                        <div class="step-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-                        <h4>On-Site Inspection</h4>
-                        <p>Our experts arrive on-site to accurately assess the situation, verify requirements, and provide a transparent estimate.</p>
-                    </div>
-                    <div class="process-step">
-                        <div class="step-number">3</div>
-                        <div class="step-icon"><i class="fa-solid fa-bolt"></i></div>
-                        <h4>Professional Repair</h4>
-                        <p>We execute the work flawlessly with high-grade materials, leaving your home safe, functional, and code-compliant.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="services">
-            <div class="container">
-                <h2 class="section-title">Our Capabilities</h2>
-                <div class="services-category-grid">
-                    <div class="service-cat-card">
-                        <div class="cat-icon"><i class="fa-solid fa-charging-station"></i></div>
-                        <h3>Power & Infrastructure</h3>
-                        <p>Specializing in critical system upgrades including heavy-ups, EV charging stations, whole-home generators, and extensive underground wiring.</p>
-                    </div>
-                    <div class="service-cat-card">
-                        <div class="cat-icon"><i class="fa-solid fa-house-signal"></i></div>
-                        <h3>Remodeling & Lifestyle</h3>
-                        <p>Elevating your living spaces with high-end remodels, custom indoor/landscape lighting, smart home automation, and dedicated pool wiring.</p>
-                    </div>
-                    <div class="service-cat-card">
-                        <div class="cat-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                        <h3>Safety & Historic Homes</h3>
-                        <p>Protecting your investment with rigorous safety inspections, code corrections, aluminum/knob-and-tube replacements, and rapid troubleshooting.</p>
-                    </div>
-                </div>
-                <div style="text-align: center; margin-top: 40px;">
-                    <p style="color: var(--steel-grey); margin-bottom: 15px;">Use the <strong>Services</strong> menu at the top of the page to explore our specific offerings.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="about-teaser" class="about-teaser-section">
-            <div class="container about-teaser-container">
-                <div class="about-teaser-content">
-                    <h2>Backed by Industry Authority</h2>
-                    <p>Founded by CEO Eric Pumphrey, Eminent Power Solutions brings commercial-grade electrical standards directly to the residential and commercial sectors. With over 15 years of deep industry experience executing complex projects, we do it right the first time.</p>
-                    <div style="margin-top: 25px;">
-                        <a href="about.html" class="btn-primary">Read Our Full Story</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="service-area-teaser" class="service-area-teaser-section">
-            <div class="container text-center">
-                <h2 class="section-title">Serving the Mid-Atlantic</h2>
-                <p class="service-intro">Headquartered in Frederick, MD, Eminent Power Solutions provides licensed, code-compliant coverage across a wide radius. No matter where you are, we bring the same level of master craftsmanship.</p>
-                
-                <div class="quick-areas">
-                    <span class="area-badge">📍 Maryland</span>
-                    <span class="area-badge">📍 Washington D.C.</span>
-                    <span class="area-badge">📍 Delaware</span>
-                    <span class="area-badge" style="opacity: 0.8;">📍 Northern VA</span>
-                    <span class="area-badge" style="opacity: 0.8;">📍 Southern PA</span>
-                </div>
-                
-                <div style="margin-top: 40px;">
-                    <a href="service-area.html" class="btn-secondary btn-large">View Interactive Coverage Map</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="projects-section">
-            <div class="container">
-                <h2 class="section-title">Recent Work</h2>
-                <div class="project-grid" style="margin-bottom: 40px;">
-                    <article class="project-card">
-                        <img src="https://images.unsplash.com/photo-1593784991095-a205069470b6?q=80&w=800&auto=format&fit=crop" alt="Electrician installing custom AV and smart TV wiring" class="project-image" loading="lazy">
-                        <div class="project-info">
-                            <span class="project-tag">Custom A/V Install</span>
-                            <h4>Seamless Smart TV Integration</h4>
-                            <p>Flawless Samsung Frame TV mounting with integrated soundbar and subwoofer. All wiring 100% concealed behind drywall for a clean finish.</p>
+                <h2 class="section-title" style="text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: var(--primary-navy);">Project Planner</h2>
+                <div id="project-quiz" class="quiz-container">
+                    
+                    <div class="quiz-step active" data-step="1">
+                        <h3 style="text-align: center; margin-bottom: 20px;">What type of property is this?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-opt" data-value="Residential">🏠 Residential</button>
+                            <button class="quiz-opt" data-value="Commercial">🏢 Commercial</button>
                         </div>
-                    </article>
-                    <article class="project-card">
-                        <img src="https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=800&auto=format&fit=crop" alt="Hardwired exterior security lighting and cameras" class="project-image" loading="lazy">
-                        <div class="project-info">
-                            <span class="project-tag">Security & Exterior</span>
-                            <h4>Hardwired Security Infrastructure</h4>
-                            <p>Comprehensive property protection featuring hardwired security cameras, alarm system integration, and exterior flood lighting.</p>
+                    </div>
+
+                    <div class="quiz-step" data-step="2" style="display: none;">
+                        <h3 style="text-align: center; margin-bottom: 20px;">What do you need help with?</h3>
+                        <div class="quiz-options" id="quiz-services">
+                            </div>
+                    </div>
+
+                    <div class="quiz-step" data-step="3" style="display: none;">
+                        <h3 style="text-align: center; margin-bottom: 20px;">Is this an emergency?</h3>
+                        <div class="quiz-options">
+                            <button class="quiz-opt" data-value="Yes">🚨 Yes, Immediate Help</button>
+                            <button class="quiz-opt" data-value="No">📅 No, Just an Estimate</button>
                         </div>
-                    </article>
-                </div>
-                <div style="text-align: center;">
-                    <a href="portfolio.html" class="btn-primary btn-large">View Full Portfolio Gallery</a>
+                    </div>
+
+                    <div class="quiz-step" data-step="4" style="display: none;">
+                        <h3 style="text-align: center; margin-bottom: 10px;">Contact Details</h3>
+                        <p style="text-align: center; margin-bottom: 20px; color: var(--steel-grey);">We'll use these details to provide your tailored estimate.</p>
+                        <form id="quizForm" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+                            <input type="text" name="name" placeholder="Full Name" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
+                            <input type="email" name="email" placeholder="Email Address" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
+                            <input type="tel" id="quizZip" name="zip" placeholder="Zip Code" maxlength="5" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
+                            <button type="submit" class="btn-primary" style="padding: 15px; font-size: 1.1rem;">Submit Project Details</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -169,25 +109,19 @@
                 <div class="testimonial-carousel">
                     <div class="carousel-slide active">
                         <div class="stars">★★★★★</div>
-                        <p class="review-text">"Eric completely transformed our living space. He mounted our Samsung Frame TV and integrated the soundbar and subwoofer so perfectly—every single wire is hidden. He is incredibly meticulous and respects your home. I can't recommend EPS enough."</p>
+                        <p class="review-text">"Eric completely transformed our living space. He mounted our Samsung Frame TV and integrated the soundbar and subwoofer so perfectly—every single wire is hidden behind the drywall for a flawless, seamless look."</p>
                         <p class="client-name">- Vicki L. <br><span class="client-location">Custom A/V & Lighting Install</span></p>
                     </div>
                     <div class="carousel-slide">
                         <div class="stars">★★★★★</div>
-                        <p class="review-text">"I hired Eminent Power Solutions to upgrade the security infrastructure on our new house, and Eric exceeded every expectation. Clean, efficient, and done right the first time. It's rare to find a contractor who combines deep technical knowledge with such a strong work ethic."</p>
+                        <p class="review-text">"I hired Eminent Power Solutions to upgrade the security infrastructure on our new house, and Eric exceeded every expectation. He expertly installed a comprehensive system of security cameras, alarms, and exterior flood lights."</p>
                         <p class="client-name">- Robert J. <br><span class="client-location">Security & Exterior Lighting</span></p>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="stars">★★★★★</div>
-                        <p class="review-text">"Finding a reliable, master-level electrician in the DMV is tough, but EPS is the real deal. Eric quickly diagnosed a complex circuit issue we were having and had it fixed the same day. Highly professional, upfront about pricing, and true to his word."</p>
-                        <p class="client-name">- Michael S. <br><span class="client-location">Troubleshooting Service</span></p>
                     </div>
                     <div class="carousel-controls">
                         <button class="carousel-btn" id="prevBtn" aria-label="Previous Review">&#10094;</button>
                         <div class="carousel-dots">
                             <span class="dot active" data-index="0"></span>
                             <span class="dot" data-index="1"></span>
-                            <span class="dot" data-index="2"></span>
                         </div>
                         <button class="carousel-btn" id="nextBtn" aria-label="Next Review">&#10095;</button>
                     </div>
@@ -210,60 +144,28 @@
                 <address style="font-style: normal;">
                     <p><strong>Headquarters:</strong><br>1209 N East St, Ste A #269<br>Frederick, MD 21701</p>
                     <p><strong>Phone:</strong> <a href="tel:4434657769" style="color:var(--white); text-decoration:none;">+1 (443) 465-7769</a></p>
-                    <p><strong>Email:</strong> <a href="mailto:service@epsdmv.com" style="color:var(--white); text-decoration:none;">service@epsdmv.com</a></p>
                 </address>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="payment-info">
-                <div class="payment-group">
-                    <span class="payment-label">Accepted Cards:</span>
-                    <div class="payment-logos">
-                        <i class="fa-brands fa-cc-visa" aria-label="Visa Accepted"></i>
-                        <i class="fa-brands fa-cc-mastercard" aria-label="Mastercard Accepted"></i>
-                        <i class="fa-brands fa-cc-amex" aria-label="American Express Accepted"></i>
-                        <i class="fa-brands fa-cc-discover" aria-label="Discover Accepted"></i>
-                    </div>
-                </div>
-                <div class="payment-group highlight-group">
-                    <span class="payment-label">Cash or Check:</span>
-                    <span class="discount-badge">5% DISCOUNT</span>
-                </div>
-            </div>
-            <p>Eminent Power Solutions LLC is a licensed entity in active Good Standing with the State of Maryland. | MD Dept ID: W25910415</p>
-            <p>&copy; 2026 Eminent Power Solutions LLC. All rights reserved. | <a href="#privacyModal" class="modal-trigger" style="color: var(--steel-grey);">Privacy Policy</a> | <a href="#termsModal" class="modal-trigger" style="color: var(--steel-grey);">Terms of Service</a></p>
+            <p>&copy; 2026 Eminent Power Solutions LLC. All rights reserved.</p>
         </div>
     </footer>
 
-    <div id="cookieBanner" class="cookie-banner">
-        <div class="cookie-text">
-            <p>We use cookies to enhance your browsing experience, analyze our traffic, and provide a secure platform. By clicking "Accept All", you consent to our use of cookies. <a href="#privacyModal" class="modal-trigger" style="color: var(--white); text-decoration: underline;">Read our Privacy Policy</a>.</p>
-        </div>
-        <div class="cookie-btns">
-            <button id="acceptCookies" class="btn-primary">Accept All</button>
+    <div id="social-ticker" class="social-ticker">
+        <div class="ticker-content">
+            <i class="fa-solid fa-star" style="color: #FFD700; margin-right: 5px;"></i>
+            <span>5.0 Rating | Recent 5-Star Review from Vicki L. in MD</span>
         </div>
     </div>
 
-    <div id="privacyModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="modal-content text-modal">
-            <span class="close-modal" aria-label="Close Modal">&times;</span>
-            <h2 class="section-title" style="margin-bottom: 20px; font-size: 2rem;">Privacy Policy</h2>
-            <div class="legal-text">
-                <p><strong>Effective Date: March 2026</strong></p>
-                <p>Eminent Power Solutions LLC ("we," "our," or "us") respects your privacy. This Privacy Policy outlines how we collect, use, and protect your information when you visit epsdmv.com.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="termsModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="modal-content text-modal">
-            <span class="close-modal" aria-label="Close Modal">&times;</span>
-            <h2 class="section-title" style="margin-bottom: 20px; font-size: 2rem;">Terms of Service</h2>
-            <div class="legal-text">
-                <p><strong>Effective Date: March 2026</strong></p>
-                <p>By using the Eminent Power Solutions LLC website (epsdmv.com) and requesting our services, you agree to the following terms and conditions.</p>
-            </div>
-        </div>
+    <div class="fab-container">
+        <a href="tel:4434657769" class="fab-btn fab-call mobile-only">
+            <i class="fa-solid fa-phone"></i> <span>Call Now</span>
+        </a>
+        <a href="contact.html" class="fab-btn fab-quote">
+            <i class="fa-solid fa-file-invoice-dollar"></i> <span>Request Quote</span>
+        </a>
     </div>
 
     <script src="script.js"></script>
