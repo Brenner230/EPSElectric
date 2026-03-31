@@ -354,15 +354,38 @@ document.addEventListener("DOMContentLoaded", function() {
 // 9. ZIP CODE VALIDATION & INTERACTIVE QUIZ
 // ==========================================
 
-// Define the Zip Codes (You can add more to these lists later!)
-const emergencyZips = ["21701", "21702", "21703", "21704"]; 
-const standardZips = ["19701", "19702", "19901", "20814", "20815", "20850"]; 
+// We use the first 3 digits (Prefix) to determine the region. 
+// This covers thousands of zip codes automatically without hardcoding them all.
+
+// Areas roughly within 1.5 hours of Frederick, MD (Qualifies for 2-Hour Emergency Window)
+const emergencyPrefixes = [
+    "217", "208", "209", "210", "211", "212", "214", "207", // MD (Frederick, Montgomery, Baltimore, PG, Anne Arundel)
+    "200", "202", "203", "204", "205", // Washington D.C.
+    "201", "220", "221", "222", "223", "226", // Northern VA (Arlington, Alexandria, Fairfax, Loudoun, Winchester)
+    "172", "173", // Southern PA (Waynesboro, Gettysburg)
+    "254" // WV Eastern Panhandle (Martinsburg, Harpers Ferry)
+]; 
+
+// Areas outside 1.5 hours, but still covered for standard projects/estimates
+const standardPrefixes = [
+    "215", "216", "218", "219", // MD (Far West & Eastern Shore)
+    "197", "198", "199", // Delaware (Full State)
+    "170", "171", "174", "175", "190", "193", // PA (Harrisburg, York, Lancaster, Philly suburbs)
+    "224", "225", "227", "228" // VA (Fredericksburg, Culpeper, Harrisonburg)
+]; 
 
 function validateZip(zip) {
-    if (emergencyZips.includes(zip)) {
-        return { status: "emergency", msg: "✅ FULL EMERGENCY COVERAGE: You are within our 1.5-hour rapid response zone!" };
-    } else if (standardZips.includes(zip)) {
-        return { status: "standard", msg: "✔️ STANDARD COVERAGE: We serve your area for standard projects and estimates." };
+    if (!zip || zip.length < 5) {
+        return { status: "none", msg: "Please enter a valid 5-digit zip code." };
+    }
+
+    // Extract the first 3 digits of the entered zip code
+    const prefix = zip.substring(0, 3);
+
+    if (emergencyPrefixes.includes(prefix)) {
+        return { status: "emergency", msg: "✅ FULL EMERGENCY COVERAGE: You qualify for our 2-Hour Rapid Response window!" };
+    } else if (standardPrefixes.includes(prefix)) {
+        return { status: "standard", msg: "✔️ STANDARD COVERAGE: We serve your area for standard projects and scheduled estimates." };
     } else {
         return { status: "none", msg: "❌ OUTSIDE SERVICE AREA: We currently do not serve this zip code." };
     }
@@ -372,8 +395,10 @@ function validateZip(zip) {
 const checkZipBtn = document.getElementById('checkZipBtn');
 if (checkZipBtn) {
     checkZipBtn.addEventListener('click', () => {
-        const zip = document.getElementById('zipInput').value;
+        const zipInput = document.getElementById('zipInput');
+        const zip = zipInput.value.trim();
         const resultDiv = document.getElementById('zipResult');
+        
         const validation = validateZip(zip);
         
         resultDiv.innerHTML = validation.msg;
