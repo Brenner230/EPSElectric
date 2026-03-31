@@ -471,3 +471,84 @@ select:disabled { background-color: #f1f1f1; cursor: not-allowed; opacity: 0.7; 
     max-width: 90%; max-height: 90vh; border-radius: 4px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
+
+/* =========================================
+   20. HOMEPAGE DECLUTTER UPDATES
+   ========================================= */
+
+/* 3-Pillar Category Grid for Homepage Services */
+.services-category-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 40px; 
+}
+.service-cat-card {
+    background: var(--light-bg);
+    border: 1px solid #E2E8F0;
+    padding: 40px 30px;
+    border-radius: 8px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-cat-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08); 
+}
+.cat-icon { 
+    font-size: 3rem; 
+    color: var(--safety-orange); 
+    margin-bottom: 20px; 
+}
+.service-cat-card h3 { 
+    font-size: 1.5rem; 
+    margin-bottom: 15px; 
+}
+.service-cat-card p { 
+    color: var(--steel-grey); 
+    font-size: 1rem; 
+    line-height: 1.6; 
+}
+
+/* Condensed About Teaser on Homepage */
+.about-teaser-section { 
+    padding: 80px 0; 
+    background-color: var(--primary-navy); 
+    color: var(--white); 
+}
+.about-teaser-container { 
+    max-width: 800px; 
+    text-align: center; 
+}
+.about-teaser-content h2 { 
+    font-size: 2.5rem; 
+    margin-bottom: 20px; 
+    color: var(--white); 
+}
+.about-teaser-content p { 
+    font-size: 1.15rem; 
+    color: #e2e8f0; 
+    margin-bottom: 15px; 
+}
+
+/* Condensed Service Area Teaser on Homepage */
+.service-area-teaser-section { 
+    padding: 80px 0; 
+    background-color: var(--white); 
+    border-top: 1px solid #e2e8f0; 
+}
+.quick-areas { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 15px; 
+    margin-top: 25px; 
+}
+.area-badge {
+    background-color: var(--light-bg);
+    color: var(--primary-navy);
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.05rem;
+    border: 1px solid #cbd5e0;
+}
