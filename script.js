@@ -320,3 +320,32 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(err => console.error("Error loading state boundary data: ", err));
     }
 });
+
+// ==========================================
+// 8. PORTFOLIO LIGHTBOX (For portfolio.html)
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    const portfolioImages = document.querySelectorAll('.portfolio-lightbox-trigger');
+    if (portfolioImages.length > 0) {
+        // Create lightbox elements
+        const lightboxOverlay = document.createElement('div');
+        lightboxOverlay.className = 'portfolio-lightbox-overlay';
+        const lightboxImg = document.createElement('img');
+        lightboxOverlay.appendChild(lightboxImg);
+        document.body.appendChild(lightboxOverlay);
+
+        portfolioImages.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', (e) => {
+                lightboxImg.src = e.target.src;
+                lightboxOverlay.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxOverlay.addEventListener('click', () => {
+            lightboxOverlay.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        });
+    }
+});

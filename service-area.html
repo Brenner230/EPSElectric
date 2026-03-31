@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B2046">
+    
+    <title>Our Service Area | MD, D.C., DE, VA & PA Electrician</title>
+    <meta name="description" content="Eminent Power Solutions provides full electrical coverage across Maryland, Washington D.C., and Delaware, with partial coverage in VA and PA.">
+    
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6600'%3E%3Cpath d='M13 2L3 14h9v8l10-12h-9V2z'/%3E%3C/svg%3E">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+
+    <div id="header-placeholder"></div>
+
+    <main>
+        <section class="hero page-hero" style="background: linear-gradient(rgba(11, 32, 70, 0.9), rgba(11, 32, 70, 0.9)), url('https://images.unsplash.com/photo-1519446452834-3158c5c1eb48?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; padding: 80px 0;">
+            <div class="container hero-content">
+                <h1 style="font-size: 3rem;">Where We <span class="highlight">Work</span></h1>
+                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">Headquartered in Frederick, MD, we deliver master-level electrical solutions across the Mid-Atlantic region.</p>
+            </div>
+        </section>
+
+        <section id="service-area" class="service-area-section">
+            <div class="container">
+                <p class="service-intro">Eminent Power Solutions provides full coverage for D.C., MD, and DE, with partial coverage extending into select counties of VA and PA within our 1.5-hour driving radius.</p>
+                
+                <div id="serviceMap" class="interactive-map"></div>
+
+                <div class="area-grid">
+                    <div class="area-card">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <h4>Maryland</h4>
+                        <p><strong>Full Coverage.</strong> Statewide service, from Western Maryland to the Eastern Shore.</p>
+                    </div>
+                    <div class="area-card">
+                        <i class="fa-solid fa-monument"></i>
+                        <h4>Washington D.C. & DE</h4>
+                        <p><strong>Full Coverage.</strong> Comprehensive, code-compliant service across D.C. and the entire state of Delaware.</p>
+                    </div>
+                    <div class="area-card">
+                        <i class="fa-solid fa-house-chimney-window"></i>
+                        <h4>Virginia</h4>
+                        <p><strong>Partial Coverage.</strong> Serving Northern Virginia and communities extending within our 1.5-hour driving radius.</p>
+                    </div>
+                    <div class="area-card">
+                        <i class="fa-solid fa-tree-city"></i>
+                        <h4>Pennsylvania</h4>
+                        <p><strong>Partial Coverage.</strong> Extending into Southern Pennsylvania counties that fall within our primary service radius.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <h3>Eminent Power Solutions</h3>
+                <p>Master-level electrical contracting led by Eric Pumphrey.</p>
+            </div>
+            <div class="footer-contact">
+                <h4>Service Regions</h4>
+                <p><strong>MD, D.C., & DE:</strong> Full Coverage.</p>
+                <p><strong>VA & PA:</strong> Partial Coverage.</p>
+                <br>
+                <address style="font-style: normal;">
+                    <p><strong>Headquarters:</strong><br>1209 N East St, Ste A #269<br>Frederick, MD 21701</p>
+                    <p><strong>Phone:</strong> <a href="tel:4434657769" style="color:var(--white); text-decoration:none;">+1 (443) 465-7769</a></p>
+                    <p><strong>Email:</strong> <a href="mailto:service@epsdmv.com" style="color:var(--white); text-decoration:none;">service@epsdmv.com</a></p>
+                </address>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Eminent Power Solutions LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+</body>
+</html>
