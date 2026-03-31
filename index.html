@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#0B2046">
     
     <title>Eminent Power Solutions | Electrician for MD, D.C., DE, VA & PA</title>
-    <meta name="description" content="Master-level electrical contractor. Full emergency coverage within 1.5 hours of Frederick, MD. Serving MD, D.C., DE, VA & PA.">
+    <meta name="description" content="Master-level electrical contractor. Serving MD, D.C., DE, VA & PA. Request a standard estimate online or call for emergency service.">
     
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
@@ -22,7 +22,7 @@
         <section class="hero">
             <div class="container hero-content">
                 <h1>Master Craftsmanship.<br><span class="highlight">Full Coverage in MD, D.C., DE.<br>Serving VA & PA.</span></h1>
-                <p>Providing licensed, fully insured, top-tier electrical services. Based in Frederick, MD, we offer a guaranteed <strong>2-Hour Emergency Response Window</strong>. See if your Zipcode qualifies below:</p>
+                <p>Providing licensed, fully insured, top-tier electrical services across the Mid-Atlantic. <strong>Need immediate emergency service? Call us directly.</strong> See if your Zip Code is in our service area below:</p>
                 <div class="hero-actions">
                     <a href="#quiz-section" class="btn-primary">Start Your Project Quiz</a>
                     <a href="tel:4434657769" class="btn-secondary">Emergency Call: (443) 465-7769</a>
@@ -33,8 +33,8 @@
         <section class="zip-validator-section" style="background-color: var(--light-bg); padding: 40px 0; border-bottom: 3px solid var(--safety-orange);">
             <div class="container">
                 <div class="validator-box" style="background: var(--white); padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; max-width: 600px; margin: 0 auto;">
-                    <h3 style="font-family: 'Oswald', sans-serif; color: var(--primary-navy); font-size: 1.5rem; margin-bottom: 10px;">Check Emergency Coverage</h3>
-                    <p style="color: var(--steel-grey); margin-bottom: 20px;">Enter your zip code to see if you qualify for our 2-hour rapid emergency response.</p>
+                    <h3 style="font-family: 'Oswald', sans-serif; color: var(--primary-navy); font-size: 1.5rem; margin-bottom: 10px;">Check Service Area</h3>
+                    <p style="color: var(--steel-grey); margin-bottom: 20px;">Enter your zip code to verify we provide service in your area.</p>
                     <div class="validator-input-group" style="display: flex; gap: 10px; justify-content: center;">
                         <input type="text" id="zipInput" placeholder="Enter Zip Code" maxlength="5" style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px; width: 60%;">
                         <button id="checkZipBtn" class="btn-primary" style="padding: 12px 24px;">Check Availability</button>
@@ -75,6 +75,7 @@
                     </div>
 
                     <div class="quiz-step" data-step="2" style="display: none;">
+                        <button class="quiz-back-btn" aria-label="Go Back"><i class="fa-solid fa-arrow-left"></i> Back</button>
                         <h3 style="text-align: center; margin-bottom: 20px;">Which category best fits your needs?</h3>
                         <div class="quiz-options">
                             <button class="quiz-opt" data-value="Power & Infrastructure">⚡ Power & Infrastructure</button>
@@ -84,28 +85,57 @@
                     </div>
 
                     <div class="quiz-step" data-step="3" style="display: none;">
+                        <button class="quiz-back-btn" aria-label="Go Back"><i class="fa-solid fa-arrow-left"></i> Back</button>
                         <h3 style="text-align: center; margin-bottom: 20px;">What specific service do you need?</h3>
                         <div class="quiz-options" id="quiz-services">
                             </div>
                     </div>
 
                     <div class="quiz-step" data-step="4" style="display: none;">
-                        <h3 style="text-align: center; margin-bottom: 20px;">Is this an emergency?</h3>
-                        <div class="quiz-options">
-                            <button class="quiz-opt" data-value="Yes">🚨 Yes, 2-Hour Response</button>
-                            <button class="quiz-opt" data-value="No">📅 No, Standard Estimate</button>
-                        </div>
+                        <button class="quiz-back-btn" aria-label="Go Back"><i class="fa-solid fa-arrow-left"></i> Back</button>
+                        <h3 style="text-align: center; margin-bottom: 10px;">Project Details</h3>
+                        <p style="text-align: center; margin-bottom: 20px; color: var(--steel-grey); line-height: 1.6;">
+                            Please provide your details for a standard estimate. <br>
+                            <strong style="color: var(--primary-navy);">If you have an electrical emergency, please call <a href="tel:4434657769" style="color: var(--safety-orange); text-decoration: underline;">(443) 465-7769</a> immediately.</strong>
+                        </p>
+                        
+                        <form id="quizForm" enctype="multipart/form-data" style="max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+                            
+                            <input type="hidden" name="access_key" value="0dd69a78-82ac-4cfc-b9a8-65d61ebed62b">
+                            <input type="hidden" name="subject" value="New Project Request from EPSDMV.com">
+                            <input type="hidden" name="from_name" value="Eminent Power Solutions Website">
+
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <input type="text" name="name" placeholder="Full Name" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
+                                <input type="tel" id="quizPhone" name="phone" placeholder="Phone Number" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
+                            </div>
+                            
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <input type="email" name="email" placeholder="Email Address" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
+                                <input type="tel" id="quizZip" name="zip" placeholder="Zip Code" maxlength="5" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
+                            </div>
+                            
+                            <textarea name="project_overview" placeholder="Briefly describe your project (e.g., 'Need a 50A circuit run to the garage for a new EV charger...')" rows="4" style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px; font-family: 'Inter', sans-serif; resize: vertical;" required></textarea>
+
+                            <div class="file-upload-wrapper">
+                                <label class="file-upload-label" for="projectAttachment">
+                                    <i class="fa-solid fa-cloud-arrow-up"></i> Attach Photos or Plans (Optional)
+                                </label>
+                                <input type="file" id="projectAttachment" name="attachment" accept="image/*,.pdf,.doc,.docx" class="file-upload-input">
+                                <div id="fileNameDisplay" class="file-name-display">No file chosen</div>
+                            </div>
+
+                            <button type="submit" class="btn-primary" style="padding: 15px; font-size: 1.1rem; margin-top: 10px;">Submit Project Request</button>
+                        </form>
                     </div>
 
-                    <div class="quiz-step" data-step="5" style="display: none;">
-                        <h3 style="text-align: center; margin-bottom: 10px;">Contact Details</h3>
-                        <p style="text-align: center; margin-bottom: 20px; color: var(--steel-grey);">We'll use these details to provide your tailored estimate.</p>
-                        <form id="quizForm" style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
-                            <input type="text" name="name" placeholder="Full Name" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
-                            <input type="email" name="email" placeholder="Email Address" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
-                            <input type="tel" id="quizZip" name="zip" placeholder="Zip Code" maxlength="5" required style="padding: 12px; border: 1px solid #CBD5E0; border-radius: 4px;">
-                            <button type="submit" class="btn-primary" style="padding: 15px; font-size: 1.1rem;">Submit Project Details</button>
-                        </form>
+                    <div class="quiz-step" data-step="5" style="display: none; text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 5rem; color: #16a34a; margin-bottom: 20px;"><i class="fa-solid fa-circle-check"></i></div>
+                        <h3 style="font-size: 2rem; margin-bottom: 15px; color: var(--primary-navy);">Project Successfully Submitted!</h3>
+                        <p id="successMessageText" style="color: var(--steel-grey); font-size: 1.1rem; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                            Your request has been received. Our team will review the details and contact you shortly.
+                        </p>
+                        <button id="resetQuizBtn" class="btn-secondary btn-large"><i class="fa-solid fa-plus" style="margin-right: 8px;"></i> Submit Another Project</button>
                     </div>
 
                 </div>

@@ -67,15 +67,17 @@ function initializeNavigation() {
 }
 
 // ==========================================
-// 3. INQUIRY FORM LOGIC (For contact.html)
+// 3. STANDARD CONTACT FORM LOGIC (contact.html)
 // ==========================================
-const phoneInput = document.getElementById('phone');
-if (phoneInput) {
-    phoneInput.addEventListener('input', (e) => {
-        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-    });
-}
+const phoneInputs = [document.getElementById('phone'), document.getElementById('quizPhone')];
+phoneInputs.forEach(input => {
+    if (input) {
+        input.addEventListener('input', (e) => {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+    }
+});
 
 const categorySelect = document.getElementById('categorySelect');
 const serviceSelect = document.getElementById('serviceSelect');
@@ -128,13 +130,15 @@ if (leadForm) {
         const originalBtnText = submitBtn.innerHTML;
         submitBtn.innerHTML = 'Sending Request...';
         
+        // Use FormData to fully support file attachments and proper routing
         const formData = new FormData(leadForm);
-        const object = Object.fromEntries(formData);
+        
+        // Backup access key injection to guarantee delivery
+        formData.append("access_key", "0dd69a78-82ac-4cfc-b9a8-65d61ebed62b");
 
         fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-            body: JSON.stringify(object)
+            body: formData
         })
         .then(async (response) => {
             if (response.status == 200) {
@@ -144,7 +148,7 @@ if (leadForm) {
             }
         })
         .catch(error => {
-            alert("Something went wrong. Please try calling us directly at (443) 465-7769.");
+            alert("Network Error. Please try calling us directly at (443) 465-7769.");
         })
         .finally(() => {
             submitBtn.innerHTML = originalBtnText;
@@ -343,14 +347,14 @@ document.addEventListener("DOMContentLoaded", function() {
 // ==========================================
 // 9. ZIP CODE VALIDATION & INTERACTIVE QUIZ
 // ==========================================
-const emergencyPrefixes = [
+
+const serviceAreaPrefixes = [
+    // DMV & Close Regions
     "217", "208", "209", "210", "211", "212", "214", "207", 
     "200", "202", "203", "204", "205", 
     "201", "220", "221", "222", "223", "226", 
-    "172", "173", "254" 
-]; 
-
-const standardPrefixes = [
+    "172", "173", "254",
+    // Expanded Regions
     "215", "216", "218", "219", 
     "197", "198", "199", 
     "170", "171", "174", "175", "190", "193", 
@@ -364,10 +368,8 @@ function validateZip(zip) {
 
     const prefix = zip.substring(0, 3);
 
-    if (emergencyPrefixes.includes(prefix)) {
-        return { status: "emergency", msg: "✅ FULL EMERGENCY COVERAGE: You qualify for our 2-Hour Rapid Response window!" };
-    } else if (standardPrefixes.includes(prefix)) {
-        return { status: "standard", msg: "✔️ STANDARD COVERAGE: We serve your area for standard projects and scheduled estimates." };
+    if (serviceAreaPrefixes.includes(prefix)) {
+        return { status: "valid", msg: "✅ IN SERVICE AREA: We serve your location! Request your quote below. For emergencies, please call." };
     } else {
         return { status: "none", msg: "❌ OUTSIDE SERVICE AREA: We currently do not serve this zip code." };
     }
@@ -385,10 +387,8 @@ if (checkZipBtn) {
         resultDiv.innerHTML = validation.msg;
         resultDiv.style.display = "block";
         
-        if (validation.status === "emergency") {
+        if (validation.status === "valid") {
             resultDiv.style.background = "#dcfce7"; resultDiv.style.color = "#166534";
-        } else if (validation.status === "standard") {
-            resultDiv.style.background = "#e0f2fe"; resultDiv.style.color = "#075985";
         } else {
             resultDiv.style.background = "#fee2e2"; resultDiv.style.color = "#991b1b";
         }
@@ -396,13 +396,12 @@ if (checkZipBtn) {
 }
 
 // ----------------------------------------
-// NEW: 3-Tier Quiz Logic
+// 4-Tier Quiz Logic with Back Buttons
 // ----------------------------------------
-let quizData = { type: "", category: "", service: "", emergency: "" };
+let quizData = { type: "", category: "", service: "" };
 const quizSteps = document.querySelectorAll('.quiz-step');
 const quizServices = document.getElementById('quiz-services');
 
-// Data maps to the mega-menu
 const quizServiceData = {
     "Power & Infrastructure": [
         "Panel Upgrades & Heavy-Ups",
@@ -430,8 +429,7 @@ const quizServiceData = {
     ]
 };
 
-// Bind to non-dynamic steps (Step 1, 2, 4)
-document.querySelectorAll('.quiz-step:not([data-step="3"]) .quiz-opt').forEach(button => {
+document.querySelectorAll('.quiz-step:not([data-step="3"]):not([data-step="4"]):not([data-step="5"]) .quiz-opt').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
         const step = this.closest('.quiz-step');
@@ -445,14 +443,19 @@ document.querySelectorAll('.quiz-step:not([data-step="3"]) .quiz-opt').forEach(b
             quizData.category = value;
             populateQuizServices(value);
             goToStep(3);
-        } else if (stepNum === 4) {
-            quizData.emergency = value;
-            goToStep(5);
         }
     });
 });
 
-// Populate Step 3 based on Step 2 selection
+document.querySelectorAll('.quiz-back-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const step = this.closest('.quiz-step');
+        const stepNum = parseInt(step.dataset.step);
+        goToStep(stepNum - 1);
+    });
+});
+
 function populateQuizServices(category) {
     const options = quizServiceData[category] || [];
     
@@ -461,7 +464,6 @@ function populateQuizServices(category) {
             `<button class="quiz-opt" data-value="${opt}">${opt}</button>`
         ).join('');
 
-        // Attach listeners to newly created buttons
         quizServices.querySelectorAll('.quiz-opt').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -477,26 +479,89 @@ function goToStep(num) {
         s.classList.remove('active');
         s.style.display = 'none';
     });
-    const nextStep = document.querySelector(`.quiz-step[data-step="${num}"]`);
-    if (nextStep) {
-        nextStep.classList.add('active');
-        nextStep.style.display = 'block';
+    const targetStep = document.querySelector(`.quiz-step[data-step="${num}"]`);
+    if (targetStep) {
+        targetStep.classList.add('active');
+        targetStep.style.display = 'block';
     }
 }
 
+const fileInput = document.getElementById('projectAttachment');
+const fileNameDisplay = document.getElementById('fileNameDisplay');
+if (fileInput && fileNameDisplay) {
+    fileInput.addEventListener('change', function() {
+        if (this.files && this.files.length > 0) {
+            fileNameDisplay.textContent = "Attached: " + this.files[0].name;
+            fileNameDisplay.style.color = "var(--safety-orange)";
+        } else {
+            fileNameDisplay.textContent = "No file chosen";
+            fileNameDisplay.style.color = "var(--steel-grey)";
+        }
+    });
+}
+
+// LIVE WEB3FORMS CONNECTION FOR THE QUIZ
 const quizForm = document.getElementById('quizForm');
 if (quizForm) {
     quizForm.addEventListener('submit', function(e) {
+        e.preventDefault();
         const zip = document.getElementById('quizZip').value;
-        const validation = validateZip(zip);
         
-        if (validation.status === "none") {
-            e.preventDefault();
+        if (validateZip(zip).status === "none") {
             alert("We apologize, but we do not currently offer services in your zip code (" + zip + ").");
-        } else {
-            e.preventDefault(); 
-            alert("Success! Your " + quizData.type + " project request for " + quizData.service + " has been received.");
+            return;
         }
+
+        const submitBtn = quizForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerHTML;
+        submitBtn.innerHTML = 'Sending Request...';
+
+        const formData = new FormData(quizForm);
+        
+        // Append the user's quiz choices to the email data
+        formData.append("Property_Type", quizData.type);
+        formData.append("Project_Category", quizData.category);
+        formData.append("Specific_Service_Requested", quizData.service);
+        
+        // Ensure access key is present
+        formData.append("access_key", "0dd69a78-82ac-4cfc-b9a8-65d61ebed62b");
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData // Correctly sends the file attachment!
+        })
+        .then(async (response) => {
+            if (response.status == 200) {
+                const successText = document.getElementById('successMessageText');
+                if (successText) {
+                    successText.innerHTML = `Your <strong>${quizData.type}</strong> project request for <strong>${quizData.service}</strong> has been securely transmitted. Our team will review your details and contact you shortly.`;
+                }
+                goToStep(5);
+            } else {
+                alert("Something went wrong sending the email. Please try calling us at (443) 465-7769.");
+            }
+        })
+        .catch(error => {
+            alert("Network error. Please try calling us directly at (443) 465-7769.");
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalBtnText;
+        });
+    });
+}
+
+const resetQuizBtn = document.getElementById('resetQuizBtn');
+if (resetQuizBtn) {
+    resetQuizBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        quizData = { type: "", category: "", service: "" };
+        if (quizForm) quizForm.reset();
+        if (fileNameDisplay) {
+            fileNameDisplay.textContent = "No file chosen";
+            fileNameDisplay.style.color = "var(--steel-grey)";
+        }
+        goToStep(1);
     });
 }
 
