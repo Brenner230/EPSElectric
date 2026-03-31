@@ -1,42 +1,81 @@
 // ==========================================
-// 1. MOBILE MENU TOGGLE (The Hamburger)
+// 1. UNIVERSAL HEADER FETCH & NAVIGATION
 // ==========================================
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('navMenu');
-
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+document.addEventListener("DOMContentLoaded", function() {
+    const headerPlaceholder = document.getElementById('header-placeholder');
+    
+    if (headerPlaceholder) {
+        // Fetch the universal header file
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                headerPlaceholder.innerHTML = data;
+                initializeNavigation(); // Start menu logic only AFTER header loads
+            })
+            .catch(error => console.error("Error loading header:", error));
+    } else {
+        // Fallback just in case a page hardcoded the header
+        initializeNavigation();
+    }
 });
 
-const navLinks = document.querySelectorAll('.nav-menu a');
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-        hamburger.innerHTML = '☰';
-    });
-});
+function initializeNavigation() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
 
-// ==========================================
-// 2. SMOOTH SCROLLING FOR NAVIGATION LINKS
-// ==========================================
-// Ignore modal triggers so the page doesn't jump
-document.querySelectorAll('a[href^="#"]:not(.modal-trigger)').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-            const headerHeight = document.querySelector('.site-header').offsetHeight;
-            const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-            window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+    // A. Hamburger Menu Toggle
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
+        });
+    }
+
+    // B. Dynamically Set Active Page Highlight
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    navLinks.forEach(link => {
+        // If the href exactly matches the current URL file name, highlight it
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active-page');
         }
+        
+        // Close menu on mobile when a link is clicked
+        link.addEventListener('click', () => {
+            if(navMenu) navMenu.classList.remove('active');
+            if(hamburger) hamburger.innerHTML = '☰';
+        });
     });
-});
+
+    // C. Multi-Page Smooth Scrolling
+    document.querySelectorAll('a[href*="#"]:not(.modal-trigger)').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetPath = this.pathname.replace(/^\//, '');
+            const currentPath = location.pathname.replace(/^\//, '');
+            
+            // Only smooth scroll if we are staying on the same page
+            if ((targetPath === currentPath || targetPath === '') && location.hostname == this.hostname) {
+                const targetId = this.hash;
+                if (targetId) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault(); 
+                        const headerElement = document.querySelector('.site-header');
+                        const headerHeight = headerElement ? headerElement.offsetHeight : 0;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                        
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                }
+            }
+        });
+    });
+}
 
 // ==========================================
-// 3. INQUIRY FORM LOGIC (GA Redirect Version)
+// 3. INQUIRY FORM LOGIC 
 // ==========================================
 const phoneInput = document.getElementById('phone');
 if (phoneInput) {
@@ -49,14 +88,18 @@ if (phoneInput) {
 const categorySelect = document.getElementById('categorySelect');
 const serviceSelect = document.getElementById('serviceSelect');
 
+// UPDATED TO MATCH NEW SEO ARCHITECTURE
 const services = {
     Residential: [
-        "High-End Remodel",
-        "Panel Upgrade / Heavy-Up",
+        "Panel Upgrades & Heavy-Ups",
         "EV Charger Installation",
-        "Landscape Lighting",
-        "A/V & Smart Home",
-        "General Troubleshooting"
+        "Whole-Home Generators",
+        "Troubleshooting & Repair",
+        "High-End Remodels",
+        "Indoor/Outdoor Lighting",
+        "Historic Rewiring (K&T / Aluminum)",
+        "Appliance Circuits & Surge Protection",
+        "Safety Inspections & Code Corrections"
     ],
     Commercial: [
         "Tenant Improvements",
@@ -86,7 +129,6 @@ if (categorySelect && serviceSelect) {
 }
 
 const leadForm = document.getElementById('leadForm');
-
 if (leadForm) {
     leadForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -133,8 +175,8 @@ function showSlide(index) {
     slides.forEach(slide => slide.classList.remove('active'));
     dots.forEach(dot => dot.classList.remove('active'));
     currentSlide = (index + slides.length) % slides.length; 
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
+    if(slides[currentSlide]) slides[currentSlide].classList.add('active');
+    if(dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
 
 function nextSlide() { showSlide(currentSlide + 1); }
@@ -145,9 +187,11 @@ if (nextBtn && prevBtn) {
     prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
 }
 
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => { showSlide(index); resetInterval(); });
-});
+if (dots.length > 0) {
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => { showSlide(index); resetInterval(); });
+    });
+}
 
 function startInterval() { slideInterval = setInterval(nextSlide, 6000); }
 function resetInterval() { clearInterval(slideInterval); startInterval(); }
@@ -160,20 +204,21 @@ const modalTriggers = document.querySelectorAll('.modal-trigger');
 const closeBtns = document.querySelectorAll('.close-modal');
 const modals = document.querySelectorAll('.modal');
 
-// Open specific modal based on href
 modalTriggers.forEach(trigger => {
     trigger.addEventListener('click', (e) => {
         e.preventDefault();
-        const targetId = trigger.getAttribute('href').substring(1);
-        const targetModal = document.getElementById(targetId);
-        if (targetModal) {
-            targetModal.classList.add('show');
-            document.body.style.overflow = 'hidden'; 
+        const href = trigger.getAttribute('href');
+        if(href && href.startsWith('#')) {
+            const targetId = href.substring(1);
+            const targetModal = document.getElementById(targetId);
+            if (targetModal) {
+                targetModal.classList.add('show');
+                document.body.style.overflow = 'hidden'; 
+            }
         }
     });
 });
 
-// Close Modals via X button
 closeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         modals.forEach(modal => modal.classList.remove('show'));
@@ -181,7 +226,6 @@ closeBtns.forEach(btn => {
     });
 });
 
-// Close Modals by clicking outside
 window.addEventListener('click', (e) => {
     modals.forEach(modal => {
         if (e.target === modal) {
@@ -191,19 +235,20 @@ window.addEventListener('click', (e) => {
     });
 });
 
-// FAQ Accordion Logic
 const faqQuestions = document.querySelectorAll('.faq-question');
-faqQuestions.forEach(question => {
-    question.addEventListener('click', () => {
-        question.classList.toggle('active');
-        const answer = question.nextElementSibling;
-        if (question.classList.contains('active')) {
-            answer.style.maxHeight = answer.scrollHeight + "px";
-        } else {
-            answer.style.maxHeight = 0;
-        }
+if(faqQuestions.length > 0) {
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            question.classList.toggle('active');
+            const answer = question.nextElementSibling;
+            if (question.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + "px";
+            } else {
+                answer.style.maxHeight = 0;
+            }
+        });
     });
-});
+}
 
 // ==========================================
 // 6. COOKIE CONSENT LOGIC
@@ -213,9 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const acceptCookiesBtn = document.getElementById('acceptCookies');
 
     if (cookieBanner && acceptCookiesBtn) {
-        // Check if user has already accepted
         if (!localStorage.getItem('cookieConsent')) {
-            // Delay showing the banner slightly for better UX
             setTimeout(() => {
                 cookieBanner.classList.add('show');
             }, 1500);
@@ -234,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     const mapContainer = document.getElementById('serviceMap');
     
-    if (mapContainer) {
+    if (mapContainer && typeof L !== 'undefined') {
         const map = L.map('serviceMap').setView([39.2, -76.5], 7);
 
         L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {

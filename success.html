@@ -44,9 +44,35 @@
     <footer class="site-footer">
         <div class="footer-bottom" style="border-top: none;">
             <p>Eminent Power Solutions LLC is a licensed entity in active Good Standing with the State of Maryland. | MD Dept ID: W25910415</p>
-            <p>&copy; 2026 Eminent Power Solutions LLC. All rights reserved.</p>
+            <p>&copy; 2026 Eminent Power Solutions LLC. All rights reserved. | <a href="#privacyModal" class="modal-trigger" style="color: var(--steel-grey);">Privacy Policy</a> | <a href="#termsModal" class="modal-trigger" style="color: var(--steel-grey);">Terms of Service</a></p>
         </div>
     </footer>
 
+    <div id="cookieBanner" class="cookie-banner">
+        <div class="cookie-text">
+            <p>We use cookies to enhance your browsing experience, analyze our traffic, and provide a secure platform. By clicking "Accept All", you consent to our use of cookies.</p>
+        </div>
+        <div class="cookie-btns">
+            <button id="acceptCookies" class="btn-primary">Accept All</button>
+        </div>
+    </div>
+
+    <div id="privacyModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-content text-modal">
+            <span class="close-modal" aria-label="Close Modal">&times;</span>
+            <h2 class="section-title" style="margin-bottom: 20px; font-size: 2rem;">Privacy Policy</h2>
+            <div class="legal-text"><p>This Privacy Policy outlines how we collect, use, and protect your information when you visit epsdmv.com.</p></div>
+        </div>
+    </div>
+
+    <div id="termsModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-content text-modal">
+            <span class="close-modal" aria-label="Close Modal">&times;</span>
+            <h2 class="section-title" style="margin-bottom: 20px; font-size: 2rem;">Terms of Service</h2>
+            <div class="legal-text"><p>By using the Eminent Power Solutions LLC website and requesting our services, you agree to our standard operating terms.</p></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
