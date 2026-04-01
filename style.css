@@ -1488,3 +1488,36 @@ select.quiz-input:disabled {
     margin-top: 3px;
     color: var(--safety-orange);
 }
+/* =========================================
+   24. SERVICE AREA PAGE SPECIFICS
+   ========================================= */
+
+/* Zip Validator Specific Overrides for Service Page */
+.validator-input-group .quiz-input {
+    background-color: #F8FAFC;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.validator-input-group .quiz-input:focus {
+    border-color: var(--safety-orange);
+    background-color: var(--white);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.15);
+}
+
+/* Ensure map fits nicely on mobile */
+@media (max-width: 768px) {
+    .validator-box {
+        margin-top: -60px !important;
+        padding: 25px !important;
+    }
+    .validator-input-group {
+        flex-direction: column;
+    }
+    .validator-input-group input, 
+    .validator-input-group button {
+        width: 100% !important;
+    }
+    #enhancedServiceMap {
+        height: 350px !important;
+    }
+}

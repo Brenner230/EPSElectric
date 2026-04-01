@@ -740,7 +740,7 @@ window.addEventListener('scroll', function() {
 const tickerPhrases = [
     "5.0 Rating | Recent 5-Star Review from Vicki L.",
     "Emergency Support available in Frederick, MD & DC",
-    "Serving MD, D.C., DE, VA & PA since 2011"
+    "Serving MD, D.C., DE, VA, WV & PA since 2011"
 ];
 let tickerIdx = 0;
 

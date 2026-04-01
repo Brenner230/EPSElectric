@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0B2046">
     
-    <title>Our Service Area | MD, D.C., DE, VA & PA Electrician</title>
-    <meta name="description" content="Eminent Power Solutions provides full electrical coverage across Maryland, Washington D.C., and Delaware, with partial coverage in VA and PA.">
+    <title>Service Area | Electrician in MD, D.C., DE, VA, WV & PA</title>
+    <meta name="description" content="Eminent Power Solutions provides master-level electrical coverage across Maryland, Washington D.C., and Delaware, with regional coverage in VA, WV, and PA.">
+    <meta name="keywords" content="Frederick MD electrician, DMV electrical contractor, Montgomery County, Loudoun County, Washington DC, West Virginia electrician, Martinsburg electrician">
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF6600'%3E%3Cpath d='M13 2L3 14h9v8l10-12h-9V2z'/%3E%3C/svg%3E">
     <link rel="stylesheet" href="style.css">
@@ -17,44 +18,196 @@
 </head>
 <body>
 
+    <div id="scroll-progress-container"><div id="scroll-progress-bar"></div></div>
+
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="hero page-hero" style="background: linear-gradient(rgba(11, 32, 70, 0.9), rgba(11, 32, 70, 0.9)), url('https://images.unsplash.com/photo-1519446452834-3158c5c1eb48?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; padding: 80px 0;">
-            <div class="container hero-content">
-                <h1 style="font-size: 3rem;">Where We <span class="highlight">Work</span></h1>
-                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto;">Headquartered in Frederick, MD, we deliver master-level electrical solutions across the Mid-Atlantic region.</p>
+        <section class="hero page-hero" style="background: linear-gradient(rgba(11, 32, 70, 0.85), rgba(11, 32, 70, 0.95)), url('https://images.unsplash.com/photo-1519446452834-3158c5c1eb48?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; padding: 120px 0;">
+            <div class="container hero-content" style="text-align: center;">
+                <h1 style="font-size: 3.5rem; color: var(--white);">Our Service <span class="highlight">Area</span></h1>
+                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: var(--white);">Headquartered in Frederick, MD, Eminent Power Solutions delivers master-level, code-compliant electrical solutions across the Mid-Atlantic region.</p>
+            </div>
+            
+            <div class="scroll-indicator">
+                <a href="#validator-section" aria-label="Scroll Down"><i class="fa-solid fa-chevron-down"></i></a>
             </div>
         </section>
 
-        <section id="service-area" class="service-area-section">
+        <section id="validator-section" style="background-color: var(--safety-orange); padding: 50px 0; border-bottom: 5px solid var(--primary-navy);">
             <div class="container">
-                <p class="service-intro">Eminent Power Solutions provides full coverage for D.C., MD, and DE, with partial coverage extending into select counties of VA and PA within our 1.5-hour driving radius.</p>
-                
-                <div id="serviceMap" class="interactive-map"></div>
+                <div class="validator-box" style="background: var(--white); padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); text-align: center; max-width: 700px; margin: -100px auto 0 auto; position: relative; z-index: 10;">
+                    <h2 style="font-family: 'Oswald', sans-serif; color: var(--primary-navy); font-size: 2rem; margin-bottom: 10px;"><i class="fa-solid fa-location-crosshairs" style="color: var(--safety-orange);"></i> Check Your Zip Code</h2>
+                    <p style="color: var(--steel-grey); margin-bottom: 25px; font-size: 1.1rem;">Enter your 5-digit zip code below to instantly verify if your property falls within our active service dispatch radius.</p>
+                    <div class="validator-input-group" style="display: flex; gap: 15px; justify-content: center; align-items: center; max-width: 500px; margin: 0 auto;">
+                        <input type="text" id="zipInput" placeholder="e.g. 21701" maxlength="5" class="quiz-input" style="width: 60%; font-size: 1.2rem; text-align: center; font-weight: 600; border-color: var(--primary-navy);">
+                        <button id="checkZipBtn" class="btn-primary" style="padding: 16px 30px; font-size: 1.1rem; width: 40%;">Verify</button>
+                    </div>
+                    <div id="zipResult" class="zip-result-message" style="display: none; margin-top: 20px; font-size: 1.1rem; padding: 15px; border-radius: 6px; font-weight: 600;"></div>
+                </div>
+            </div>
+        </section>
 
-                <div class="area-grid">
-                    <div class="area-card">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <h4>Maryland</h4>
-                        <p><strong>Full Coverage.</strong> Statewide service, from Western Maryland to the Eastern Shore.</p>
+        <section id="service-area" class="service-area-section" style="padding: 80px 0; background: var(--light-bg);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <h2 style="color: var(--primary-navy); font-size: 2.5rem; margin-bottom: 15px;">Mid-Atlantic Coverage Map</h2>
+                    <p class="service-intro" style="max-width: 800px; margin: 0 auto; font-size: 1.15rem;">We provide 100% full coverage for Maryland, Washington D.C., and Delaware. We also provide extensive regional coverage into Northern Virginia, West Virginia, and Southern Pennsylvania.</p>
+                </div>
+                
+                <div id="enhancedServiceMap" class="interactive-map" style="height: 500px; border: 4px solid var(--white); box-shadow: 0 10px 30px rgba(11, 32, 70, 0.15); border-radius: 12px; margin-bottom: 60px;"></div>
+
+                <div class="services-flip-grid">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="cat-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                                <h3>Maryland</h3>
+                                <p style="color: var(--steel-grey); margin-top: 10px; font-size: 0.9rem;">Full Statewide Coverage</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <p>From Western MD to the Eastern Shore, including Frederick, Montgomery, Howard, Carroll, and Prince George's counties.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="area-card">
-                        <i class="fa-solid fa-monument"></i>
-                        <h4>Washington D.C. & DE</h4>
-                        <p><strong>Full Coverage.</strong> Comprehensive, code-compliant service across D.C. and the entire state of Delaware.</p>
+
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="cat-icon"><i class="fa-solid fa-monument"></i></div>
+                                <h3>Washington D.C.</h3>
+                                <p style="color: var(--steel-grey); margin-top: 10px; font-size: 0.9rem;">Full District Coverage</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <p>Expert historic home rewiring, unpermitted work correction, and code compliance across all Wards of the District.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="area-card">
-                        <i class="fa-solid fa-house-chimney-window"></i>
-                        <h4>Virginia</h4>
-                        <p><strong>Partial Coverage.</strong> Serving Northern Virginia and communities extending within our 1.5-hour driving radius.</p>
+
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="cat-icon"><i class="fa-solid fa-house-flag"></i></div>
+                                <h3>Virginia & WV</h3>
+                                <p style="color: var(--steel-grey); margin-top: 10px; font-size: 0.9rem;">NOVA & Eastern Panhandle</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <p>Extensive coverage in NOVA (Loudoun, Fairfax, Arlington) and the Eastern Panhandle of West Virginia (Jefferson, Berkeley).</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="area-card">
-                        <i class="fa-solid fa-tree-city"></i>
-                        <h4>Pennsylvania</h4>
-                        <p><strong>Partial Coverage.</strong> Extending into Southern Pennsylvania counties that fall within our primary service radius.</p>
+
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="cat-icon"><i class="fa-solid fa-tree-city"></i></div>
+                                <h3>Delaware & PA</h3>
+                                <p style="color: var(--steel-grey); margin-top: 10px; font-size: 0.9rem;">Full DE & Southern PA</p>
+                            </div>
+                            <div class="flip-card-back">
+                                <p>Full coverage across all of Delaware, and extending into Southern PA counties (Adams, Franklin, Cumberland, York).</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section style="padding: 80px 0; background: var(--white);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <h2 style="color: var(--primary-navy); font-size: 2.5rem; margin-bottom: 15px;">Detailed Service Jurisdictions</h2>
+                    <p style="color: var(--steel-grey); font-size: 1.1rem; max-width: 800px; margin: 0 auto;">Every county and municipality has its own strict amendments to the National Electrical Code (NEC). By hiring a multi-state licensed master electrician, you ensure your project passes local inspections flawlessly.</p>
+                </div>
+
+                <div class="seo-county-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                    
+                    <div style="background: var(--light-bg); padding: 30px; border-radius: 8px; border-top: 4px solid var(--safety-orange);">
+                        <h3 style="color: var(--primary-navy); margin-bottom: 15px; border-bottom: 1px solid #CBD5E0; padding-bottom: 10px;"><i class="fa-solid fa-flag" style="color: var(--safety-orange); margin-right: 8px;"></i> Maryland (MD)</h3>
+                        <p style="color: var(--steel-grey); font-size: 0.95rem; margin-bottom: 15px;"><em>Primary Hubs & Counties:</em></p>
+                        <ul style="list-style: none; padding: 0; color: var(--steel-grey); font-size: 1rem; line-height: 1.8;">
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> Frederick County (HQ)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> Montgomery County (Bethesda, Rockville)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> Howard County (Columbia, Ellicott City)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> Prince George's County</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> Washington & Carroll Counties</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> Anne Arundel & Baltimore Counties</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> All Maryland Zip Codes</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: var(--light-bg); padding: 30px; border-radius: 8px; border-top: 4px solid var(--primary-navy);">
+                        <h3 style="color: var(--primary-navy); margin-bottom: 15px; border-bottom: 1px solid #CBD5E0; padding-bottom: 10px;"><i class="fa-solid fa-flag" style="color: var(--primary-navy); margin-right: 8px;"></i> Virginia & WV</h3>
+                        <p style="color: var(--steel-grey); font-size: 0.95rem; margin-bottom: 15px;"><em>NOVA & Eastern Panhandle:</em></p>
+                        <ul style="list-style: none; padding: 0; color: var(--steel-grey); font-size: 1rem; line-height: 1.8;">
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> VA: Loudoun County (Leesburg, Ashburn)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> VA: Fairfax County (McLean, Reston)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> VA: Arlington & Alexandria</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> VA: Prince William County</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> WV: Jefferson County (Charles Town)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> WV: Berkeley County (Martinsburg)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> WV: Morgan County</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: var(--light-bg); padding: 30px; border-radius: 8px; border-top: 4px solid var(--safety-orange);">
+                        <h3 style="color: var(--primary-navy); margin-bottom: 15px; border-bottom: 1px solid #CBD5E0; padding-bottom: 10px;"><i class="fa-solid fa-flag" style="color: var(--safety-orange); margin-right: 8px;"></i> D.C., DE & PA</h3>
+                        <p style="color: var(--steel-grey); font-size: 0.95rem; margin-bottom: 15px;"><em>Districts & Regional Borders:</em></p>
+                        <ul style="list-style: none; padding: 0; color: var(--steel-grey); font-size: 1rem; line-height: 1.8;">
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> Washington D.C. (All Wards)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> Delaware (New Castle, Kent, Sussex)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> PA: Adams County (Gettysburg)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> PA: Franklin County (Chambersburg)</li>
+                            <li><i class="fa-solid fa-check" style="color: #16a34a; margin-right: 5px;"></i> PA: Cumberland & York Counties</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section" style="padding: 80px 0; background: var(--light-bg);">
+            <div class="container" style="max-width: 800px;">
+                <h2 style="color: var(--primary-navy); text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Service Area FAQs</h2>
+                <div class="faq-container" style="background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">Do you charge a travel fee for locations outside of Maryland? <span class="faq-icon">+</span></button>
+                        <div class="faq-answer">
+                            <p>No. If your zip code falls within our approved service radius (which you can verify using the tool at the top of this page), we do not charge any hidden travel or out-of-state dispatch fees. Standard diagnostic and estimate procedures apply universally.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Are electrical codes the same in MD, VA, WV, and D.C.? <span class="faq-icon">+</span></button>
+                        <div class="faq-answer">
+                            <p>No, and this is why hiring a regional expert is vital. While all base their laws on the National Electrical Code (NEC), different states adopt new NEC versions at different times (e.g., NEC 2017 vs NEC 2020). Furthermore, local counties often have strict, unique amendments regarding things like outdoor trench depth or AFCI requirements.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">Who handles the permitting if I live in a different state than your HQ? <span class="faq-icon">+</span></button>
+                        <div class="faq-answer">
+                            <p>We handle 100% of the permitting. Because we maintain active licensing across our entire service area, we have direct relationships with the permitting offices in Montgomery County, Fairfax County, the District of Columbia, and beyond. We file the paperwork, schedule the inspector, and stand by our work.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">What if I live exactly 2 hours away? Will you still come? <span class="faq-icon">+</span></button>
+                        <div class="faq-answer">
+                            <p>For standard troubleshooting or minor repairs, we generally strictly adhere to our regional radius to ensure fast response times for all clients. However, for major projects like whole-home rewires, standby generator installations, or large commercial contracts, we often make exceptions. Please submit a contact form to discuss your specific project!</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section style="background: var(--white); padding: 80px 0; text-align: center; border-top: 4px solid var(--safety-orange);">
+            <div class="container">
+                <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--primary-navy);">Ready to Start Your Project?</h2>
+                <p style="font-size: 1.15rem; color: var(--steel-grey); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">Our dispatch team is ready. Contact us today to outline your project and receive a free estimate from a licensed expert.</p>
+                <a href="index.html#quiz-section" class="btn-primary btn-large">Start Project Planner</a>
             </div>
         </section>
     </main>
@@ -68,7 +221,7 @@
             <div class="footer-contact">
                 <h4>Service Regions</h4>
                 <p><strong>MD, D.C., & DE:</strong> Full Coverage.</p>
-                <p><strong>VA & PA:</strong> Partial Coverage.</p>
+                <p><strong>VA, WV, & PA:</strong> Regional Coverage.</p>
                 <br>
                 <address style="font-style: normal;">
                     <p><strong>Headquarters:</strong><br>1209 N East St, Ste A #269<br>Frederick, MD 21701</p>
@@ -82,7 +235,72 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="script.js"></script>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const mapContainer = document.getElementById('enhancedServiceMap');
+            
+            if (mapContainer && typeof L !== 'undefined') {
+                const map = L.map('enhancedServiceMap', { scrollWheelZoom: false }).setView([39.0, -77.0], 7);
+
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; OpenStreetMap &copy; CARTO',
+                    subdomains: 'abcd',
+                    maxZoom: 19
+                }).addTo(map);
+
+                // Custom Icons
+                const hqIcon = L.icon({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+                });
+
+                const hubIcon = L.icon({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-blue.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                    iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+                });
+
+                // Drop Hub Pins
+                L.marker([39.4143, -77.4105], {icon: hqIcon}).addTo(map).bindPopup("<b>Headquarters</b><br>Frederick, MD");
+                L.marker([38.9072, -77.0369], {icon: hubIcon}).addTo(map).bindPopup("<b>Major Hub</b><br>Washington D.C.");
+                L.marker([39.7391, -75.5398], {icon: hubIcon}).addTo(map).bindPopup("<b>Major Hub</b><br>Wilmington, DE");
+                L.marker([38.8816, -77.0910], {icon: hubIcon}).addTo(map).bindPopup("<b>Regional Hub</b><br>Arlington, VA");
+                L.marker([39.8309, -77.2311], {icon: hubIcon}).addTo(map).bindPopup("<b>Regional Hub</b><br>Gettysburg, PA");
+                L.marker([39.4562, -77.9639], {icon: hubIcon}).addTo(map).bindPopup("<b>Regional Hub</b><br>Martinsburg, WV");
+
+                // Highlight States Logic
+                const fullStates = ['Maryland', 'District of Columbia', 'Delaware'];
+                const partialStates = ['Virginia', 'Pennsylvania', 'West Virginia'];
+
+                fetch('https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json')
+                    .then(response => response.json())
+                    .then(data => {
+                        L.geoJSON(data, {
+                            filter: function(feature) {
+                                return fullStates.includes(feature.properties.name) || partialStates.includes(feature.properties.name);
+                            },
+                            style: function(feature) {
+                                if (fullStates.includes(feature.properties.name)) {
+                                    // Solid brand color for full coverage
+                                    return { color: '#0B2046', weight: 2, fillColor: '#0B2046', fillOpacity: 0.25 };
+                                } else {
+                                    // Lighter, dashed border for partial coverage
+                                    return { color: '#4A5568', weight: 1, dashArray: '5, 5', fillColor: '#FF6600', fillOpacity: 0.08 };
+                                }
+                            },
+                            onEachFeature: function(feature, layer) {
+                                let status = fullStates.includes(feature.properties.name) ? "Full Coverage" : "Regional / Partial Coverage";
+                                layer.bindPopup(`<b>${feature.properties.name}</b><br>${status}`);
+                            }
+                        }).addTo(map);
+                    })
+                    .catch(err => console.error("Error loading map borders: ", err));
+            }
+        });
+    </script>
 </body>
 </html>
