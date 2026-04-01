@@ -14,25 +14,70 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="hero page-hero" style="padding: 60px 0;">
+        <section class="hero page-hero" style="padding: 100px 0; background: linear-gradient(rgba(11, 32, 70, 0.9), rgba(11, 32, 70, 0.9)), url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat;">
             <div class="container hero-content" style="text-align: center;">
-                <h1 style="font-size: 3rem; color: var(--white);">Contact <span class="highlight">Us</span></h1>
-                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: var(--white);">Request a quote or schedule a service call today.</p>
+                <h1 style="font-size: 3.5rem; color: var(--white);">Contact <span class="highlight">Us</span></h1>
+                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: var(--white);">Request a quote, schedule a service call, or discuss a commercial partnership today.</p>
             </div>
         </section>
 
-        <section class="contact" id="contact" style="background-color: var(--light-bg); color: var(--text-dark);">
-            <div class="container contact-container" style="align-items: start;">
+        <section class="contact" id="contact" style="background-color: var(--light-bg); color: var(--text-dark); padding: 80px 0;">
+            <div class="container contact-container" style="align-items: start; gap: 60px;">
+                
                 <div class="contact-text">
-                    <h2 style="color: var(--primary-navy);">Get a Free Estimate</h2>
-                    <p style="color: var(--steel-grey); margin-bottom: 20px;">Fill out the form to outline your project needs, or call us directly for emergency dispatch across MD, DC, DE, VA, and PA.</p>
-                    <div style="margin-bottom: 20px;">
-                        <h4 style="color: var(--primary-navy); margin-bottom: 5px;">Direct Line:</h4>
-                        <p><a href="tel:4434657769" style="color: var(--safety-orange); font-size: 1.2rem; font-weight: bold; text-decoration: none;">(443) 465-7769</a></p>
+                    <h2 style="color: var(--primary-navy); font-size: 2.5rem; margin-bottom: 15px;">Get a Free Estimate</h2>
+                    <p style="color: var(--steel-grey); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.6;">Fill out the form to outline your project needs, or reach out to us directly for emergency dispatch across MD, DC, DE, VA, and PA.</p>
+                    
+                    <div class="contact-info-card">
+                        <h3 style="color: var(--primary-navy); margin-bottom: 20px; font-size: 1.5rem; border-bottom: 2px solid var(--light-bg); padding-bottom: 10px;">Contact Information</h3>
+                        <ul class="contact-methods">
+                            <li>
+                                <i class="fa-solid fa-phone"></i>
+                                <div>
+                                    <strong>Direct Line (24/7 Emergencies):</strong><br>
+                                    <a href="tel:4434657769" style="color: var(--primary-navy); font-weight: 600; text-decoration: none; font-size: 1.1rem;">(443) 465-7769</a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-envelope"></i>
+                                <div>
+                                    <strong>Email Address:</strong><br>
+                                    <a href="mailto:service@epsdmv.com" style="color: var(--primary-navy); font-weight: 600; text-decoration: none; font-size: 1.1rem;">service@epsdmv.com</a>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-clock"></i>
+                                <div>
+                                    <strong>Standard Operating Hours:</strong><br>
+                                    <span style="color: var(--steel-grey);">Mon - Fri: 7:00 AM - 6:00 PM<br>Sat & Sun: Emergency Dispatch Only</span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
+
+                    <div class="contact-info-card" style="margin-top: 30px;">
+                        <h3 style="color: var(--primary-navy); margin-bottom: 20px; font-size: 1.5rem; border-bottom: 2px solid var(--light-bg); padding-bottom: 10px;">Partnerships & Custom Projects</h3>
+                        <ul class="contact-methods">
+                            <li>
+                                <i class="fa-solid fa-screwdriver-wrench"></i>
+                                <div>
+                                    <strong>Need a service not listed?</strong><br>
+                                    <span style="color: var(--steel-grey); font-size: 0.95rem; line-height: 1.5; display: inline-block; margin-top: 5px;">Our master electricians handle highly custom architectural wiring, unique A/V setups, and complex diagnostic troubleshooting. Simply select "Troubleshooting" or describe your specific needs in the form!</span>
+                                </div>
+                            </li>
+                            <li>
+                                <i class="fa-solid fa-building-user"></i>
+                                <div>
+                                    <strong>Landlords & Property Managers:</strong><br>
+                                    <span style="color: var(--steel-grey); font-size: 0.95rem; line-height: 1.5; display: inline-block; margin-top: 5px;">Looking for a reliable, licensed electrical partner? We offer priority scheduling, preferred vendor relationships, and service contracts for property portfolios. <a href="mailto:service@epsdmv.com" style="color: var(--safety-orange); font-weight: 600; text-decoration: underline;">Email us to discuss a partnership.</a></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
 
-                <div class="contact-form" style="box-shadow: 0 4px 15px rgba(0,0,0,0.05); background: var(--white); padding: 40px; border-radius: 8px;">
+                <div class="contact-form" style="box-shadow: 0 10px 30px rgba(11, 32, 70, 0.08); background: var(--white); padding: 40px; border-radius: 12px; border-top: 5px solid var(--primary-navy);">
                     
                     <div id="contactFormWrapper">
                         <div id="formGlobalError" class="inline-error" style="text-align: center; margin-bottom: 15px; font-size: 1rem;"></div>
@@ -44,12 +89,12 @@
                             
                             <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
 
-                            <div class="quiz-input-grid" style="margin-bottom: 15px;">
+                            <div class="quiz-input-grid" style="margin-bottom: 20px;">
                                 <input type="text" name="First_Name" placeholder="First Name" required class="quiz-input">
                                 <input type="text" name="Last_Name" placeholder="Last Name" required class="quiz-input">
                             </div>
                             
-                            <div class="quiz-input-grid" style="margin-bottom: 15px;">
+                            <div class="quiz-input-grid" style="margin-bottom: 20px;">
                                 <div>
                                     <input type="tel" id="contactPhone" name="phone" placeholder="Phone Number" required class="quiz-input phone-format">
                                     <div class="inline-error" id="contactPhoneError"></div>
@@ -60,19 +105,20 @@
                                 </div>
                             </div>
 
-                            <div style="margin-bottom: 15px;">
+                            <div style="margin-bottom: 20px;">
                                 <input type="text" name="Address" placeholder="Street Address" required class="quiz-input">
                             </div>
-                            <div style="margin-bottom: 15px;">
+                            
+                            <div style="margin-bottom: 20px;">
                                 <input type="text" name="Address_Line_2" placeholder="Address Line 2 (Optional)" class="quiz-input">
                             </div>
 
-                            <div class="quiz-input-grid" style="margin-bottom: 15px;">
+                            <div class="quiz-input-grid" style="margin-bottom: 20px;">
                                 <input type="text" name="City" placeholder="City" required class="quiz-input">
                                 <input type="text" name="State" placeholder="State" required class="quiz-input">
                             </div>
 
-                            <div class="quiz-input-grid" style="margin-bottom: 15px;">
+                            <div class="quiz-input-grid" style="margin-bottom: 20px;">
                                 <div>
                                     <input type="text" id="contactZip" name="zip" placeholder="Zip Code" maxlength="5" required class="quiz-input">
                                     <div class="inline-error" id="contactZipError"></div>
@@ -84,7 +130,7 @@
                                 </select>
                             </div>
 
-                            <div style="margin-bottom: 15px;">
+                            <div style="margin-bottom: 20px;">
                                 <select id="serviceSelect" name="Service" required class="quiz-input" disabled>
                                     <option value="">Select a Service...</option>
                                 </select>

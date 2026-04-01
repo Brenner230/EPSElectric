@@ -1346,3 +1346,145 @@ select.quiz-input:disabled {
 
 /* Utilities */
 .hidden { display: none !important; }
+
+/* =========================================
+   22. FLIP CARDS & SCROLL INDICATOR
+   ========================================= */
+
+/* Make sure Hero sections can hold the absolute arrow */
+.page-hero { position: relative; }
+
+/* Bouncing Scroll Arrow */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+    z-index: 10;
+}
+.scroll-indicator a {
+    color: var(--white);
+    font-size: 2.5rem;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+.scroll-indicator a:hover { opacity: 1; color: var(--safety-orange); }
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+    40% { transform: translate(-50%, -15px); }
+    60% { transform: translate(-50%, -7px); }
+}
+
+/* 4-Column Flip Card Grid */
+.services-flip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.flip-card {
+    background-color: transparent;
+    height: 260px;
+    perspective: 1000px; /* Gives the 3D effect */
+    cursor: pointer;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s ease-in-out;
+    transform-style: preserve-3d;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* Flips on hover for desktop, tap on mobile */
+.flip-card:hover .flip-card-inner,
+.flip-card:focus .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    border: 1px solid #E2E8F0;
+}
+
+.flip-card-front {
+    background-color: var(--light-bg);
+    color: var(--primary-navy);
+}
+
+.flip-card-front .cat-icon {
+    font-size: 3.5rem;
+    color: var(--safety-orange);
+    margin-bottom: 20px;
+}
+
+.flip-card-front h3 {
+    font-size: 1.4rem;
+    margin: 0;
+}
+
+.flip-card-back {
+    background-color: var(--primary-navy);
+    color: var(--white);
+    transform: rotateY(180deg);
+    border-color: var(--primary-navy);
+}
+
+.flip-card-back p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+    color: #E2E8F0;
+}
+
+/* =========================================
+   23. CONTACT PAGE INFO CARDS
+   ========================================= */
+.contact-info-card {
+    background: var(--white);
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.contact-info-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+.contact-methods {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.contact-methods li {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+.contact-methods li:last-child {
+    margin-bottom: 0;
+}
+.contact-methods i {
+    font-size: 1.5rem;
+    margin-top: 3px;
+    color: var(--safety-orange);
+}
