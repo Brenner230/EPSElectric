@@ -34,12 +34,36 @@ function initializeNavigation() {
             if(hamburger) hamburger.innerHTML = '☰';
         });
     });
+
+    // Smooth Scrolling for Anchors
+    document.querySelectorAll('a[href*="#"]:not(.modal-trigger)').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const targetPath = this.pathname.replace(/^\//, '');
+            const currentPath = location.pathname.replace(/^\//, '');
+            
+            if ((targetPath === currentPath || targetPath === '') && location.hostname == this.hostname) {
+                const targetId = this.hash;
+                if (targetId) {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault(); 
+                        const headerElement = document.querySelector('.site-header');
+                        const headerHeight = headerElement ? headerElement.offsetHeight : 0;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                    }
+                }
+            }
+        });
+    });
 }
 
 // ==========================================
-// 3. STANDARD CONTACT FORM LOGIC 
+// 2. SHARED VALIDATION HELPERS
 // ==========================================
-const phoneInputs = [document.getElementById('phone'), document.getElementById('quizPhone')];
+// Auto-format phone numbers to (XXX) XXX-XXXX
+const phoneInputs = [document.getElementById('contactPhone'), document.getElementById('quizPhone')];
 phoneInputs.forEach(input => {
     if (input) {
         input.addEventListener('input', (e) => {
@@ -48,6 +72,222 @@ phoneInputs.forEach(input => {
         });
     }
 });
+
+function isValidPhone(phone) { return phone.replace(/\D/g, '').length === 10; }
+function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+function showInlineError(id, msg) {
+    const el = document.getElementById(id);
+    if(el) { el.innerText = msg; el.style.display = "block"; }
+}
+function hideInlineErrors() {
+    document.querySelectorAll('.inline-error').forEach(el => el.style.display = "none");
+    document.querySelectorAll('.quiz-input').forEach(el => el.classList.remove('input-error-state'));
+}
+
+// ==========================================
+// 3. STANDARD CONTACT FORM LOGIC (contact.html)
+// ==========================================
+
+// 1. Auto-format phone numbers safely
+const contactPhoneInput = document.getElementById('contactPhone');
+if (contactPhoneInput) {
+    contactPhoneInput.addEventListener('input', (e) => {
+        let x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
+}
+
+// 2. Dropdown Logic for Services
+const categorySelect = document.getElementById('categorySelect');
+const serviceSelect = document.getElementById('serviceSelect');
+
+const contactServicesList = {
+    "Residential": [
+        "Panel Upgrades & Heavy-Ups", "EV Charging Stations", "Whole-Home Generators",
+        "Surge Protection", "Underground Wiring", "High-End Remodels",
+        "Indoor Lighting", "Landscape & Security", "Hot Tub & Pool Wiring",
+        "Smart Home & A/V", "Appliance Circuits", "Troubleshooting & Repair",
+        "Safety Inspections", "Code Corrections", "Knob & Tube Replacement",
+        "Aluminum Wiring Repair", "GFCI/AFCI Outlets", "Smoke/CO Detectors"
+    ],
+    "Commercial": [
+        "Commercial Troubleshooting", "Tenant Improvements", "Dedicated Circuits",
+        "Commercial Lighting Retrofit", "Code Compliance Audit", "Service Contract Inquiry"
+    ]
+};
+
+if (categorySelect && serviceSelect) {
+    categorySelect.addEventListener('change', function() {
+        const selectedCategory = this.value;
+        serviceSelect.innerHTML = '<option value="">Select a Service...</option>';
+        if (selectedCategory && contactServicesList[selectedCategory]) {
+            serviceSelect.disabled = false;
+            contactServicesList[selectedCategory].forEach(service => {
+                const option = document.createElement('option');
+                option.value = service;
+                option.textContent = service;
+                serviceSelect.appendChild(option);
+            });
+        } else {
+            serviceSelect.disabled = true;
+        }
+    });
+}
+
+// 3. Main Form Submission & Validation
+const leadForm = document.getElementById('leadForm');
+const contactFormWrapper = document.getElementById('contactFormWrapper');
+const contactSuccessWrapper = document.getElementById('contactSuccessWrapper');
+
+// Self-contained map to prevent ReferenceErrors if Section 9 is missing
+const contactUrlMap = {
+    "Panel Upgrades & Heavy-Ups": "panel-upgrades.html",
+    "EV Charging Stations": "ev-charger-installation.html",
+    "Whole-Home Generators": "whole-home-generators.html",
+    "Surge Protection": "whole-house-surge-protection.html",
+    "Underground Wiring": "underground-wiring.html",
+    "High-End Remodels": "high-end-remodels.html",
+    "Indoor Lighting": "indoor-lighting-installation.html",
+    "Landscape & Security": "landscape-security-lighting.html",
+    "Hot Tub & Pool Wiring": "hot-tub-pool-wiring.html",
+    "Troubleshooting & Repair": "electrical-troubleshooting-repair.html",
+    "Safety Inspections": "electrical-safety-inspections.html",
+    "Code Corrections": "electrical-code-corrections.html",
+    "Knob & Tube Replacement": "knob-and-tube-replacement.html",
+    "Aluminum Wiring Repair": "aluminum-wiring-repair.html",
+    "GFCI/AFCI Outlets": "gfci-afci-outlet-installation.html",
+    "Smoke/CO Detectors": "smoke-carbon-monoxide-detectors.html"
+};
+
+if (leadForm) {
+    leadForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Helper functions defined locally to ensure they never fail
+        const setInlineError = (id, msg) => {
+            const el = document.getElementById(id);
+            if (el) { el.innerText = msg; el.style.display = "block"; }
+        };
+        const clearErrors = () => {
+            document.querySelectorAll('.inline-error').forEach(el => el.style.display = "none");
+            document.querySelectorAll('.quiz-input').forEach(el => el.classList.remove('input-error-state'));
+        };
+
+        clearErrors();
+        let hasError = false;
+
+        // Safely grab values
+        const phoneEl = document.getElementById('contactPhone');
+        const emailEl = document.getElementById('contactEmail');
+        const zipEl = document.getElementById('contactZip');
+
+        const phone = phoneEl ? phoneEl.value.replace(/\D/g, '') : "";
+        const email = emailEl ? emailEl.value : "";
+        const zip = zipEl ? zipEl.value.trim() : "";
+
+        // Strict Validation
+        if (phone.length !== 10) {
+            setInlineError('contactPhoneError', "Please enter a valid 10-digit phone number.");
+            if(phoneEl) phoneEl.classList.add('input-error-state');
+            hasError = true;
+        }
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setInlineError('contactEmailError', "Please enter a valid email address.");
+            if(emailEl) emailEl.classList.add('input-error-state');
+            hasError = true;
+        }
+
+        // Safely call global validateZip if it exists, otherwise do basic length check
+        let zipCheckStatus = "valid";
+        let zipCheckMsg = "";
+        if (typeof validateZip === "function") {
+            const result = validateZip(zip);
+            zipCheckStatus = result.status;
+            zipCheckMsg = result.msg;
+        } else if (zip.length < 5) {
+            zipCheckStatus = "none";
+            zipCheckMsg = "Please enter a valid 5-digit zip code.";
+        }
+
+        if (zipCheckStatus === "none") {
+            setInlineError('contactZipError', zipCheckMsg);
+            if(zipEl) zipEl.classList.add('input-error-state');
+            hasError = true;
+        }
+
+        // Stop submission if ANY errors were found
+        if (hasError) return;
+
+        // UI State Update
+        const submitBtn = leadForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn ? submitBtn.innerHTML : "Submit";
+        if (submitBtn) submitBtn.innerHTML = 'Sending Request...';
+
+        // Prepare Data for Web3Forms JSON bypass
+        const formData = new FormData(leadForm);
+        const object = Object.fromEntries(formData);
+        const jsonPayload = JSON.stringify(object);
+
+        fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json', 
+                'Accept': 'application/json' 
+            },
+            body: jsonPayload
+        })
+        .then(async (response) => {
+            let jsonResponse = await response.json();
+            if (response.status == 200) {
+                
+                // Safely update Dynamic Link
+                const dynContactLink = document.getElementById('dynamicContactServiceLink');
+                const selectedService = serviceSelect ? serviceSelect.value : null;
+                
+                if (dynContactLink && selectedService && contactUrlMap[selectedService]) {
+                    dynContactLink.href = contactUrlMap[selectedService];
+                    dynContactLink.innerText = `Read more about our ${selectedService} process.`;
+                }
+
+                // Show Success Screen
+                if (contactFormWrapper) contactFormWrapper.style.display = "none";
+                if (contactSuccessWrapper) contactSuccessWrapper.style.display = "block";
+                
+            } else {
+                setInlineError('formGlobalError', jsonResponse.message || "Server error. Please call (443) 465-7769.");
+            }
+        })
+        .catch(error => {
+            setInlineError('formGlobalError', "Network Error. Please check your connection or call (443) 465-7769.");
+        })
+        .finally(() => {
+            if (submitBtn) submitBtn.innerHTML = originalBtnText;
+        });
+    });
+}
+
+// 4. Reset Button Logic
+const resetContactBtn = document.getElementById('resetContactBtn');
+if (resetContactBtn) {
+    resetContactBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (leadForm) leadForm.reset();
+        
+        if(serviceSelect) {
+            serviceSelect.innerHTML = '<option value="">Select a Service...</option>';
+            serviceSelect.disabled = true;
+        }
+        
+        if (contactSuccessWrapper) contactSuccessWrapper.style.display = "none";
+        if (contactFormWrapper) contactFormWrapper.style.display = "block";
+        
+        // Ensure errors are cleared on reset
+        document.querySelectorAll('.inline-error').forEach(el => el.style.display = "none");
+        document.querySelectorAll('.quiz-input').forEach(el => el.classList.remove('input-error-state'));
+    });
+}
 
 // ==========================================
 // 4. TESTIMONIAL CAROUSEL ENGINE
@@ -237,13 +477,13 @@ document.addEventListener("DOMContentLoaded", function() {
 // ==========================================
 // 9. ZIP CODE VALIDATION & INTERACTIVE QUIZ
 // ==========================================
+
 const serviceAreaPrefixes = [
     "217", "208", "209", "210", "211", "212", "214", "207", 
     "200", "202", "203", "204", "205", 
     "201", "220", "221", "222", "223", "226", 
     "172", "173", "254",
-    "215", "216", "218", "219", 
-    "197", "198", "199", 
+    "215", "216", "218", "219", "197", "198", "199", 
     "170", "171", "174", "175", "190", "193", 
     "224", "225", "227", "228" 
 ]; 
@@ -258,109 +498,10 @@ function validateZip(zip) {
     }
 }
 
-// Homepage Quick Validator
-const checkZipBtn = document.getElementById('checkZipBtn');
-if (checkZipBtn) {
-    checkZipBtn.addEventListener('click', () => {
-        const zipInput = document.getElementById('zipInput');
-        const resultDiv = document.getElementById('zipResult');
-        const validation = validateZip(zipInput.value.trim());
-        resultDiv.innerHTML = validation.msg;
-        resultDiv.style.display = "block";
-        resultDiv.style.background = validation.status === "valid" ? "#dcfce7" : "#fee2e2";
-        resultDiv.style.color = validation.status === "valid" ? "#166534" : "#991b1b";
-    });
-}
+// Global Validation Helpers
+function isValidPhone(phone) { return phone && phone.replace(/\D/g, '').length === 10; }
+function isValidEmail(email) { return email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
 
-// ----------------------------------------
-// 5-Tier Quiz Logic with Validation
-// ----------------------------------------
-let quizData = { type: "", category: "", service: "" };
-const quizSteps = document.querySelectorAll('.quiz-step');
-const quizServices = document.getElementById('quiz-services');
-const progressFill = document.getElementById('quizProgressFill');
-const progressText = document.getElementById('quizProgressText');
-
-const quizServiceData = {
-    "Power & Infrastructure": ["Panel Upgrades & Heavy-Ups", "EV Charging Stations", "Whole-Home Generators", "Surge Protection", "Underground Wiring"],
-    "Remodeling & Lifestyle": ["High-End Remodels", "Indoor Lighting", "Landscape & Security", "Hot Tub & Pool Wiring", "Smart Home & A/V", "Appliance Circuits"],
-    "Safety & Historic Homes": ["Troubleshooting & Repair", "Safety Inspections", "Code Corrections", "Knob & Tube Replacement", "Aluminum Wiring Repair", "GFCI/AFCI Outlets", "Smoke/CO Detectors"]
-};
-
-const serviceUrlMap = {
-    "Panel Upgrades & Heavy-Ups": "panel-upgrades.html",
-    "EV Charging Stations": "ev-charger-installation.html",
-    "Whole-Home Generators": "whole-home-generators.html",
-    "Surge Protection": "whole-house-surge-protection.html",
-    "Underground Wiring": "underground-wiring.html",
-    "High-End Remodels": "high-end-remodels.html",
-    "Indoor Lighting": "indoor-lighting-installation.html",
-    "Landscape & Security": "landscape-security-lighting.html",
-    "Hot Tub & Pool Wiring": "hot-tub-pool-wiring.html",
-    "Troubleshooting & Repair": "electrical-troubleshooting-repair.html",
-    "Safety Inspections": "electrical-safety-inspections.html",
-    "Code Corrections": "electrical-code-corrections.html",
-    "Knob & Tube Replacement": "knob-and-tube-replacement.html",
-    "Aluminum Wiring Repair": "aluminum-wiring-repair.html",
-    "GFCI/AFCI Outlets": "gfci-afci-outlet-installation.html",
-    "Smoke/CO Detectors": "smoke-carbon-monoxide-detectors.html"
-};
-
-// Navigation Binding
-document.querySelectorAll('.quiz-step:not([data-step="3"]):not([data-step="4"]):not([data-step="5"]) .quiz-opt').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-        const stepNum = parseInt(this.closest('.quiz-step').dataset.step);
-        if (stepNum === 1) { quizData.type = this.dataset.value; goToStep(2); } 
-        else if (stepNum === 2) { quizData.category = this.dataset.value; populateQuizServices(this.dataset.value); goToStep(3); }
-    });
-});
-
-document.querySelectorAll('.quiz-back-btn').forEach(btn => {
-    btn.addEventListener('click', function(e) {
-        e.preventDefault();
-        hideInlineErrors(); // Clear errors on back
-        goToStep(parseInt(this.closest('.quiz-step').dataset.step) - 1);
-    });
-});
-
-function populateQuizServices(category) {
-    if (quizServices) {
-        quizServices.innerHTML = (quizServiceData[category] || []).map(opt => `<button class="quiz-opt" data-value="${opt}">${opt}</button>`).join('');
-        quizServices.querySelectorAll('.quiz-opt').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                quizData.service = this.dataset.value;
-                goToStep(4);
-            });
-        });
-    }
-}
-
-function goToStep(num) {
-    quizSteps.forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
-    const targetStep = document.querySelector(`.quiz-step[data-step="${num}"]`);
-    if (targetStep) { 
-        targetStep.classList.add('active'); 
-        targetStep.style.display = 'block'; 
-        
-        if(progressFill && progressText) {
-            if(num === 5) {
-                progressFill.style.width = "100%";
-                progressFill.style.backgroundColor = "#16a34a"; 
-                progressText.innerText = "Complete!";
-            } else {
-                progressFill.style.width = (num * 25) + "%";
-                progressFill.style.backgroundColor = "var(--safety-orange)";
-                progressText.innerText = `Step ${num} of 4`;
-            }
-        }
-    }
-}
-
-// Validation Helpers
-function isValidPhone(phone) { return phone.replace(/\D/g, '').length === 10; }
-function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
 function showInlineError(id, msg) {
     const el = document.getElementById(id);
     if(el) { el.innerText = msg; el.style.display = "block"; }
@@ -370,133 +511,250 @@ function hideInlineErrors() {
     document.querySelectorAll('.quiz-input').forEach(el => el.classList.remove('input-error-state'));
 }
 
-// ----------------------------------------------------
-// JSON WEB3FORMS CONNECTION FOR THE QUIZ (Bypasses Free Tier Error)
-// ----------------------------------------------------
-const quizForm = document.getElementById('quizForm');
-if (quizForm) {
-    quizForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        hideInlineErrors();
-        let hasError = false;
-
-        const phone = document.getElementById('quizPhone').value;
-        const email = document.getElementById('quizEmail').value;
-        const zip = document.getElementById('quizZip').value;
-
-        if (!isValidPhone(phone)) {
-            showInlineError('quizPhoneError', "Please enter a valid 10-digit phone number.");
-            document.getElementById('quizPhone').classList.add('input-error-state');
-            hasError = true;
+// Homepage Quick Validator Tool
+const checkZipBtn = document.getElementById('checkZipBtn');
+if (checkZipBtn) {
+    checkZipBtn.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevents page jump
+        const zipInput = document.getElementById('zipInput');
+        const resultDiv = document.getElementById('zipResult');
+        if (zipInput && resultDiv) {
+            const validation = validateZip(zipInput.value.trim());
+            resultDiv.innerHTML = validation.msg;
+            resultDiv.style.display = "block";
+            resultDiv.style.background = validation.status === "valid" ? "#dcfce7" : "#fee2e2";
+            resultDiv.style.color = validation.status === "valid" ? "#166534" : "#991b1b";
         }
-        if (!isValidEmail(email)) {
-            showInlineError('quizEmailError', "Please enter a valid email address.");
-            document.getElementById('quizEmail').classList.add('input-error-state');
-            hasError = true;
-        }
-        const zipCheck = validateZip(zip);
-        if (zipCheck.status === "none") {
-            showInlineError('quizZipError', zipCheck.msg);
-            document.getElementById('quizZip').classList.add('input-error-state');
-            hasError = true;
-        }
+    });
+}
 
-        if (hasError) return; // Halt submission
+// ----------------------------------------
+// 5-Tier Quiz Logic (Wrapped for Safety)
+// ----------------------------------------
+const quizContainer = document.getElementById('project-quiz');
 
-        const submitBtn = quizForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerHTML;
-        submitBtn.innerHTML = 'Sending Request...';
+if (quizContainer) { // ONLY run this code if the quiz exists on the page
+    
+    let quizData = { type: "", category: "", service: "" };
+    const quizSteps = document.querySelectorAll('.quiz-step');
+    const quizServices = document.getElementById('quiz-services');
+    const progressFill = document.getElementById('quizProgressFill');
+    const progressText = document.getElementById('quizProgressText');
 
-        // Construct JSON Payload to bypass Web3Forms restrictions
-        const formData = new FormData(quizForm);
-        const object = Object.fromEntries(formData);
-        object.Property_Type = quizData.type;
-        object.Project_Category = quizData.category;
-        object.Specific_Service_Requested = quizData.service;
-        
-        const json = JSON.stringify(object);
+    const quizServiceData = {
+        "Power & Infrastructure": ["Panel Upgrades & Heavy-Ups", "EV Charging Stations", "Whole-Home Generators", "Surge Protection", "Underground Wiring"],
+        "Remodeling & Lifestyle": ["High-End Remodels", "Indoor Lighting", "Landscape & Security", "Hot Tub & Pool Wiring", "Smart Home & A/V", "Appliance Circuits"],
+        "Safety & Historic Homes": ["Troubleshooting & Repair", "Safety Inspections", "Code Corrections", "Knob & Tube Replacement", "Aluminum Wiring Repair", "GFCI/AFCI Outlets", "Smoke/CO Detectors"]
+    };
 
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json 
-        })
-        .then(async (response) => {
-            let jsonResponse = await response.json();
-            if (response.status == 200) {
-                const successText = document.getElementById('successMessageText');
-                if (successText) {
-                    successText.innerHTML = `Your <strong>${quizData.type}</strong> project request for <strong>${quizData.service}</strong> has been securely transmitted.`;
+    const serviceUrlMap = {
+        "Panel Upgrades & Heavy-Ups": "panel-upgrades.html",
+        "EV Charging Stations": "ev-charger-installation.html",
+        "Whole-Home Generators": "whole-home-generators.html",
+        "Surge Protection": "whole-house-surge-protection.html",
+        "Underground Wiring": "underground-wiring.html",
+        "High-End Remodels": "high-end-remodels.html",
+        "Indoor Lighting": "indoor-lighting-installation.html",
+        "Landscape & Security": "landscape-security-lighting.html",
+        "Hot Tub & Pool Wiring": "hot-tub-pool-wiring.html",
+        "Troubleshooting & Repair": "electrical-troubleshooting-repair.html",
+        "Safety Inspections": "electrical-safety-inspections.html",
+        "Code Corrections": "electrical-code-corrections.html",
+        "Knob & Tube Replacement": "knob-and-tube-replacement.html",
+        "Aluminum Wiring Repair": "aluminum-wiring-repair.html",
+        "GFCI/AFCI Outlets": "gfci-afci-outlet-installation.html",
+        "Smoke/CO Detectors": "smoke-carbon-monoxide-detectors.html"
+    };
+
+    function goToStep(num) {
+        quizSteps.forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
+        const targetStep = document.querySelector(`.quiz-step[data-step="${num}"]`);
+        if (targetStep) { 
+            targetStep.classList.add('active'); 
+            targetStep.style.display = 'block'; 
+            
+            if(progressFill && progressText) {
+                if(num === 5) {
+                    progressFill.style.width = "100%";
+                    progressFill.style.backgroundColor = "#16a34a"; 
+                    progressText.innerText = "Complete!";
+                } else {
+                    progressFill.style.width = (num * 25) + "%";
+                    progressFill.style.backgroundColor = "var(--safety-orange)";
+                    progressText.innerText = `Step ${num} of 4`;
                 }
-                
-                const dynLink = document.getElementById('dynamicServiceLink');
-                if (dynLink && quizData.service) {
-                    const mappedUrl = serviceUrlMap[quizData.service];
-                    dynLink.href = mappedUrl || "index.html#services";
-                    dynLink.innerText = `Read more about our ${quizData.service} process.`;
-                }
-                
-                goToStep(5);
-            } else {
-                showInlineError('formGlobalError', jsonResponse.message || "Server error. Please try calling us at (443) 465-7769.");
             }
-        })
-        .catch(error => {
-            showInlineError('formGlobalError', "Network error. Please check your connection or call us at (443) 465-7769.");
-        })
-        .finally(() => {
-            submitBtn.innerHTML = originalBtnText;
+        }
+    }
+
+    function populateQuizServices(category) {
+        if (quizServices) {
+            quizServices.innerHTML = (quizServiceData[category] || []).map(opt => `<button class="quiz-opt" data-value="${opt}"><i class="fa-solid fa-bolt"></i> ${opt}</button>`).join('');
+            quizServices.querySelectorAll('.quiz-opt').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    quizData.service = this.dataset.value;
+                    goToStep(4);
+                });
+            });
+        }
+    }
+
+    // Step 1 & 2 Forward Navigation
+    document.querySelectorAll('.quiz-step:not([data-step="3"]):not([data-step="4"]):not([data-step="5"]) .quiz-opt').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const stepNum = parseInt(this.closest('.quiz-step').dataset.step);
+            if (stepNum === 1) { 
+                quizData.type = this.dataset.value; 
+                goToStep(2); 
+            } else if (stepNum === 2) { 
+                quizData.category = this.dataset.value; 
+                populateQuizServices(this.dataset.value); 
+                goToStep(3); 
+            }
         });
     });
-}
 
-const resetQuizBtn = document.getElementById('resetQuizBtn');
-if (resetQuizBtn) {
-    resetQuizBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        quizData = { type: "", category: "", service: "" };
-        if (quizForm) quizForm.reset();
-        hideInlineErrors();
-        goToStep(1);
+    // Back Button Navigation
+    document.querySelectorAll('.quiz-back-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            hideInlineErrors(); 
+            goToStep(parseInt(this.closest('.quiz-step').dataset.step) - 1);
+        });
     });
-}
 
-// SCROLL PROGRESS BAR
-window.addEventListener('scroll', function() {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const bar = document.getElementById("scroll-progress-bar");
-    if (bar) bar.style.width = ((winScroll / height) * 100) + "%";
-});
+    // Form Submission via JSON (Bypasses Free Tier Restrictions & Passes Honeypot)
+    const quizForm = document.getElementById('quizForm');
+    if (quizForm) {
+        quizForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            hideInlineErrors();
+            let hasError = false;
+
+            const phoneEl = document.getElementById('quizPhone');
+            const emailEl = document.getElementById('quizEmail');
+            const zipEl = document.getElementById('quizZip');
+
+            const phone = phoneEl ? phoneEl.value : "";
+            const email = emailEl ? emailEl.value : "";
+            const zip = zipEl ? zipEl.value : "";
+
+            if (!isValidPhone(phone)) {
+                showInlineError('quizPhoneError', "Please enter a valid 10-digit phone number.");
+                if(phoneEl) phoneEl.classList.add('input-error-state');
+                hasError = true;
+            }
+            if (!isValidEmail(email)) {
+                showInlineError('quizEmailError', "Please enter a valid email address.");
+                if(emailEl) emailEl.classList.add('input-error-state');
+                hasError = true;
+            }
+            const zipCheck = validateZip(zip);
+            if (zipCheck.status === "none") {
+                showInlineError('quizZipError', zipCheck.msg);
+                if(zipEl) zipEl.classList.add('input-error-state');
+                hasError = true;
+            }
+
+            if (hasError) return; 
+
+            const submitBtn = quizForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn ? submitBtn.innerHTML : "Submit";
+            if(submitBtn) submitBtn.innerHTML = 'Sending Request...';
+
+            const formData = new FormData(quizForm);
+            const object = Object.fromEntries(formData);
+            
+            object.Property_Type = quizData.type;
+            object.Project_Category = quizData.category;
+            object.Specific_Service_Requested = quizData.service;
+            
+            const jsonPayload = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: jsonPayload 
+            })
+            .then(async (response) => {
+                let jsonResponse = await response.json();
+                if (response.status == 200) {
+                    const successText = document.getElementById('successMessageText');
+                    if (successText) {
+                        successText.innerHTML = `Your <strong>${quizData.type}</strong> project request for <strong>${quizData.service}</strong> has been securely transmitted.`;
+                    }
+                    
+                    const dynLink = document.getElementById('dynamicServiceLink');
+                    if (dynLink && quizData.service) {
+                        const mappedUrl = serviceUrlMap[quizData.service];
+                        dynLink.href = mappedUrl || "index.html#services";
+                        dynLink.innerText = `Read more about our ${quizData.service} process.`;
+                    }
+                    
+                    goToStep(5);
+                } else {
+                    showInlineError('formGlobalError', jsonResponse.message || "Server error. Please try calling us at (443) 465-7769.");
+                }
+            })
+            .catch(error => {
+                showInlineError('formGlobalError', "Network error. Please check your connection or call us at (443) 465-7769.");
+            })
+            .finally(() => {
+                if(submitBtn) submitBtn.innerHTML = originalBtnText;
+            });
+        });
+    }
+
+    const resetQuizBtn = document.getElementById('resetQuizBtn');
+    if (resetQuizBtn) {
+        resetQuizBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            quizData = { type: "", category: "", service: "" };
+            if (quizForm) quizForm.reset();
+            hideInlineErrors();
+            goToStep(1);
+        });
+    }
+} // End of Quiz Logic wrapper
 
 // ==========================================
 // 10. SCROLL PROGRESS BAR & SOCIAL TICKER
 // ==========================================
+
+// Scroll Progress Bar
 window.addEventListener('scroll', function() {
     const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (winScroll / height) * 100;
     const bar = document.getElementById("scroll-progress-bar");
-    if (bar) bar.style.width = scrolled + "%";
+    if (bar && height > 0) {
+        bar.style.width = ((winScroll / height) * 100) + "%";
+    }
 });
 
+// Social Ticker (Defensively Programmed)
 const tickerPhrases = [
     "5.0 Rating | Recent 5-Star Review from Vicki L.",
     "Emergency Support available in Frederick, MD & DC",
     "Serving MD, D.C., DE, VA & PA since 2011"
 ];
 let tickerIdx = 0;
+
 setInterval(() => {
     const span = document.querySelector('.ticker-content span');
     if (span) {
         tickerIdx = (tickerIdx + 1) % tickerPhrases.length;
-        span.style.opacity = 0;
+        span.style.opacity = 0; // Fade out
+        
         setTimeout(() => {
-            span.innerText = tickerPhrases[tickerIdx];
-            span.style.opacity = 1;
-        }, 500);
+            if (span) { // Double check it still exists before updating
+                span.innerText = tickerPhrases[tickerIdx];
+                span.style.opacity = 1; // Fade in
+            }
+        }, 500); // Wait for CSS fade transition
     }
 }, 6000);

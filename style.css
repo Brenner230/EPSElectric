@@ -1247,7 +1247,7 @@ select:disabled { background-color: #f1f1f1; cursor: not-allowed; opacity: 0.7; 
 .quiz-progress-fill { background: var(--safety-orange); height: 100%; border-radius: 50px; transition: width 0.4s ease, background-color 0.4s ease; }
 
 /* Quiz Inputs and Errors */
-.quiz-input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.quiz-input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 15px; }
 
 .quiz-input {
     width: 100%;
@@ -1265,6 +1265,14 @@ select:disabled { background-color: #f1f1f1; cursor: not-allowed; opacity: 0.7; 
     outline: none;
     box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.15);
 }
+
+/* Disabled Dropdown Styling */
+select.quiz-input:disabled {
+    background-color: #E2E8F0;
+    color: #A0AEC0;
+    cursor: not-allowed;
+}
+
 .input-error-state {
     border-color: #ef4444 !important;
     background-color: #fef2f2 !important;
@@ -1320,16 +1328,21 @@ select:disabled { background-color: #f1f1f1; cursor: not-allowed; opacity: 0.7; 
     .quiz-input-grid { grid-template-columns: 1fr; }
 }
 
-/* FAB & Ticker overrides (assuming they are already in the file) */
+/* FAB & Ticker */
 .fab-container { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 15px; z-index: 2000; }
 .fab-btn { background: var(--safety-orange); color: var(--white); padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: 700; box-shadow: 0 4px 15px rgba(255, 102, 0, 0.4); display: flex; align-items: center; justify-content: center; gap: 10px; transition: transform 0.3s ease, background 0.3s ease; }
 .fab-btn:hover { transform: scale(1.05); background: var(--orange-hover); color: var(--white); }
 .fab-call { background: var(--primary-navy); box-shadow: 0 4px 15px rgba(11, 32, 70, 0.4); }
 .fab-call:hover { background: var(--steel-grey); }
-
+.social-ticker { position: fixed; bottom: 30px; left: 30px; background: rgba(11, 32, 70, 0.95); color: var(--white); padding: 12px 20px; border-radius: 50px; z-index: 1999; border-left: 4px solid var(--safety-orange); font-size: 0.95rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); pointer-events: none; }
+.ticker-content span { transition: opacity 0.5s ease; }
 .mobile-only { display: none; }
 @media (max-width: 768px) {
     .mobile-only { display: flex; }
     .fab-container { left: 20px; right: 20px; bottom: 20px; flex-direction: row; }
     .fab-btn { flex: 1; padding: 12px; font-size: 0.95rem; }
+    .social-ticker { display: none; }
 }
+
+/* Utilities */
+.hidden { display: none !important; }
