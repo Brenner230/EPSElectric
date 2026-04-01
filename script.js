@@ -3,7 +3,6 @@
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
     const headerPlaceholder = document.getElementById('header-placeholder');
-    
     if (headerPlaceholder) {
         fetch('header.html')
             .then(response => response.text())
@@ -20,54 +19,25 @@ document.addEventListener("DOMContentLoaded", function() {
 function initializeNavigation() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
-
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             hamburger.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
         });
     }
-
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
     const navLinks = document.querySelectorAll('.nav-menu a');
-    
     navLinks.forEach(link => {
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active-page');
-        }
-        
+        if (link.getAttribute('href') === currentPage) link.classList.add('active-page');
         link.addEventListener('click', () => {
             if(navMenu) navMenu.classList.remove('active');
             if(hamburger) hamburger.innerHTML = '☰';
         });
     });
-
-    document.querySelectorAll('a[href*="#"]:not(.modal-trigger)').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetPath = this.pathname.replace(/^\//, '');
-            const currentPath = location.pathname.replace(/^\//, '');
-            
-            if ((targetPath === currentPath || targetPath === '') && location.hostname == this.hostname) {
-                const targetId = this.hash;
-                if (targetId) {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        e.preventDefault(); 
-                        const headerElement = document.querySelector('.site-header');
-                        const headerHeight = headerElement ? headerElement.offsetHeight : 0;
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-                        
-                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                    }
-                }
-            }
-        });
-    });
 }
 
 // ==========================================
-// 3. STANDARD CONTACT FORM LOGIC (contact.html)
+// 3. STANDARD CONTACT FORM LOGIC 
 // ==========================================
 const phoneInputs = [document.getElementById('phone'), document.getElementById('quizPhone')];
 phoneInputs.forEach(input => {
@@ -78,83 +48,6 @@ phoneInputs.forEach(input => {
         });
     }
 });
-
-const categorySelect = document.getElementById('categorySelect');
-const serviceSelect = document.getElementById('serviceSelect');
-
-const services = {
-    Residential: [
-        "Panel Upgrades & Heavy-Ups",
-        "EV Charger Installation",
-        "Whole-Home Generators",
-        "Troubleshooting & Repair",
-        "High-End Remodels",
-        "Indoor/Outdoor Lighting",
-        "Historic Rewiring (K&T / Aluminum)",
-        "Appliance Circuits & Surge Protection",
-        "Safety Inspections & Code Corrections"
-    ],
-    Commercial: [
-        "Tenant Improvements",
-        "Commercial Lighting Retrofit",
-        "Dedicated Circuits",
-        "Code Compliance Audit",
-        "Service Contract Inquiry"
-    ]
-};
-
-if (categorySelect && serviceSelect) {
-    categorySelect.addEventListener('change', function() {
-        const selectedCategory = this.value;
-        serviceSelect.innerHTML = '<option value="">Select a Service...</option>';
-        if (selectedCategory) {
-            serviceSelect.disabled = false;
-            services[selectedCategory].forEach(service => {
-                const option = document.createElement('option');
-                option.value = service;
-                option.textContent = service;
-                serviceSelect.appendChild(option);
-            });
-        } else {
-            serviceSelect.disabled = true;
-        }
-    });
-}
-
-const leadForm = document.getElementById('leadForm');
-if (leadForm) {
-    leadForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const submitBtn = leadForm.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerHTML;
-        submitBtn.innerHTML = 'Sending Request...';
-        
-        // Use FormData to fully support file attachments and proper routing
-        const formData = new FormData(leadForm);
-        
-        // Backup access key injection to guarantee delivery
-        formData.append("access_key", "0dd69a78-82ac-4cfc-b9a8-65d61ebed62b");
-
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            body: formData
-        })
-        .then(async (response) => {
-            if (response.status == 200) {
-                window.location.href = 'success.html';
-            } else {
-                alert("Something went wrong. Please try calling us directly at (443) 465-7769.");
-            }
-        })
-        .catch(error => {
-            alert("Network Error. Please try calling us directly at (443) 465-7769.");
-        })
-        .finally(() => {
-            submitBtn.innerHTML = originalBtnText;
-        });
-    });
-}
 
 // ==========================================
 // 4. TESTIMONIAL CAROUSEL ENGINE
@@ -173,7 +66,6 @@ function showSlide(index) {
     if(slides[currentSlide]) slides[currentSlide].classList.add('active');
     if(dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
-
 function nextSlide() { showSlide(currentSlide + 1); }
 function prevSlide() { showSlide(currentSlide - 1); }
 
@@ -181,13 +73,11 @@ if (nextBtn && prevBtn) {
     nextBtn.addEventListener('click', () => { nextSlide(); resetInterval(); });
     prevBtn.addEventListener('click', () => { prevSlide(); resetInterval(); });
 }
-
 if (dots.length > 0) {
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => { showSlide(index); resetInterval(); });
     });
 }
-
 function startInterval() { slideInterval = setInterval(nextSlide, 6000); }
 function resetInterval() { clearInterval(slideInterval); startInterval(); }
 if (slides.length > 0) { startInterval(); }
@@ -347,14 +237,11 @@ document.addEventListener("DOMContentLoaded", function() {
 // ==========================================
 // 9. ZIP CODE VALIDATION & INTERACTIVE QUIZ
 // ==========================================
-
 const serviceAreaPrefixes = [
-    // DMV & Close Regions
     "217", "208", "209", "210", "211", "212", "214", "207", 
     "200", "202", "203", "204", "205", 
     "201", "220", "221", "222", "223", "226", 
     "172", "173", "254",
-    // Expanded Regions
     "215", "216", "218", "219", 
     "197", "198", "199", 
     "170", "171", "174", "175", "190", "193", 
@@ -362,108 +249,84 @@ const serviceAreaPrefixes = [
 ]; 
 
 function validateZip(zip) {
-    if (!zip || zip.length < 5) {
-        return { status: "none", msg: "Please enter a valid 5-digit zip code." };
-    }
-
+    if (!zip || zip.length < 5) return { status: "none", msg: "Please enter a valid 5-digit zip code." };
     const prefix = zip.substring(0, 3);
-
     if (serviceAreaPrefixes.includes(prefix)) {
-        return { status: "valid", msg: "✅ IN SERVICE AREA: We serve your location! Request your quote below. For emergencies, please call." };
+        return { status: "valid", msg: "✅ IN SERVICE AREA: We serve your location! Request your quote below." };
     } else {
         return { status: "none", msg: "❌ OUTSIDE SERVICE AREA: We currently do not serve this zip code." };
     }
 }
 
+// Homepage Quick Validator
 const checkZipBtn = document.getElementById('checkZipBtn');
 if (checkZipBtn) {
     checkZipBtn.addEventListener('click', () => {
         const zipInput = document.getElementById('zipInput');
-        const zip = zipInput.value.trim();
         const resultDiv = document.getElementById('zipResult');
-        
-        const validation = validateZip(zip);
-        
+        const validation = validateZip(zipInput.value.trim());
         resultDiv.innerHTML = validation.msg;
         resultDiv.style.display = "block";
-        
-        if (validation.status === "valid") {
-            resultDiv.style.background = "#dcfce7"; resultDiv.style.color = "#166534";
-        } else {
-            resultDiv.style.background = "#fee2e2"; resultDiv.style.color = "#991b1b";
-        }
+        resultDiv.style.background = validation.status === "valid" ? "#dcfce7" : "#fee2e2";
+        resultDiv.style.color = validation.status === "valid" ? "#166534" : "#991b1b";
     });
 }
 
 // ----------------------------------------
-// 4-Tier Quiz Logic with Back Buttons
+// 5-Tier Quiz Logic with Validation
 // ----------------------------------------
 let quizData = { type: "", category: "", service: "" };
 const quizSteps = document.querySelectorAll('.quiz-step');
 const quizServices = document.getElementById('quiz-services');
+const progressFill = document.getElementById('quizProgressFill');
+const progressText = document.getElementById('quizProgressText');
 
 const quizServiceData = {
-    "Power & Infrastructure": [
-        "Panel Upgrades & Heavy-Ups",
-        "EV Charging Stations",
-        "Whole-Home Generators",
-        "Surge Protection",
-        "Underground Wiring"
-    ],
-    "Remodeling & Lifestyle": [
-        "High-End Remodels",
-        "Indoor Lighting",
-        "Landscape & Security",
-        "Hot Tub & Pool Wiring",
-        "Smart Home & A/V",
-        "Appliance Circuits"
-    ],
-    "Safety & Historic Homes": [
-        "Troubleshooting & Repair",
-        "Safety Inspections",
-        "Code Corrections",
-        "Knob & Tube Replacement",
-        "Aluminum Wiring Repair",
-        "GFCI/AFCI Outlets",
-        "Smoke/CO Detectors"
-    ]
+    "Power & Infrastructure": ["Panel Upgrades & Heavy-Ups", "EV Charging Stations", "Whole-Home Generators", "Surge Protection", "Underground Wiring"],
+    "Remodeling & Lifestyle": ["High-End Remodels", "Indoor Lighting", "Landscape & Security", "Hot Tub & Pool Wiring", "Smart Home & A/V", "Appliance Circuits"],
+    "Safety & Historic Homes": ["Troubleshooting & Repair", "Safety Inspections", "Code Corrections", "Knob & Tube Replacement", "Aluminum Wiring Repair", "GFCI/AFCI Outlets", "Smoke/CO Detectors"]
 };
 
+const serviceUrlMap = {
+    "Panel Upgrades & Heavy-Ups": "panel-upgrades.html",
+    "EV Charging Stations": "ev-charger-installation.html",
+    "Whole-Home Generators": "whole-home-generators.html",
+    "Surge Protection": "whole-house-surge-protection.html",
+    "Underground Wiring": "underground-wiring.html",
+    "High-End Remodels": "high-end-remodels.html",
+    "Indoor Lighting": "indoor-lighting-installation.html",
+    "Landscape & Security": "landscape-security-lighting.html",
+    "Hot Tub & Pool Wiring": "hot-tub-pool-wiring.html",
+    "Troubleshooting & Repair": "electrical-troubleshooting-repair.html",
+    "Safety Inspections": "electrical-safety-inspections.html",
+    "Code Corrections": "electrical-code-corrections.html",
+    "Knob & Tube Replacement": "knob-and-tube-replacement.html",
+    "Aluminum Wiring Repair": "aluminum-wiring-repair.html",
+    "GFCI/AFCI Outlets": "gfci-afci-outlet-installation.html",
+    "Smoke/CO Detectors": "smoke-carbon-monoxide-detectors.html"
+};
+
+// Navigation Binding
 document.querySelectorAll('.quiz-step:not([data-step="3"]):not([data-step="4"]):not([data-step="5"]) .quiz-opt').forEach(button => {
     button.addEventListener('click', function(e) {
         e.preventDefault();
-        const step = this.closest('.quiz-step');
-        const stepNum = parseInt(step.dataset.step);
-        const value = this.dataset.value;
-
-        if (stepNum === 1) {
-            quizData.type = value;
-            goToStep(2);
-        } else if (stepNum === 2) {
-            quizData.category = value;
-            populateQuizServices(value);
-            goToStep(3);
-        }
+        const stepNum = parseInt(this.closest('.quiz-step').dataset.step);
+        if (stepNum === 1) { quizData.type = this.dataset.value; goToStep(2); } 
+        else if (stepNum === 2) { quizData.category = this.dataset.value; populateQuizServices(this.dataset.value); goToStep(3); }
     });
 });
 
 document.querySelectorAll('.quiz-back-btn').forEach(btn => {
     btn.addEventListener('click', function(e) {
         e.preventDefault();
-        const step = this.closest('.quiz-step');
-        const stepNum = parseInt(step.dataset.step);
-        goToStep(stepNum - 1);
+        hideInlineErrors(); // Clear errors on back
+        goToStep(parseInt(this.closest('.quiz-step').dataset.step) - 1);
     });
 });
 
 function populateQuizServices(category) {
-    const options = quizServiceData[category] || [];
-    
     if (quizServices) {
-        quizServices.innerHTML = options.map(opt => 
-            `<button class="quiz-opt" data-value="${opt}">${opt}</button>`
-        ).join('');
-
+        quizServices.innerHTML = (quizServiceData[category] || []).map(opt => `<button class="quiz-opt" data-value="${opt}">${opt}</button>`).join('');
         quizServices.querySelectorAll('.quiz-opt').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -475,74 +338,114 @@ function populateQuizServices(category) {
 }
 
 function goToStep(num) {
-    quizSteps.forEach(s => {
-        s.classList.remove('active');
-        s.style.display = 'none';
-    });
+    quizSteps.forEach(s => { s.classList.remove('active'); s.style.display = 'none'; });
     const targetStep = document.querySelector(`.quiz-step[data-step="${num}"]`);
-    if (targetStep) {
-        targetStep.classList.add('active');
-        targetStep.style.display = 'block';
+    if (targetStep) { 
+        targetStep.classList.add('active'); 
+        targetStep.style.display = 'block'; 
+        
+        if(progressFill && progressText) {
+            if(num === 5) {
+                progressFill.style.width = "100%";
+                progressFill.style.backgroundColor = "#16a34a"; 
+                progressText.innerText = "Complete!";
+            } else {
+                progressFill.style.width = (num * 25) + "%";
+                progressFill.style.backgroundColor = "var(--safety-orange)";
+                progressText.innerText = `Step ${num} of 4`;
+            }
+        }
     }
 }
 
-const fileInput = document.getElementById('projectAttachment');
-const fileNameDisplay = document.getElementById('fileNameDisplay');
-if (fileInput && fileNameDisplay) {
-    fileInput.addEventListener('change', function() {
-        if (this.files && this.files.length > 0) {
-            fileNameDisplay.textContent = "Attached: " + this.files[0].name;
-            fileNameDisplay.style.color = "var(--safety-orange)";
-        } else {
-            fileNameDisplay.textContent = "No file chosen";
-            fileNameDisplay.style.color = "var(--steel-grey)";
-        }
-    });
+// Validation Helpers
+function isValidPhone(phone) { return phone.replace(/\D/g, '').length === 10; }
+function isValidEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
+function showInlineError(id, msg) {
+    const el = document.getElementById(id);
+    if(el) { el.innerText = msg; el.style.display = "block"; }
+}
+function hideInlineErrors() {
+    document.querySelectorAll('.inline-error').forEach(el => el.style.display = "none");
+    document.querySelectorAll('.quiz-input').forEach(el => el.classList.remove('input-error-state'));
 }
 
-// LIVE WEB3FORMS CONNECTION FOR THE QUIZ
+// ----------------------------------------------------
+// JSON WEB3FORMS CONNECTION FOR THE QUIZ (Bypasses Free Tier Error)
+// ----------------------------------------------------
 const quizForm = document.getElementById('quizForm');
 if (quizForm) {
     quizForm.addEventListener('submit', function(e) {
         e.preventDefault();
+        hideInlineErrors();
+        let hasError = false;
+
+        const phone = document.getElementById('quizPhone').value;
+        const email = document.getElementById('quizEmail').value;
         const zip = document.getElementById('quizZip').value;
-        
-        if (validateZip(zip).status === "none") {
-            alert("We apologize, but we do not currently offer services in your zip code (" + zip + ").");
-            return;
+
+        if (!isValidPhone(phone)) {
+            showInlineError('quizPhoneError', "Please enter a valid 10-digit phone number.");
+            document.getElementById('quizPhone').classList.add('input-error-state');
+            hasError = true;
         }
+        if (!isValidEmail(email)) {
+            showInlineError('quizEmailError', "Please enter a valid email address.");
+            document.getElementById('quizEmail').classList.add('input-error-state');
+            hasError = true;
+        }
+        const zipCheck = validateZip(zip);
+        if (zipCheck.status === "none") {
+            showInlineError('quizZipError', zipCheck.msg);
+            document.getElementById('quizZip').classList.add('input-error-state');
+            hasError = true;
+        }
+
+        if (hasError) return; // Halt submission
 
         const submitBtn = quizForm.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.innerHTML;
         submitBtn.innerHTML = 'Sending Request...';
 
+        // Construct JSON Payload to bypass Web3Forms restrictions
         const formData = new FormData(quizForm);
+        const object = Object.fromEntries(formData);
+        object.Property_Type = quizData.type;
+        object.Project_Category = quizData.category;
+        object.Specific_Service_Requested = quizData.service;
         
-        // Append the user's quiz choices to the email data
-        formData.append("Property_Type", quizData.type);
-        formData.append("Project_Category", quizData.category);
-        formData.append("Specific_Service_Requested", quizData.service);
-        
-        // Ensure access key is present
-        formData.append("access_key", "0dd69a78-82ac-4cfc-b9a8-65d61ebed62b");
+        const json = JSON.stringify(object);
 
         fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            body: formData // Correctly sends the file attachment!
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json 
         })
         .then(async (response) => {
+            let jsonResponse = await response.json();
             if (response.status == 200) {
                 const successText = document.getElementById('successMessageText');
                 if (successText) {
-                    successText.innerHTML = `Your <strong>${quizData.type}</strong> project request for <strong>${quizData.service}</strong> has been securely transmitted. Our team will review your details and contact you shortly.`;
+                    successText.innerHTML = `Your <strong>${quizData.type}</strong> project request for <strong>${quizData.service}</strong> has been securely transmitted.`;
                 }
+                
+                const dynLink = document.getElementById('dynamicServiceLink');
+                if (dynLink && quizData.service) {
+                    const mappedUrl = serviceUrlMap[quizData.service];
+                    dynLink.href = mappedUrl || "index.html#services";
+                    dynLink.innerText = `Read more about our ${quizData.service} process.`;
+                }
+                
                 goToStep(5);
             } else {
-                alert("Something went wrong sending the email. Please try calling us at (443) 465-7769.");
+                showInlineError('formGlobalError', jsonResponse.message || "Server error. Please try calling us at (443) 465-7769.");
             }
         })
         .catch(error => {
-            alert("Network error. Please try calling us directly at (443) 465-7769.");
+            showInlineError('formGlobalError', "Network error. Please check your connection or call us at (443) 465-7769.");
         })
         .finally(() => {
             submitBtn.innerHTML = originalBtnText;
@@ -554,16 +457,20 @@ const resetQuizBtn = document.getElementById('resetQuizBtn');
 if (resetQuizBtn) {
     resetQuizBtn.addEventListener('click', function(e) {
         e.preventDefault();
-        
         quizData = { type: "", category: "", service: "" };
         if (quizForm) quizForm.reset();
-        if (fileNameDisplay) {
-            fileNameDisplay.textContent = "No file chosen";
-            fileNameDisplay.style.color = "var(--steel-grey)";
-        }
+        hideInlineErrors();
         goToStep(1);
     });
 }
+
+// SCROLL PROGRESS BAR
+window.addEventListener('scroll', function() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const bar = document.getElementById("scroll-progress-bar");
+    if (bar) bar.style.width = ((winScroll / height) * 100) + "%";
+});
 
 // ==========================================
 // 10. SCROLL PROGRESS BAR & SOCIAL TICKER
