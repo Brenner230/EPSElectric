@@ -1521,3 +1521,203 @@ select.quiz-input:disabled {
         height: 350px !important;
     }
 }
+
+/* =========================================
+   25. DYNAMIC PORTFOLIO GRID & FILTERS
+   ========================================= */
+.portfolio-filters {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.filter-btn {
+    background: var(--white);
+    color: var(--primary-navy);
+    border: 2px solid #E2E8F0;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+    background: var(--primary-navy);
+    color: var(--white);
+    border-color: var(--primary-navy);
+    box-shadow: 0 4px 15px rgba(11, 32, 70, 0.15);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 40px;
+}
+
+.port-card {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(11, 32, 70, 0.08);
+    border: 1px solid #E2E8F0;
+    transition: transform 0.3s ease, opacity 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.port-card.hide {
+    display: none;
+}
+
+.port-image {
+    height: 280px;
+    position: relative;
+    overflow: hidden;
+}
+
+.port-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.port-card:hover .port-image img {
+    transform: scale(1.05);
+}
+
+.port-body {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.port-meta {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.port-body h3 {
+    font-size: 1.6rem;
+    color: var(--primary-navy);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+/* Expandable Drawer UX */
+.port-details-drawer {
+    display: none; /* Hidden by default via JS */
+    margin-bottom: 20px;
+    border-top: 1px solid #E2E8F0;
+    padding-top: 20px;
+}
+
+.port-details-drawer.open {
+    display: block;
+    animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.toggle-drawer-btn {
+    background: #F8FAFC;
+    color: var(--primary-navy);
+    border: 1px solid #E2E8F0;
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: auto;
+}
+
+.toggle-drawer-btn:hover {
+    background: #E2E8F0;
+}
+
+@media (max-width: 768px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================
+   26. INTERACTIVE PORTFOLIO UPGRADES
+   ========================================= */
+a.meta-tag {
+    background: var(--light-bg);
+    color: var(--primary-navy);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid #CBD5E0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a.meta-tag:hover {
+    background: var(--primary-navy);
+    color: var(--white);
+    border-color: var(--primary-navy);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(11, 32, 70, 0.15);
+}
+
+a.meta-tag.location {
+    background: rgba(255, 102, 0, 0.1);
+    color: var(--safety-orange);
+    border-color: rgba(255, 102, 0, 0.2);
+}
+
+a.meta-tag.location:hover {
+    background: var(--safety-orange);
+    color: var(--white);
+    border-color: var(--safety-orange);
+}
+
+.spotlight-cta {
+    margin-top: auto; 
+    padding-top: 25px;
+}
+
+/* =========================================
+   27. NAVY BUTTON COMPONENT
+   ========================================= */
+.btn-navy {
+    background-color: var(--primary-navy);
+    color: var(--white);
+    border: 2px solid var(--primary-navy);
+    padding: 14px 32px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(11, 32, 70, 0.15);
+}
+
+.btn-navy:hover {
+    background-color: var(--white);
+    color: var(--primary-navy);
+    box-shadow: 0 6px 20px rgba(11, 32, 70, 0.2);
+    transform: translateY(-2px);
+}

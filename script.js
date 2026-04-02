@@ -758,3 +758,50 @@ setInterval(() => {
         }, 500); // Wait for CSS fade transition
     }
 }, 6000);
+
+/* =========================================
+   11. PORTFOLIO FILTERS & EXPANDABLE DRAWERS
+   ========================================= */
+document.addEventListener("DOMContentLoaded", function() {
+    // Filter Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const portCards = document.querySelectorAll('.port-card');
+
+    if(filterBtns.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                portCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
+                        card.classList.remove('hide');
+                    } else {
+                        card.classList.add('hide');
+                    }
+                });
+            });
+        });
+    }
+
+    // Expandable Details Logic
+    const toggleBtns = document.querySelectorAll('.toggle-drawer-btn');
+    
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const drawer = this.previousElementSibling; // Target the details div
+            const icon = this.querySelector('i');
+            
+            if (drawer.classList.contains('open')) {
+                drawer.classList.remove('open');
+                this.innerHTML = 'View Scope & Details <i class="fa-solid fa-chevron-down" style="margin-left: 5px;"></i>';
+            } else {
+                drawer.classList.add('open');
+                this.innerHTML = 'Close Details <i class="fa-solid fa-chevron-up" style="margin-left: 5px;"></i>';
+            }
+        });
+    });
+});
