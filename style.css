@@ -793,3 +793,68 @@ a.meta-tag.location:hover { background: var(--safety-orange); color: var(--white
 
 @media (max-width: 992px) { .tech-grid { grid-template-columns: 1fr; } }
 @media (max-width: 768px) { .tab-content { padding: 30px 20px; } .tab-btn { width: 100%; justify-content: center; } }
+
+/* =========================================
+   21. MOBILE UX OVERHAULS (NESTED MENU & STICKY TABS)
+   ========================================= */
+
+/* Desktop defaults for the new menu icons */
+.mobile-cat-icon { display: none; }
+
+@media (max-width: 768px) {
+    /* --- 1. NESTED DOUBLE-DROPDOWN MENU --- */
+    .mega-menu {
+        padding: 0 !important; margin: 0 !important;
+        background-color: var(--white) !important;
+        border-left: none !important;
+    }
+    .dropdown-column {
+        border-bottom: 1px solid #E2E8F0;
+    }
+    .dropdown-header {
+        display: flex !important; justify-content: space-between; align-items: center;
+        padding: 16px 20px !important; margin: 0 !important; border-bottom: none !important;
+        cursor: pointer; color: var(--primary-navy) !important; font-size: 1.05rem !important;
+    }
+    .mobile-cat-icon { 
+        display: block; font-size: 0.9rem; color: var(--safety-orange); transition: transform 0.3s ease; 
+    }
+    
+    /* Hide links by default on mobile */
+    .dropdown-links { display: none; background: #F8FAFC; }
+    .dropdown-links a { padding: 12px 20px 12px 35px !important; font-size: 0.95rem !important; border-bottom: 1px solid #E2E8F0 !important; }
+    
+    /* Show links when active */
+    .dropdown-column.sub-open .dropdown-links { display: block; }
+    .dropdown-column.sub-open .mobile-cat-icon { transform: rotate(180deg); }
+    .dropdown-column.sub-open .dropdown-header { color: var(--safety-orange) !important; background: #F8FAFC; }
+
+
+    /* --- 2. STICKY HORIZONTAL TABS --- */
+    .tab-buttons {
+        position: sticky;
+        top: 68px; /* Sticks right below the site header */
+        z-index: 900;
+        background: var(--white);
+        padding: 15px 20px;
+        margin: 0 -20px 25px -20px !important; /* Pulls out to the edges of the phone */
+        box-shadow: 0 8px 15px rgba(0,0,0,0.08);
+        display: flex;
+        flex-wrap: nowrap !important; /* Forces horizontal layout */
+        overflow-x: auto; /* Allows swiping left/right */
+        -webkit-overflow-scrolling: touch;
+        gap: 10px !important;
+        justify-content: flex-start !important;
+        border-bottom: 3px solid var(--safety-orange);
+    }
+    
+    /* Hide the ugly scrollbar on the tabs */
+    .tab-buttons::-webkit-scrollbar { display: none; }
+    
+    .tab-btn {
+        flex: 0 0 auto; /* Prevents buttons from squishing */
+        padding: 10px 18px !important;
+        font-size: 0.85rem !important;
+        white-space: nowrap; /* Keeps text on one line */
+    }
+}

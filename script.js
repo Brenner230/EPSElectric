@@ -32,52 +32,54 @@ document.addEventListener("DOMContentLoaded", function() {
 function initializeNavigation() {
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('navMenu');
+    
+    // Main Hamburger Toggle
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
             navMenu.classList.toggle('active');
             hamburger.innerHTML = navMenu.classList.contains('active') ? '✕' : '☰';
         });
     }
+
+    // Double Dropdown Logic for Mobile Categories
+    const categoryHeaders = document.querySelectorAll('.dropdown-header');
+    categoryHeaders.forEach(header => {
+        header.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                const parentColumn = this.parentElement;
+                
+                // Close other open categories
+                document.querySelectorAll('.dropdown-column').forEach(col => {
+                    if (col !== parentColumn) col.classList.remove('sub-open');
+                });
+                
+                // Toggle the clicked category
+                parentColumn.classList.toggle('sub-open');
+            }
+        });
+    });
+
+    // Handle normal links
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navLinks = document.querySelectorAll('.nav-menu a:not(.dropdown-header)');
     navLinks.forEach(link => {
         if (link.getAttribute('href') === currentPage) link.classList.add('active-page');
         
         link.addEventListener('click', (e) => {
+            // Main "Services" dropdown toggle for mobile
             if (window.innerWidth <= 768 && link.parentElement.classList.contains('has-dropdown')) {
                 e.preventDefault(); 
                 link.parentElement.classList.toggle('mobile-open');
                 const icon = link.querySelector('i');
-                if(icon) {
-                    icon.style.transform = link.parentElement.classList.contains('mobile-open') ? 'rotate(180deg)' : 'rotate(0deg)';
-                    icon.style.transition = 'transform 0.3s ease';
-                }
+                if(icon) icon.style.transform = link.parentElement.classList.contains('mobile-open') ? 'rotate(180deg)' : 'rotate(0deg)';
                 return; 
             }
+            
+            // Close menu when a real link is clicked
             if(navMenu) navMenu.classList.remove('active');
             if(hamburger) hamburger.innerHTML = '☰';
-        });
-    });
-
-    document.querySelectorAll('a[href*="#"]:not(.modal-trigger)').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const targetPath = this.pathname.replace(/^\//, '');
-            const currentPath = location.pathname.replace(/^\//, '');
-            
-            if ((targetPath === currentPath || targetPath === '') && location.hostname == this.hostname) {
-                const targetId = this.hash;
-                if (targetId) {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        e.preventDefault(); 
-                        const headerElement = document.querySelector('.site-header');
-                        const headerHeight = headerElement ? headerElement.offsetHeight : 0;
-                        const elementPosition = targetElement.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-                        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-                    }
-                }
-            }
         });
     });
 }
@@ -763,18 +765,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (targetPane) {
                     targetPane.classList.add('active');
                     
-                    // UX Fix: Auto-scroll to content on mobile devices
+                    // On mobile, smoothly scroll back to the top of the sticky tabs 
+                    // so the new content starts perfectly below the header
                     if (window.innerWidth <= 768) {
-                        // Get the height of your sticky header so it doesn't block the content
-                        const headerHeight = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 0;
+                        const tabContainer = document.querySelector('.appliance-tabs-container');
+                        const headerHeight = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 68;
                         
-                        // Calculate where the content starts, minus the header and a little padding
-                        const elementPosition = targetPane.getBoundingClientRect().top;
-                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
-
-                        // Smoothly scroll the user to the content
                         window.scrollTo({
-                            top: offsetPosition,
+                            top: tabContainer.offsetTop - headerHeight - 10,
                             behavior: "smooth"
                         });
                     }
