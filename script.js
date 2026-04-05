@@ -744,12 +744,22 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ==========================================
-// 11. INTERACTIVE TABS LOGIC (SERVICE PAGES)
+// 11. INTERACTIVE TABS & MOBILE LOGIC (SERVICE PAGES)
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabPanes = document.querySelectorAll('.tab-pane');
+    const header = document.querySelector('.site-header');
+    const tabContainer = document.querySelector('.tab-buttons');
 
+    // 1. Dynamic Sticky Seal
+    // Calculates the exact height of your header and seals the tabs directly beneath it 
+    // so no scrolling text bleeds through the gap.
+    if (header && tabContainer && window.innerWidth <= 768) {
+        tabContainer.style.top = header.offsetHeight + 'px';
+    }
+
+    // 2. Tab Clicking & Auto-Scroll
     if (tabBtns.length > 0) {
         tabBtns.forEach(btn => {
             btn.addEventListener('click', () => {
@@ -765,14 +775,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (targetPane) {
                     targetPane.classList.add('active');
                     
-                    // On mobile, smoothly scroll back to the top of the sticky tabs 
-                    // so the new content starts perfectly below the header
+                    // UX Fix: Auto-scroll content up to the bottom of the sticky tabs
                     if (window.innerWidth <= 768) {
-                        const tabContainer = document.querySelector('.appliance-tabs-container');
-                        const headerHeight = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 68;
+                        const headerHeight = header ? header.offsetHeight : 68;
+                        const tabsHeight = tabContainer ? tabContainer.offsetHeight : 60;
+                        const elementPosition = targetPane.getBoundingClientRect().top;
                         
                         window.scrollTo({
-                            top: tabContainer.offsetTop - headerHeight - 10,
+                            top: elementPosition + window.pageYOffset - headerHeight - tabsHeight - 10,
                             behavior: "smooth"
                         });
                     }
@@ -780,4 +790,24 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
+
+    // 3. Double Dropdown Mobile Menu Logic
+    const categoryHeaders = document.querySelectorAll('.dropdown-header');
+    categoryHeaders.forEach(catHeader => {
+        catHeader.addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                const parentColumn = this.parentElement;
+                
+                // Close other open categories to keep the menu short
+                document.querySelectorAll('.dropdown-column').forEach(col => {
+                    if (col !== parentColumn) col.classList.remove('sub-open');
+                });
+                
+                // Toggle the clicked category
+                parentColumn.classList.toggle('sub-open');
+            }
+        });
+    });
 });
