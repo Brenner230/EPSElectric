@@ -1873,3 +1873,87 @@ a.meta-tag.location:hover {
 .footer-bottom a:hover {
     color: var(--safety-orange) !important;
 }
+
+/* =========================================
+   FOOTER OVERHAUL (3-COLUMN & MOBILE FIXES)
+   ========================================= */
+
+/* Desktop 3-Column Grid */
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 1.2fr; /* 3 Columns, slightly wider on ends */
+    gap: 50px;
+    margin-bottom: 40px;
+}
+
+/* Quick Links Styling */
+.footer-links h4 { color: var(--white); margin-bottom: 15px; }
+.footer-links ul li { margin-bottom: 12px; }
+.footer-links a {
+    color: #E2E8F0;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+.footer-links a:hover {
+    color: var(--safety-orange);
+    transform: translateX(5px); /* Nice little slide effect on hover */
+}
+
+/* Badge Placeholders */
+.badge-placeholder {
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.03);
+    padding: 12px 10px;
+    font-size: 0.75rem;
+    color: #a0aec0;
+    text-align: center;
+    border-radius: 6px;
+    flex: 1;
+}
+
+/* Payment Row Flexbox */
+.footer-payment-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.discount-badge {
+    background-color: var(--safety-orange);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* 1 column on phones */
+        gap: 40px;
+    }
+    
+    .footer-payment-flex {
+        flex-direction: column; /* Stack the payment row so it isn't squished */
+        gap: 15px;
+    }
+    
+    .discount-badge {
+        margin-left: 0;
+    }
+    
+    .footer-bottom {
+        /* CRITICAL: Adds padding at the very bottom of the page so the 
+           floating Call/Quote buttons don't block the copyright text */
+        padding-bottom: 80px; 
+    }
+}
