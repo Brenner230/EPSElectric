@@ -1,0 +1,20 @@
+# 1. Start Rewrite Engine
+RewriteEngine On
+
+# 2. Redirect /page.html to /page (SEO Clean-up)
+# This sends a "Permanent Redirect" to Google so only the clean URLs are indexed
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /.*\.html\ HTTP/
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]
+
+# 3. Serve /page.html when the user visits /page (Behind the scenes)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# 4. Set Custom 404 Page
+ErrorDocument 404 /404.html
+
+# 5. Force HTTPS (Optional but highly recommended for professionalism)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
