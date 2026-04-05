@@ -1,7 +1,8 @@
 // ==========================================
-// 1. UNIVERSAL HEADER FETCH & NAVIGATION
+// 1. UNIVERSAL HEADER/FOOTER FETCH & NAVIGATION
 // ==========================================
 document.addEventListener("DOMContentLoaded", function() {
+    // 1. Load Header
     const headerPlaceholder = document.getElementById('header-placeholder');
     if (headerPlaceholder) {
         fetch('header.html')
@@ -13,6 +14,20 @@ document.addEventListener("DOMContentLoaded", function() {
             .catch(error => console.error("Error loading header:", error));
     } else {
         initializeNavigation();
+    }
+
+    // 2. Load Footer
+    const footerPlaceholder = document.getElementById('footer-placeholder');
+    if (footerPlaceholder) {
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                footerPlaceholder.innerHTML = data;
+                initializeFooterFeatures(); 
+            })
+            .catch(error => console.error("Error loading footer:", error));
+    } else {
+        initializeFooterFeatures();
     }
 });
 
@@ -29,7 +44,23 @@ function initializeNavigation() {
     const navLinks = document.querySelectorAll('.nav-menu a');
     navLinks.forEach(link => {
         if (link.getAttribute('href') === currentPage) link.classList.add('active-page');
-        link.addEventListener('click', () => {
+        
+        link.addEventListener('click', (e) => {
+            // If it's a mobile screen and the user clicks the dropdown toggle
+            if (window.innerWidth <= 768 && link.parentElement.classList.contains('has-dropdown')) {
+                e.preventDefault(); // Stop the page from jumping
+                link.parentElement.classList.toggle('mobile-open');
+                
+                // Flip the chevron icon
+                const icon = link.querySelector('i');
+                if(icon) {
+                    icon.style.transform = link.parentElement.classList.contains('mobile-open') ? 'rotate(180deg)' : 'rotate(0deg)';
+                    icon.style.transition = 'transform 0.3s ease';
+                }
+                return; // Stop here so the menu doesn't close
+            }
+
+            // Normal links close the menu
             if(navMenu) navMenu.classList.remove('active');
             if(hamburger) hamburger.innerHTML = '☰';
         });
@@ -55,6 +86,37 @@ function initializeNavigation() {
                     }
                 }
             }
+        });
+    });
+}
+
+function initializeFooterFeatures() {
+    // Logic for "Add to Contacts" vCard Button
+    const vCardBtns = document.querySelectorAll('.vcard-download-btn');
+    vCardBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const vcardData = `BEGIN:VCARD
+VERSION:3.0
+N:Solutions;Eminent Power;;;
+FN:Eminent Power Solutions (EPS)
+ORG:Eminent Power Solutions LLC
+TEL;TYPE=WORK,VOICE:(443) 465-7769
+EMAIL:service@epsdmv.com
+URL:https://epsdmv.com
+PHOTO;VALUE=URI:https://epsdmv.com/images/eps-logo.jpg
+END:VCARD`;
+
+            const blob = new Blob([vcardData], { type: "text/vcard" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = "Eminent_Power_Solutions.vcf";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
         });
     });
 }
@@ -802,6 +864,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 drawer.classList.add('open');
                 this.innerHTML = 'Close Details <i class="fa-solid fa-chevron-up" style="margin-left: 5px;"></i>';
             }
+        });
+    });
+});
+
+// ==========================================
+// FLIP CARD MOBILE TAP LOGIC
+// ==========================================
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.flip-card').forEach(card => {
+        card.addEventListener('click', function() {
+            // Toggles the flip state every time it is tapped
+            this.classList.toggle('flipped');
         });
     });
 });
