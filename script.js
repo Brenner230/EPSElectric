@@ -759,7 +759,26 @@ document.addEventListener("DOMContentLoaded", function() {
                 btn.classList.add('active');
                 const targetId = btn.getAttribute('data-target');
                 const targetPane = document.getElementById(targetId);
-                if (targetPane) targetPane.classList.add('active');
+                
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                    
+                    // UX Fix: Auto-scroll to content on mobile devices
+                    if (window.innerWidth <= 768) {
+                        // Get the height of your sticky header so it doesn't block the content
+                        const headerHeight = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 0;
+                        
+                        // Calculate where the content starts, minus the header and a little padding
+                        const elementPosition = targetPane.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20;
+
+                        // Smoothly scroll the user to the content
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                }
             });
         });
     }

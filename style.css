@@ -194,11 +194,18 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
         display: flex !important; flex-direction: column !important; gap: 25px; 
     }
     .hamburger { display: block; }
-    .mega-menu {
+   .mega-menu {
         position: static; display: none;
         box-shadow: none; border-top: none; border-left: 3px solid var(--safety-orange);
-        padding: 15px 20px; margin: 0 15px 10px 15px; width: auto;
+        /* Tightened padding and adjusted margins to give text more horizontal room */
+        padding: 10px 15px; margin: 0 10px 10px 10px; width: auto; 
         background-color: #F8FAFC;
+    }
+    
+    /* Force links to stay on one line with ellipsis if they are too long for very small phones */
+    .mega-menu a { 
+        padding: 12px 0; font-size: 1.05rem; border-bottom: 1px solid #f1f5f9;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis; 
     }
     .dropdown-header { 
         font-size: 1.1rem; border-bottom: 2px solid #E2E8F0; 
