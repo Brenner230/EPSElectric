@@ -19,88 +19,116 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="hero page-hero" style="background: linear-gradient(rgba(11, 32, 70, 0.9), rgba(11, 32, 70, 0.9)), url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; padding: 120px 0;">
+        <section class="hero page-hero" style="background: linear-gradient(rgba(11, 32, 70, 0.95), rgba(11, 32, 70, 0.95)), url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; padding: 120px 0;">
             <div class="container hero-content" style="text-align: center;">
                 <h1 style="font-size: 3.5rem; color: var(--white);">Aluminum Wiring<br><span class="highlight">Repair & Remediation</span></h1>
-                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: var(--white);">Eliminate the severe fire risks associated with mid-century wiring. We provide CPSC-approved aluminum-to-copper retrofits for homes across Frederick, Maryland, Virginia, and the DMV.</p>
+                <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto; color: #e2e8f0;">Eliminate severe fire risks in your mid-century home. We provide CPSC-approved aluminum-to-copper retrofits for properties across Frederick, MD and the DMV.</p>
             </div>
-            
-            <div class="scroll-indicator">
-                <a href="#content-start" aria-label="Scroll Down"><i class="fa-solid fa-chevron-down"></i></a>
-            </div>
+            <div class="scroll-indicator"><a href="#content-start" aria-label="Scroll Down"><i class="fa-solid fa-chevron-down"></i></a></div>
         </section>
 
         <section id="content-start" class="seo-content-section" style="padding: 80px 0; background: var(--white);">
             <div class="container" style="max-width: 1100px;">
                 <div style="text-align: center; margin-bottom: 50px;">
                     <h2 style="color: var(--primary-navy); margin-bottom: 20px; font-size: 2.5rem;">The Danger Hiding in Your Walls</h2>
-                    <p style="color: var(--steel-grey); font-size: 1.15rem; max-width: 800px; margin: 0 auto;">Between 1965 and 1973, single-strand aluminum wiring was frequently used in residential construction across the DMV due to a national copper shortage. Today, the Consumer Product Safety Commission (CPSC) reports that homes with aluminum wiring are <strong>55 times more likely</strong> to experience a catastrophic fire hazard than homes wired with copper. <em>Hover or tap the cards below to understand why it fails.</em></p>
+                    <p style="color: var(--steel-grey); font-size: 1.15rem; max-width: 850px; margin: 0 auto;">Between 1965 and 1973, single-strand aluminum wiring was frequently used in residential construction across the DMV. Today, the CPSC reports that homes with untreated aluminum wiring are 55 times more likely to experience a catastrophic fire. <strong style="color: var(--safety-orange);">Aluminum Wiring Repair & Remediation</strong> mitigates this threat without the immense cost of tearing down your walls.</p>
                 </div>
 
                 <div class="services-flip-grid">
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div><h3>Thermal Expansion</h3></div><div class="flip-card-back"><p>Aluminum expands and contracts as electricity flows. This constant movement eventually loosens connections, causing intense heat.</p></div></div></div>
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-fire-flame-curved"></i></div><h3>Oxidation Resistance</h3></div><div class="flip-card-back"><p>When aluminum rusts, the outer layer acts as an insulator rather than a conductor, forcing electricity to push harder and spark.</p></div></div></div>
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-bolt-lightning"></i></div><h3>Galvanic Action</h3></div><div class="flip-card-back"><p>Modern outlets are designed for copper. When aluminum touches these brass components, a corrosive chemical reaction destroys the connection.</p></div></div></div>
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-house-circle-xmark"></i></div><h3>Uninsurable Homes</h3></div><div class="flip-card-back"><p>Due to massive liability, most home insurance companies will refuse to bind a policy on a home with untreated aluminum wiring.</p></div></div></div>
+                </div>
+
+                <div class="appliance-tabs-container">
+                    <h2 style="text-align: center; color: var(--primary-navy); margin-bottom: 35px; font-size: 2.2rem; font-family: 'Oswald', sans-serif;">Remediation Specifications</h2>
                     
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-temperature-arrow-up"></i></div>
-                                <h3>Thermal Expansion</h3>
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-target="tab-alumiconn"><i class="fa-solid fa-plug"></i> AlumiConn Standards</button>
+                        <button class="tab-btn" data-target="tab-panel"><i class="fa-solid fa-car-battery"></i> Panel Mitigation</button>
+                        <button class="tab-btn" data-target="tab-diagnostics"><i class="fa-solid fa-microscope"></i> Safety Diagnostics</button>
+                        <button class="tab-btn" data-target="tab-integration"><i class="fa-solid fa-house-signal"></i> Modern Integration</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="tab-alumiconn" class="tab-pane active">
+                            <div class="tab-header-flex">
+                                <h3>AlumiConn® Engineering</h3>
+                                <p>We exclusively utilize CPSC-approved AlumiConn terminals, the industry's most reliable mechanical lug for safely splicing legacy aluminum to modern copper.</p>
                             </div>
-                            <div class="flip-card-back">
-                                <p>Aluminum expands and contracts significantly more than copper as electricity flows. This constant movement eventually loosens connections, causing arcing and intense heat.</p>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">CPSC</div><div class="tech-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="tech-info"><h4>Federal Approval</h4><p>One of only two methods permanently approved by the CPSC.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">ISO</div><div class="tech-icon"><i class="fa-solid fa-arrows-left-right-to-line"></i></div><div class="tech-info"><h4>Physical Separation</h4><p>Lugs that physically prevent aluminum and copper from touching.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">TORQUE</div><div class="tech-icon"><i class="fa-solid fa-wrench"></i></div><div class="tech-info"><h4>Calibrated Torque</h4><p>Applying exact manufacturer inch-pound pressure to each set screw.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">CHEM</div><div class="tech-icon"><i class="fa-solid fa-flask"></i></div><div class="tech-info"><h4>Dielectric Paste</h4><p>Pre-filled anti-oxidant compound that stops future rust.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">AWG</div><div class="tech-icon"><i class="fa-solid fa-ruler-horizontal"></i></div><div class="tech-info"><h4>Gauge Matching</h4><p>Safely mating 10-AWG and 12-AWG aluminum to 12-AWG copper.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">TEMP</div><div class="tech-icon"><i class="fa-solid fa-temperature-arrow-down"></i></div><div class="tech-info"><h4>Thermal Insulation</h4><p>High-heat resistive plastic housings that prevent arching.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">UL</div><div class="tech-icon"><i class="fa-solid fa-certificate"></i></div><div class="tech-info"><h4>UL 486C Listed</h4><p>Independently tested and verified for long-term safety.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">PIGTAIL</div><div class="tech-icon"><i class="fa-solid fa-code-branch"></i></div><div class="tech-info"><h4>Copper Pigtailing</h4><p>Providing a safe, solid copper tail to connect to the receptacle.</p></div></div>
+                            </div>
+                        </div>
+
+                        <div id="tab-panel" class="tab-pane">
+                            <div class="tab-header-flex">
+                                <h3>Panel & Feeder Mitigation</h3>
+                                <p>While branch circuits are the biggest hazard, large aluminum feeder cables at the main breaker box also require strict maintenance and torque verification.</p>
+                            </div>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">LUG</div><div class="tech-icon"><i class="fa-solid fa-toolbox"></i></div><div class="tech-info"><h4>Main Lug Torque</h4><p>Tightening expansion-loosened main service entrance cables.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">NO-ALOX</div><div class="tech-icon"><i class="fa-solid fa-paint-roller"></i></div><div class="tech-info"><h4>Anti-Oxidant Coating</h4><p>Re-applying conductive grease to high-amperage breakers.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">BUS</div><div class="tech-icon"><i class="fa-solid fa-bolt"></i></div><div class="tech-info"><h4>Busbar Inspection</h4><p>Checking for pitting or scoring caused by loose aluminum neutrals.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">AFCI</div><div class="tech-icon"><i class="fa-solid fa-shield"></i></div><div class="tech-info"><h4>Arc-Fault Upgrades</h4><p>Installing AFCI breakers to detect sparking inside the walls.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">AL/CU</div><div class="tech-icon"><i class="fa-solid fa-toggle-on"></i></div><div class="tech-info"><h4>Breaker Compatibility</h4><p>Ensuring existing breakers are rated for dual AL/CU use.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">240V</div><div class="tech-icon"><i class="fa-solid fa-fire"></i></div><div class="tech-info"><h4>Appliance Feeders</h4><p>Torquing dedicated 240V runs for ranges and electric dryers.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">GROUND</div><div class="tech-icon"><i class="fa-solid fa-earth-americas"></i></div><div class="tech-info"><h4>Ground Bar Bonds</h4><p>Securing the physical connection of solid aluminum grounds.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">REPLACE</div><div class="tech-icon"><i class="fa-solid fa-recycle"></i></div><div class="tech-info"><h4>Panel Replacements</h4><p>Upgrading incompatible legacy panels during the remediation.</p></div></div>
+                            </div>
+                        </div>
+
+                        <div id="tab-diagnostics" class="tab-pane">
+                            <div class="tab-header-flex">
+                                <h3>Safety & Diagnostics</h3>
+                                <p>We don't guess. We utilize commercial-grade diagnostic equipment to hunt down failing splices and overloaded junctions hidden inside your home.</p>
+                            </div>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">THERM</div><div class="tech-icon"><i class="fa-solid fa-temperature-full"></i></div><div class="tech-info"><h4>Thermal Imaging</h4><p>Scanning walls and panels for invisible heat blooms.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">OHMS</div><div class="tech-icon"><i class="fa-solid fa-gauge"></i></div><div class="tech-info"><h4>Resistance Testing</h4><p>Metering circuits to find dangerously high-resistance splices.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">DROP</div><div class="tech-icon"><i class="fa-solid fa-arrow-trend-down"></i></div><div class="tech-info"><h4>Voltage Drop Analysis</h4><p>Identifying bottlenecks caused by oxidized wire connections.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">BOX</div><div class="tech-icon"><i class="fa-solid fa-magnifying-glass"></i></div><div class="tech-info"><h4>Junction Box Hunts</h4><p>Locating illegal, buried splices in attics and drop ceilings.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">LOAD</div><div class="tech-icon"><i class="fa-solid fa-weight-hanging"></i></div><div class="tech-info"><h4>Circuit Load Testing</h4><p>Pushing amperage to reveal weak points before they spark.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">ARC</div><div class="tech-icon"><i class="fa-solid fa-bolt-lightning"></i></div><div class="tech-info"><h4>Arc Tracking</h4><p>Using specialized sensors to detect micro-arcing events.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">INSUL</div><div class="tech-icon"><i class="fa-solid fa-layer-group"></i></div><div class="tech-info"><h4>Insulation Checks</h4><p>Verifying the PVC jacket hasn't melted from previous heat stress.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">CODE</div><div class="tech-icon"><i class="fa-solid fa-clipboard-check"></i></div><div class="tech-info"><h4>NEC Verification</h4><p>Auditing the entire system against modern electrical code.</p></div></div>
+                            </div>
+                        </div>
+
+                        <div id="tab-integration" class="tab-pane">
+                            <div class="tab-header-flex">
+                                <h3>Modern Smart Integration</h3>
+                                <p>Once the aluminum is pigtailed to copper, your home is ready for the 21st century. We seamlessly integrate modern devices onto your remediated wiring.</p>
+                            </div>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">GFCI</div><div class="tech-icon"><i class="fa-solid fa-sink"></i></div><div class="tech-info"><h4>GFCI Retrofits</h4><p>Installing ground-fault protection in wet zones.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">SMART</div><div class="tech-icon"><i class="fa-solid fa-wifi"></i></div><div class="tech-info"><h4>Smart Switches</h4><p>Wiring Lutron and Kasa dimmers to the new copper tails.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">TR</div><div class="tech-icon"><i class="fa-solid fa-child-reaching"></i></div><div class="tech-info"><h4>Tamper Resistance</h4><p>Upgrading living spaces to TR outlets to protect children.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">USB</div><div class="tech-icon"><i class="fa-solid fa-mobile-screen"></i></div><div class="tech-info"><h4>USB Receptacles</h4><p>Adding high-draw charging ports directly into the wall.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">FILL</div><div class="tech-icon"><i class="fa-solid fa-box-open"></i></div><div class="tech-info"><h4>Box Fill Expansion</h4><p>Upsizing switch boxes to accommodate the new AlumiConn lugs.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">RING</div><div class="tech-icon"><i class="fa-solid fa-video"></i></div><div class="tech-info"><h4>Security Hardwiring</h4><p>Safely tying Ring floodlights into the remediated exterior grid.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">DECOR</div><div class="tech-icon"><i class="fa-solid fa-palette"></i></div><div class="tech-info"><h4>Decora Upgrades</h4><p>Swapping yellowed 1970s outlets for modern, flat Decora styles.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">DOCS</div><div class="tech-icon"><i class="fa-solid fa-file-signature"></i></div><div class="tech-info"><h4>Insurance Sign-Offs</h4><p>Providing the master-level paperwork required to restore coverage.</p></div></div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-fire-flame-curved"></i></div>
-                                <h3>Oxidation Resistance</h3>
-                            </div>
-                            <div class="flip-card-back">
-                                <p>When aluminum rusts (oxidizes), the outer layer acts as an insulator rather than a conductor, forcing electricity to push harder, generating fire-starting heat.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
-                                <h3>Galvanic Action</h3>
-                            </div>
-                            <div class="flip-card-back">
-                                <p>Standard modern outlets are designed for copper. When aluminum touches these brass/copper components, a corrosive chemical reaction destroys the connection.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-house-circle-xmark"></i></div>
-                                <h3>Uninsurable Homes</h3>
-                            </div>
-                            <div class="flip-card-back">
-                                <p>Due to the massive liability, most major home insurance companies will refuse to bind a policy on a home with untreated aluminum wiring, stalling real estate sales.</p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div style="background: var(--light-bg); padding: 40px; border-radius: 8px; border-left: 5px solid var(--safety-orange); margin-bottom: 50px;">
-                    <h3 style="color: var(--primary-navy); margin-bottom: 15px;">Approved Remediation Solutions</h3>
-                    <p style="color: var(--steel-grey); font-size: 1.1rem;">While a full home rewire is the ultimate solution, it is highly invasive and expensive. Eminent Power Solutions offers a much more affordable, code-compliant alternative. We use specialized <strong>AlumiConn® connectors</strong> to "pigtail" a short piece of copper wire to the end of your existing aluminum wires. This creates a safe, permanent copper connection to your modern outlets and switches, eliminating the fire risk at the terminal points without tearing down your walls.</p>
-                </div>
-
-                <h3 style="color: var(--safety-orange); margin-bottom: 20px; font-size: 1.8rem; text-align: center;">The EPS Master-Level Process</h3>
-                <div style="max-width: 900px; margin: 0 auto;">
-                    <ul style="color: var(--steel-grey); font-size: 1.1rem; line-height: 1.8; margin-left: 20px; margin-bottom: 30px;">
-                        <li><strong>Complete Device Remediation:</strong> We open every single switch, outlet, and light fixture junction box in the home to address all vulnerable connection points.</li>
-                        <li><strong>Anti-Oxidant Paste:</strong> We coat the bare aluminum wires with a specialized anti-oxidant compound to prevent future degradation before securing them in the AlumiConn lug.</li>
-                        <li><strong>Torque Precision:</strong> Every connection is tightened to exact factory specifications using a calibrated torque screwdriver—a critical step that untrained handymen miss.</li>
-                        <li><strong>Panel Inspection:</strong> We evaluate your main electrical panel to ensure the heavy-gauge aluminum feeder wires are properly torqued and coated, preventing a catastrophic panel fire.</li>
+                    <h3 style="color: var(--primary-navy); margin-bottom: 15px;">Warning Signs of Failing Aluminum</h3>
+                    <ul style="color: var(--steel-grey); font-size: 1.1rem; line-height: 1.8; margin-left: 20px;">
+                        <li><strong>Flickering Lights:</strong> Lights that pulse or dim without a clear reason (not fixed by new bulbs).</li>
+                        <li><strong>Warm Faceplates:</strong> Switch or outlet covers that feel warm to the touch indicate resistance heat.</li>
+                        <li><strong>Ozone Smell:</strong> A faint "burning plastic" or fishy odor near electrical boxes.</li>
+                        <li><strong>Dead Receptacles:</strong> Outlets that spark or suddenly stop working entirely.</li>
                     </ul>
                 </div>
             </div>
@@ -108,44 +136,32 @@
 
         <section class="faq-section" style="padding: 80px 0; background: var(--light-bg);">
             <div class="container" style="max-width: 800px;">
-                <h2 style="color: var(--primary-navy); text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Aluminum Wiring FAQs</h2>
+                <h2 style="color: var(--primary-navy); text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Remediation FAQs</h2>
                 <div class="faq-container" style="background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <div class="faq-item"><button class="faq-question">Can't I just use standard wire nuts? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Absolutely not. Twisting aluminum and copper together using standard wire nuts (even the purple ones marketed for aluminum) is a massive fire hazard. The metals will rapidly corrode each other. We use AlumiConn connectors because they physically separate the metals in different chambers.</p></div></div>
                     
                     <div class="faq-item">
-                        <button class="faq-question">What are the warning signs of failing aluminum wiring? <span class="faq-icon">+</span></button>
+                        <button class="faq-question">What are the CPSC approved remediation methods? <span class="faq-icon">+</span></button>
                         <div class="faq-answer">
-                            <p>Warning signs include flickering lights that don't stop with a new bulb, switch faceplates that feel warm to the touch, a faint "burning plastic" or ozone smell near outlets, and receptacles that spark or sporadically stop working.</p>
+                            <p>The Consumer Product Safety Commission has rigorously tested and approved only three methods for mitigating aluminum wiring fire hazards in residential homes.</p>
+                            <div class="seo-spec-container">
+                                <table class="spec-table">
+                                    <thead><tr><th>Remediation Method</th><th>CPSC Status</th><th>Cost / Invasiveness</th><th>Description</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Complete Copper Rewire</td><td>Approved</td><td>High Cost / Very Invasive</td><td>Tearing open drywall to replace all wire.</td></tr>
+                                        <tr><td>AlumiConn® Connectors</td><td>Approved</td><td>Moderate Cost / Non-Invasive</td><td>Screwed lug pigtails (EPS Standard).</td></tr>
+                                        <tr><td>COPALUM Crimp Method</td><td>Approved</td><td>High Cost / Non-Invasive</td><td>Cold-welded crimps requiring factory tools.</td></tr>
+                                        <tr><td>CO/ALR Outlets</td><td>Not Recommended</td><td>Low Cost / Non-Invasive</td><td>Doesn't solve splices; hard to find GFCI/Smart variants.</td></tr>
+                                        <tr><td>Purple "Ideal" Wire Nuts</td><td>REJECTED</td><td>Extreme Fire Hazard</td><td>Proven to fail over time; illegal in many areas.</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question">Can't I just use standard wire nuts to connect aluminum to copper? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Absolutely not. Twisting aluminum and copper together using standard wire nuts (even the purple ones marketed for aluminum) is a massive fire hazard. The metals will rapidly corrode each other. We use AlumiConn connectors because they feature separate, internal pressure lugs that keep the metals physically apart.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">Will fixing my aluminum wiring lower my homeowner's insurance? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Yes. Many insurance carriers require documented proof of CPSC-approved remediation (like an AlumiConn retrofit signed off by a Master Electrician) before they will write a policy for the home. Once completed, your home is considered safe and insurable.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">How long does an aluminum remediation take? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Because we have to open, pigtail, torque, and reinstall every single device in the home, a standard 3-bedroom home usually takes a crew of electricians 1 to 2 full days to complete.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">Are CO/ALR rated outlets a good alternative? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>CO/ALR outlets are approved for use with aluminum wiring, but finding them in modern styles (like Decora) or finding CO/ALR rated smart switches and GFCI outlets is nearly impossible. Pigtailing to copper is a vastly superior method because it allows you to safely use any standard modern electrical device.</p>
-                        </div>
-                    </div>
-
+                    <div class="faq-item"><button class="faq-question">Will fixing my aluminum wiring lower my homeowner's insurance? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes. Many insurance carriers require documented proof of CPSC-approved remediation (like an AlumiConn retrofit signed off by a Master Electrician) before they will write a policy for the home. Once completed, your home is considered safe and insurable.</p></div></div>
+                    <div class="faq-item"><button class="faq-question">How long does an aluminum remediation take? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Because we have to carefully open, pigtail, torque, and reinstall every single device in the home, a standard 3-bedroom house usually takes a crew of electricians 1 to 2 full days to complete.</p></div></div>
+                    <div class="faq-item"><button class="faq-question">Do I have to move out during the process? <span class="faq-icon">+</span></button><div class="faq-answer"><p>No. We tackle the house room-by-room, meaning we only shut off power to specific circuits at a time. Your refrigerator, HVAC, and internet will remain operational for the vast majority of the project.</p></div></div>
                 </div>
             </div>
         </section>
@@ -160,7 +176,6 @@
     </main>
 
     <div id="footer-placeholder"></div>
-
     <script src="script.js"></script>
 </body>
 </html>

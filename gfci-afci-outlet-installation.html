@@ -19,87 +19,114 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="hero page-hero" style="background: linear-gradient(rgba(11, 32, 70, 0.9), rgba(11, 32, 70, 0.9)), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; padding: 120px 0;">
+        <section class="hero page-hero" style="background: linear-gradient(rgba(11, 32, 70, 0.95), rgba(11, 32, 70, 0.95)), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; padding: 120px 0;">
             <div class="container hero-content" style="text-align: center;">
                 <h1 style="font-size: 3.5rem; color: var(--white);">GFCI & AFCI<br><span class="highlight">Safety Outlets</span></h1>
-                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: var(--white);">Your first line of defense against electrocution and electrical fires. We upgrade outdated outlets to meet the latest NEC safety standards across Frederick, MD and the DMV.</p>
+                <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto; color: #e2e8f0;">Your first line of defense against electrocution and electrical fires. We upgrade outdated outlets to meet the latest NEC life-safety standards across Frederick, MD and the DMV.</p>
             </div>
-            
-            <div class="scroll-indicator">
-                <a href="#content-start" aria-label="Scroll Down"><i class="fa-solid fa-chevron-down"></i></a>
-            </div>
+            <div class="scroll-indicator"><a href="#content-start" aria-label="Scroll Down"><i class="fa-solid fa-chevron-down"></i></a></div>
         </section>
 
         <section id="content-start" class="seo-content-section" style="padding: 80px 0; background: var(--white);">
             <div class="container" style="max-width: 1100px;">
                 <div style="text-align: center; margin-bottom: 50px;">
                     <h2 style="color: var(--primary-navy); margin-bottom: 20px; font-size: 2.5rem;">Upgrading Your Home's Receptacles</h2>
-                    <p style="color: var(--steel-grey); font-size: 1.15rem; max-width: 800px; margin: 0 auto;">Standard two-prong or basic three-prong outlets do not actively protect you from electrical faults. If your DMV home was built before the late 1990s, it likely lacks the specialized, active protection required by today's National Electrical Code (NEC). Eminent Power Solutions provides whole-home outlet retrofitting to keep your family safe. <em>Hover or tap the cards below to understand the differences.</em></p>
+                    <p style="color: var(--steel-grey); font-size: 1.15rem; max-width: 850px; margin: 0 auto;">Standard two-prong or basic three-prong outlets do not actively protect you from electrical faults. If your home was built before the 2000s, it likely lacks the specialized, active protection required by modern code. <strong style="color: var(--safety-orange);">GFCI & AFCI Outlet Installation</strong> ensures your home actively monitors for dangerous leaks and sparks.</p>
                 </div>
 
                 <div class="services-flip-grid">
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-droplet"></i></div><h3>GFCI: Shock Defense</h3></div><div class="flip-card-back"><p>GFCI units cut power in 1/40th of a second if they sense electricity leaking to the ground, preventing severe electrocution.</p></div></div></div>
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-fire-extinguisher"></i></div><h3>AFCI: Fire Defense</h3></div><div class="flip-card-back"><p>AFCI units detect dangerous micro-sparking behind your walls caused by damaged wires before they can start a fire.</p></div></div></div>
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-location-dot"></i></div><h3>GFCI Locations</h3></div><div class="flip-card-back"><p>The NEC strictly requires GFCI protection in all "wet" areas: Kitchens, bathrooms, garages, and exteriors.</p></div></div></div>
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-bed"></i></div><h3>AFCI Locations</h3></div><div class="flip-card-back"><p>Modern code requires AFCI protection in almost all living spaces, including bedrooms, living rooms, and hallways.</p></div></div></div>
+                </div>
+
+                <div class="appliance-tabs-container">
+                    <h2 style="text-align: center; color: var(--primary-navy); margin-bottom: 35px; font-size: 2.2rem; font-family: 'Oswald', sans-serif;">Device Safety Specifications</h2>
                     
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-droplet"></i></div>
-                                <h3>GFCI: Shock Defense</h3>
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-target="tab-gfci"><i class="fa-solid fa-sink"></i> GFCI Technology</button>
+                        <button class="tab-btn" data-target="tab-afci"><i class="fa-solid fa-shield-halved"></i> AFCI Specifications</button>
+                        <button class="tab-btn" data-target="tab-code"><i class="fa-solid fa-book-open"></i> NEC Mandates</button>
+                        <button class="tab-btn" data-target="tab-remedy"><i class="fa-solid fa-wrench"></i> Remediation</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="tab-gfci" class="tab-pane active">
+                            <div class="tab-header-flex">
+                                <h3>Ground Fault Circuit Interrupters</h3>
+                                <p>GFCI devices monitor the current going out vs. coming back. If there is a mismatch of even 5 milliamps, it instantly cuts power to save your life.</p>
                             </div>
-                            <div class="flip-card-back">
-                                <p>Ground Fault Circuit Interrupters (GFCI) cut power in 1/40th of a second if they sense electricity leaking to the ground, preventing severe electrocution.</p>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">5mA</div><div class="tech-icon"><i class="fa-solid fa-bolt-lightning"></i></div><div class="tech-info"><h4>Micro-Leak Detection</h4><p>Trips instantly at a 5-milliamp current differential.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">1/40s</div><div class="tech-icon"><i class="fa-solid fa-stopwatch"></i></div><div class="tech-info"><h4>Trip Speed</h4><p>Cuts power in 25 milliseconds to prevent lethal heart fibrillation.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">WR</div><div class="tech-icon"><i class="fa-solid fa-cloud-showers-heavy"></i></div><div class="tech-info"><h4>Weather Resistant</h4><p>Specialized WR-rated devices for UV and rain exposed exterior outlets.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">TEST</div><div class="tech-icon"><i class="fa-solid fa-toggle-on"></i></div><div class="tech-info"><h4>Self-Testing</h4><p>Modern units run internal auto-diagnostics to verify sensor health.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">LOAD</div><div class="tech-icon"><i class="fa-solid fa-network-wired"></i></div><div class="tech-info"><h4>Downstream Protection</h4><p>Wiring the "Load" terminals to protect standard outlets down the line.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">TR</div><div class="tech-icon"><i class="fa-solid fa-child-reaching"></i></div><div class="tech-info"><h4>Tamper Resistant</h4><p>Internal shutters block foreign objects to protect children.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">LED</div><div class="tech-icon"><i class="fa-solid fa-lightbulb"></i></div><div class="tech-info"><h4>Status Indicators</h4><p>Visual light confirmation when the unit has tripped or failed.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">DUAL</div><div class="tech-icon"><i class="fa-solid fa-layer-group"></i></div><div class="tech-info"><h4>Dual-Function</h4><p>Combination GFCI/AFCI devices for overlapping safety zones.</p></div></div>
+                            </div>
+                        </div>
+
+                        <div id="tab-afci" class="tab-pane">
+                            <div class="tab-header-flex">
+                                <h3>Arc Fault Circuit Interrupters</h3>
+                                <p>AFCI technology relies on advanced microprocessors to distinguish between normal motor arcing (like a vacuum) and dangerous wiring arcing.</p>
+                            </div>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">SERIES</div><div class="tech-icon"><i class="fa-solid fa-scissors"></i></div><div class="tech-info"><h4>Series Arc Detection</h4><p>Detects sparking along a single broken or degraded wire.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">PARA</div><div class="tech-icon"><i class="fa-solid fa-arrows-left-right-to-line"></i></div><div class="tech-info"><h4>Parallel Arc Detection</h4><p>Detects sparking between two adjacent compromised wires.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">CHIP</div><div class="tech-icon"><i class="fa-solid fa-microchip"></i></div><div class="tech-info"><h4>Microprocessor Logic</h4><p>Advanced algorithms prevent nuisance tripping from vacuums.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">PANEL</div><div class="tech-icon"><i class="fa-solid fa-car-battery"></i></div><div class="tech-info"><h4>Breaker Installation</h4><p>Panel-mounted AFCI breakers protect the entire branch circuit.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">HEAT</div><div class="tech-icon"><i class="fa-solid fa-fire"></i></div><div class="tech-info"><h4>Thermal Prevention</h4><p>Stops electrical fires inside walls before the wire sheath melts.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">CODE</div><div class="tech-icon"><i class="fa-solid fa-bed"></i></div><div class="tech-info"><h4>Bedroom Mandates</h4><p>Strictly required for all bedroom outlets to protect sleepers.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">PIG</div><div class="tech-icon"><i class="fa-solid fa-code-branch"></i></div><div class="tech-info"><h4>Neutral Pigtails</h4><p>Properly landing neutral coils to the busbar for AFCI function.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">DIAG</div><div class="tech-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div><div class="tech-info"><h4>Fault Diagnostics</h4><p>Retrieving trip-codes from smart breakers to trace the fault source.</p></div></div>
+                            </div>
+                        </div>
+
+                        <div id="tab-code" class="tab-pane">
+                            <div class="tab-header-flex">
+                                <h3>NEC Location Mandates</h3>
+                                <p>The National Electrical Code expands safety requirements every 3 years. We ensure your home is compliant with the latest local enforcement.</p>
+                            </div>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">6-FT</div><div class="tech-icon"><i class="fa-solid fa-sink"></i></div><div class="tech-info"><h4>Kitchen Spacing</h4><p>GFCI required within 6 feet of any sink basin.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">BATH</div><div class="tech-icon"><i class="fa-solid fa-bath"></i></div><div class="tech-info"><h4>Bathroom Circuits</h4><p>Dedicated 20A GFCI circuits for high-draw hair tools.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">COVER</div><div class="tech-icon"><i class="fa-solid fa-umbrella"></i></div><div class="tech-info"><h4>Exterior Weather</h4><p>GFCI with "In-Use" bubble covers for all outdoor receptacles.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">GARAGE</div><div class="tech-icon"><i class="fa-solid fa-warehouse"></i></div><div class="tech-info"><h4>Garage Upgrades</h4><p>All 120V and 240V garage outlets now require GFCI.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">BASE</div><div class="tech-icon"><i class="fa-solid fa-house-chimney"></i></div><div class="tech-info"><h4>Unfinished Basements</h4><p>Moisture-prone basements must have full GFCI coverage.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">LIVING</div><div class="tech-icon"><i class="fa-solid fa-couch"></i></div><div class="tech-info"><h4>Living Space AFCI</h4><p>Family rooms and dining rooms require Arc-Fault protection.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">LAUNDRY</div><div class="tech-icon"><i class="fa-solid fa-shirt"></i></div><div class="tech-info"><h4>Utility Rooms</h4><p>Dual-function AFCI/GFCI protection for washer/dryer circuits.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">ISLAND</div><div class="tech-icon"><i class="fa-solid fa-kitchen-set"></i></div><div class="tech-info"><h4>Kitchen Islands</h4><p>Pop-up or side-mounted GFCI compliance for prep surfaces.</p></div></div>
+                            </div>
+                        </div>
+
+                        <div id="tab-remedy" class="tab-pane">
+                            <div class="tab-header-flex">
+                                <h3>Upgrades & Remediation</h3>
+                                <p>Fixing dangerous 1950s two-prong outlets requires strategy. We utilize code-approved loopholes to make your home safe without full rewires.</p>
+                            </div>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">NO GND</div><div class="tech-icon"><i class="fa-solid fa-plug-circle-xmark"></i></div><div class="tech-info"><h4>Two-Prong Swaps</h4><p>Legally upgrading 2-prong to 3-prong using GFCI isolation.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">LABEL</div><div class="tech-icon"><i class="fa-solid fa-tags"></i></div><div class="tech-info"><h4>Code Labeling</h4><p>Applying mandatory "No Equipment Ground" stickers.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">TRACE</div><div class="tech-icon"><i class="fa-solid fa-magnifying-glass"></i></div><div class="tech-info"><h4>Circuit Tracing</h4><p>Finding the "first" outlet to protect the entire downstream run.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">BKR/REC</div><div class="tech-icon"><i class="fa-solid fa-scale-balanced"></i></div><div class="tech-info"><h4>Panel vs. Receptacle</h4><p>Choosing between breaker or outlet-level protection.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">TEST</div><div class="tech-icon"><i class="fa-solid fa-bolt"></i></div><div class="tech-info"><h4>Fault Forcing</h4><p>Using calibrated meters to trigger artificial ground faults.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">BOOTLEG</div><div class="tech-icon"><i class="fa-solid fa-ban"></i></div><div class="tech-info"><h4>Bootleg Removal</h4><p>Eliminating illegal neutral-to-ground jump wires.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">AWG</div><div class="tech-icon"><i class="fa-solid fa-ruler"></i></div><div class="tech-info"><h4>Wire Verification</h4><p>Ensuring existing 14-gauge wire isn't illegally put on 20A breakers.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">FILL</div><div class="tech-icon"><i class="fa-solid fa-box-open"></i></div><div class="tech-info"><h4>Box Expansion</h4><p>Deepening shallow 1950s wall boxes to fit bulky GFCI units.</p></div></div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-fire-extinguisher"></i></div>
-                                <h3>AFCI: Fire Defense</h3>
-                            </div>
-                            <div class="flip-card-back">
-                                <p>Arc Fault Circuit Interrupters (AFCI) detect dangerous sparking behind your walls caused by damaged wires or loose connections before they can start a fire.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-location-dot"></i></div>
-                                <h3>GFCI Locations</h3>
-                            </div>
-                            <div class="flip-card-back">
-                                <p>The NEC strictly requires GFCI protection in all "wet" areas: Kitchens, bathrooms, garages, unfinished basements, and exterior outdoor receptacles.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-bed"></i></div>
-                                <h3>AFCI Locations</h3>
-                            </div>
-                            <div class="flip-card-back">
-                                <p>Modern code requires AFCI protection in almost all living spaces, including bedrooms, living rooms, dining rooms, hallways, and closets.</p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
                 <div style="background: var(--light-bg); padding: 40px; border-radius: 8px; border-left: 5px solid var(--safety-orange); margin-bottom: 50px;">
                     <h3 style="color: var(--primary-navy); margin-bottom: 15px;">The Two-Prong Dilemma</h3>
-                    <p style="color: var(--steel-grey); font-size: 1.1rem;">If your older home still has two-prong outlets, simply swapping them for standard three-prong outlets is illegal and dangerous because there is no ground wire to protect your appliances. However, we can safely install GFCI receptacles at the beginning of the circuit to legally provide three-prong convenience while delivering massive shock protection, even without a true earth ground.</p>
-                </div>
-
-                <h3 style="color: var(--safety-orange); margin-bottom: 20px; font-size: 1.8rem; text-align: center;">The EPS Master-Level Process</h3>
-                <div style="max-width: 900px; margin: 0 auto;">
-                    <ul style="color: var(--steel-grey); font-size: 1.1rem; line-height: 1.8; margin-left: 20px; margin-bottom: 30px;">
-                        <li><strong>Breaker vs. Receptacle Analysis:</strong> Depending on your home's wiring, we determine if it's more cost-effective to install safety protection at the main electrical panel (via GFCI/AFCI breakers) or at the individual outlet level.</li>
-                        <li><strong>Circuit Tracing:</strong> In older homes, circuits often cross through multiple rooms. We trace the line to ensure a single GFCI outlet protects the entire downstream chain of standard outlets, saving you money.</li>
-                        <li><strong>Trip-Testing:</strong> We don't just wire it and leave. We use calibrated plug-in testers to physically force a ground fault to ensure the new device trips at the exact millisecond required by safety codes.</li>
+                    <ul style="color: var(--steel-grey); font-size: 1.1rem; line-height: 1.8; margin-left: 20px;">
+                        <li><strong>The Danger:</strong> If your older home has two-prong outlets, simply swapping them for standard three-prong outlets is illegal and dangerous because there is no true earth ground to protect you.</li>
+                        <li><strong>The Solution:</strong> We can safely install GFCI receptacles at the beginning of the circuit to legally provide three-prong convenience while delivering massive shock protection.</li>
                     </ul>
                 </div>
             </div>
@@ -107,37 +134,33 @@
 
         <section class="faq-section" style="padding: 80px 0; background: var(--light-bg);">
             <div class="container" style="max-width: 800px;">
-                <h2 style="color: var(--primary-navy); text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Outlet Safety FAQs</h2>
+                <h2 style="color: var(--primary-navy); text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Device Safety FAQs</h2>
                 <div class="faq-container" style="background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <div class="faq-item"><button class="faq-question">Why does my GFCI outlet keep clicking off (tripping)? <span class="faq-icon">+</span></button><div class="faq-answer"><p>A GFCI trips because it detects a "leak" in the electrical current. This can be caused by moisture inside the outlet box, a faulty appliance plugged into it (like an old hair dryer), or a failing outlet device. If it won't reset, it is doing its job by keeping you safe.</p></div></div>
                     
                     <div class="faq-item">
-                        <button class="faq-question">Why does my GFCI outlet keep clicking off (tripping)? <span class="faq-icon">+</span></button>
+                        <button class="faq-question">What are the required locations for GFCI vs. AFCI? <span class="faq-icon">+</span></button>
                         <div class="faq-answer">
-                            <p>A GFCI trips because it detects a "leak" in the electrical current. This can be caused by moisture inside the outlet box, a faulty appliance plugged into it (like an old hair dryer), or a failing outlet device. If it won't reset, it is doing its job by keeping you safe. Call us to diagnose the fault.</p>
+                            <p>The National Electrical Code dictates specific protection types based on the room's hazard profile (Water vs. Sleeping areas).</p>
+                            <div class="seo-spec-container">
+                                <table class="spec-table">
+                                    <thead><tr><th>Room / Location</th><th>Protection Required</th><th>Primary Hazard Addressed</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Bathrooms & Kitchens</td><td>GFCI</td><td>Water/Electrocution</td></tr>
+                                        <tr><td>Garages & Exteriors</td><td>GFCI (WR-Rated)</td><td>Moisture/Shock</td></tr>
+                                        <tr><td>Bedrooms & Living Rooms</td><td>AFCI</td><td>Sparking/Wall Fires</td></tr>
+                                        <tr><td>Laundry Rooms</td><td>Dual-Function (GFCI + AFCI)</td><td>Water + High Draw Motors</td></tr>
+                                        <tr><td>Unfinished Basements</td><td>GFCI</td><td>Concrete Moisture</td></tr>
+                                        <tr><td>Hallways & Closets</td><td>AFCI</td><td>Hidden wire damage</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question">What is the difference between a GFCI outlet and a GFCI breaker? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>They provide the exact same protection, just from different locations. A GFCI outlet protects everything plugged into it (and any outlets daisy-chained down the line). A GFCI breaker is installed directly into your main electrical panel and protects every single outlet and wire on that entire circuit.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">Can I replace a two-prong outlet with a GFCI? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Yes. This is the only NEC code-approved way to upgrade an ungrounded two-prong outlet to a three-prong outlet without running entirely new wire. The GFCI will protect against electrocution, though we must legally label the outlet "No Equipment Ground" because it won't protect surge protectors or sensitive electronics from grid spikes.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">Do GFCI outlets go bad over time? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Yes. The internal sensors in GFCI and AFCI outlets degrade over time, especially in humid environments like bathrooms or outdoors. Most manufacturers recommend replacing them every 10 to 15 years. If the "Test" button fails to trip the power, it needs immediate replacement.</p>
-                        </div>
-                    </div>
-
+                    <div class="faq-item"><button class="faq-question">Can I replace a two-prong outlet with a GFCI? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes. This is the only NEC code-approved way to upgrade an ungrounded two-prong outlet to a three-prong outlet without running entirely new wire. We must legally label the outlet "No Equipment Ground" because it won't protect sensitive electronics from grid spikes, but it will save your life from a shock.</p></div></div>
+                    <div class="faq-item"><button class="faq-question">What is the difference between a GFCI outlet and a GFCI breaker? <span class="faq-icon">+</span></button><div class="faq-answer"><p>They provide the exact same protection. A GFCI outlet protects everything plugged into it (and any standard outlets wired downstream). A GFCI breaker is installed directly into your main electrical panel and protects every single outlet and wire on that entire circuit.</p></div></div>
+                    <div class="faq-item"><button class="faq-question">Do GFCI outlets go bad over time? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes. The internal sensors in GFCI and AFCI outlets degrade over time, especially in humid environments. Most manufacturers recommend replacing them every 10 to 15 years. If the "Test" button fails to trip the power, it needs immediate replacement.</p></div></div>
                 </div>
             </div>
         </section>
@@ -152,7 +175,6 @@
     </main>
 
     <div id="footer-placeholder"></div>
-
     <script src="script.js"></script>
 </body>
 </html>

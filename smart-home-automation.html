@@ -19,87 +19,114 @@
     <div id="header-placeholder"></div>
 
     <main>
-        <section class="hero page-hero" style="background: linear-gradient(rgba(11, 32, 70, 0.9), rgba(11, 32, 70, 0.9)), url('https://images.unsplash.com/photo-1558089687-f282ffcbc126?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; padding: 120px 0;">
+        <section class="hero page-hero" style="background: linear-gradient(rgba(11, 32, 70, 0.95), rgba(11, 32, 70, 0.95)), url('https://images.unsplash.com/photo-1558089687-f282ffcbc126?q=80&w=1200&auto=format&fit=crop') center/cover no-repeat; padding: 120px 0;">
             <div class="container hero-content" style="text-align: center;">
                 <h1 style="font-size: 3.5rem; color: var(--white);">Smart Home Automation<br><span class="highlight">& Custom A/V</span></h1>
-                <p style="font-size: 1.2rem; max-width: 800px; margin: 0 auto; color: var(--white);">Ditch the batteries and exposed cords. We provide permanent, hardwired infrastructure for smart homes, security systems, and high-end audio/visual setups across Frederick, D.C., and the DMV.</p>
+                <p style="font-size: 1.25rem; max-width: 800px; margin: 0 auto; color: #e2e8f0;">Ditch the batteries and exposed cords. We provide permanent, hardwired infrastructure for smart lighting, security systems, and high-end audio/visual setups across Frederick, D.C., and the DMV.</p>
             </div>
-            
-            <div class="scroll-indicator">
-                <a href="#content-start" aria-label="Scroll Down"><i class="fa-solid fa-chevron-down"></i></a>
-            </div>
+            <div class="scroll-indicator"><a href="#content-start" aria-label="Scroll Down"><i class="fa-solid fa-chevron-down"></i></a></div>
         </section>
 
         <section id="content-start" class="seo-content-section" style="padding: 80px 0; background: var(--white);">
             <div class="container" style="max-width: 1100px;">
                 <div style="text-align: center; margin-bottom: 50px;">
                     <h2 style="color: var(--primary-navy); margin-bottom: 20px; font-size: 2.5rem;">Reliability Built Into the Walls</h2>
-                    <p style="color: var(--steel-grey); font-size: 1.15rem; max-width: 800px; margin: 0 auto;">True home automation shouldn't rely on charging batteries, weak Wi-Fi signals, or tripping over extension cords. To get the most out of premium smart home technology, the devices need to be permanently integrated into your home's electrical grid. Eminent Power Solutions specializes in concealing the complexity, leaving you with seamless, architectural finishes. <em>Hover or tap below.</em></p>
+                    <p style="color: var(--steel-grey); font-size: 1.15rem; max-width: 850px; margin: 0 auto;">True home automation shouldn't rely on charging batteries, weak Wi-Fi signals, or tripping over extension cords. To get the most out of premium tech, the devices need to be permanently integrated into your electrical grid. <strong style="color: var(--safety-orange);">Smart Home Automation & Custom A/V</strong> wiring conceals the complexity, leaving you with a seamless, architectural finish.</p>
                 </div>
 
                 <div class="services-flip-grid">
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-video"></i></div><h3>Hardwired Security</h3></div><div class="flip-card-back"><p>We pull dedicated 120V wire to power Ring Floodlights and Nest Cams, ensuring your cameras never go offline due to a dead battery.</p></div></div></div>
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-lightbulb"></i></div><h3>Smart Lighting</h3></div><div class="flip-card-back"><p>We upgrade analog switches to smart dimmers (like Lutron Caséta), providing the necessary neutral wire integration for modern controls.</p></div></div></div>
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-tv"></i></div><h3>Frame TVs & A/V</h3></div><div class="flip-card-back"><p>Flawless mounting of ultra-thin televisions. We install recessed media boxes to hide outlets and HDMI cables completely inside the wall.</p></div></div></div>
+                    <div class="flip-card"><div class="flip-card-inner"><div class="flip-card-front"><div class="cat-icon"><i class="fa-solid fa-microchip"></i></div><h3>Smart Panels</h3></div><div class="flip-card-back"><p>We install next-generation load centers (like Span) that allow you to monitor and control individual circuits from your smartphone.</p></div></div></div>
+                </div>
+
+                <div class="appliance-tabs-container">
+                    <h2 style="text-align: center; color: var(--primary-navy); margin-bottom: 35px; font-size: 2.2rem; font-family: 'Oswald', sans-serif;">Integration Specifications</h2>
                     
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-video"></i></div>
-                                <h3>Hardwired Security</h3>
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-target="tab-lighting"><i class="fa-solid fa-sliders"></i> Lighting Control</button>
+                        <button class="tab-btn" data-target="tab-av"><i class="fa-solid fa-tv"></i> A/V & Home Theater</button>
+                        <button class="tab-btn" data-target="tab-security"><i class="fa-solid fa-shield-halved"></i> Security Networks</button>
+                        <button class="tab-btn" data-target="tab-power"><i class="fa-solid fa-car-battery"></i> Power Management</button>
+                    </div>
+
+                    <div class="tab-content">
+                        <div id="tab-lighting" class="tab-pane active">
+                            <div class="tab-header-flex">
+                                <h3>Centralized Lighting Control</h3>
+                                <p>We replace outdated toggle switches with intelligent, RF-controlled dimmers that allow you to set the perfect mood for the entire house with one button.</p>
                             </div>
-                            <div class="flip-card-back">
-                                <p>We pull dedicated wire to power Ring Floodlights and Nest Cams, ensuring your cameras never go offline due to a dead battery.</p>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">LUTRON</div><div class="tech-icon"><i class="fa-solid fa-lightbulb"></i></div><div class="tech-info"><h4>Caséta Integration</h4><p>Installing industry-leading smart dimmers for flicker-free control.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">WIRE</div><div class="tech-icon"><i class="fa-solid fa-code-branch"></i></div><div class="tech-info"><h4>Neutral Wire Retrofits</h4><p>Pulling required neutral lines to historic switch boxes.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">ELV</div><div class="tech-icon"><i class="fa-solid fa-microchip"></i></div><div class="tech-info"><h4>Electronic Low-Voltage</h4><p>Specialized ELV dimmers for magnetic LED drivers.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">SCENE</div><div class="tech-icon"><i class="fa-solid fa-layer-group"></i></div><div class="tech-info"><h4>Scene Keypads</h4><p>Multi-button wall plates that dim entire rooms simultaneously.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">3-WAY</div><div class="tech-icon"><i class="fa-solid fa-stairs"></i></div><div class="tech-info"><h4>Virtual 3-Way Switches</h4><p>Rewiring complex stairwells with wireless Pico remote pairings.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">SHADE</div><div class="tech-icon"><i class="fa-solid fa-person-shelter"></i></div><div class="tech-info"><h4>Motorized Blinds</h4><p>Hardwiring window casings to eliminate battery-pack shades.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">AUTO</div><div class="tech-icon"><i class="fa-solid fa-person-walking"></i></div><div class="tech-info"><h4>Occupancy Sensors</h4><p>Motion-activated setups for pantries, closets, and powder rooms.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">WIFI</div><div class="tech-icon"><i class="fa-solid fa-router"></i></div><div class="tech-info"><h4>Smart Bridges</h4><p>Setting up local RF hubs to offload stress from your main Wi-Fi router.</p></div></div>
+                            </div>
+                        </div>
+
+                        <div id="tab-av" class="tab-pane">
+                            <div class="tab-header-flex">
+                                <h3>A/V & Home Theater</h3>
+                                <p>We hide the spaghetti. We install specialized recess boxes and pull high-speed data cables behind the walls for a clean, architectural finish.</p>
+                            </div>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">HIDE</div><div class="tech-icon"><i class="fa-solid fa-tv"></i></div><div class="tech-info"><h4>Frame TV Recessing</h4><p>Installing in-wall media boxes to flush-mount ultra-thin TVs.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">HDMI</div><div class="tech-icon"><i class="fa-solid fa-network-wired"></i></div><div class="tech-info"><h4>In-Wall Routing</h4><p>Pulling CL3-rated HDMI 2.1 and optical cables behind drywall.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">AUDIO</div><div class="tech-icon"><i class="fa-solid fa-volume-high"></i></div><div class="tech-info"><h4>In-Ceiling Speakers</h4><p>Pre-wiring speaker loops for whole-home Sonos integration.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">20A</div><div class="tech-icon"><i class="fa-solid fa-server"></i></div><div class="tech-info"><h4>AV Rack Power</h4><p>Dedicated 20-amp lines for high-draw amplifiers and receivers.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">CLEAN</div><div class="tech-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="tech-info"><h4>Power Conditioning</h4><p>Isolated ground circuits to scrub "dirty" power for pristine audio.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">CAT6</div><div class="tech-icon"><i class="fa-solid fa-ethernet"></i></div><div class="tech-info"><h4>Ethernet Drops</h4><p>Hardwiring gigabit data lines directly to smart TVs to stop buffering.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">PROJ</div><div class="tech-icon"><i class="fa-solid fa-video"></i></div><div class="tech-info"><h4>Projector Mounts</h4><p>Ceiling-mounted power and structural bracing for 4K projectors.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">EMI</div><div class="tech-icon"><i class="fa-solid fa-arrows-split-up-and-left"></i></div><div class="tech-info"><h4>Interference Routing</h4><p>Separating low-voltage AV from high-voltage AC to prevent humming.</p></div></div>
+                            </div>
+                        </div>
+
+                        <div id="tab-security" class="tab-pane">
+                            <div class="tab-header-flex">
+                                <h3>Security Networks</h3>
+                                <p>Battery-powered cameras fall asleep and miss the action. We hardwire your exterior security grid for 24/7 reliability and maximum deterrent brightness.</p>
+                            </div>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">RING</div><div class="tech-icon"><i class="fa-solid fa-video"></i></div><div class="tech-info"><h4>Floodlight Cams</h4><p>Replacing old sconces with hardwired 120V smart security arrays.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">TRANS</div><div class="tech-icon"><i class="fa-solid fa-bell"></i></div><div class="tech-info"><h4>Doorbell Transformers</h4><p>Upgrading 16V-24V transformers to power video doorbells.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">POE</div><div class="tech-icon"><i class="fa-solid fa-ethernet"></i></div><div class="tech-info"><h4>Power-over-Ethernet</h4><p>Running Cat6 lines to power and link 4K surveillance cameras.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">WAP</div><div class="tech-icon"><i class="fa-solid fa-wifi"></i></div><div class="tech-info"><h4>Access Point Drops</h4><p>Ceiling-mounted Wi-Fi extenders to eliminate dead zones.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">NVR</div><div class="tech-icon"><i class="fa-solid fa-server"></i></div><div class="tech-info"><h4>Security Racks</h4><p>Dedicated UPS power circuits for Network Video Recorders.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">EAVE</div><div class="tech-icon"><i class="fa-solid fa-house"></i></div><div class="tech-info"><h4>Soffit Mounting</h4><p>Discreetly wiring exterior cameras into the roof overhang.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">SMART</div><div class="tech-icon"><i class="fa-solid fa-lock"></i></div><div class="tech-info"><h4>Smart Locks</h4><p>Integrating low-voltage power for motorized access control.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">ALARM</div><div class="tech-icon"><i class="fa-solid fa-shield"></i></div><div class="tech-info"><h4>Panel Hardwiring</h4><p>Permanent, concealed power feeds for ADT/SimpliSafe wall panels.</p></div></div>
+                            </div>
+                        </div>
+
+                        <div id="tab-power" class="tab-pane">
+                            <div class="tab-header-flex">
+                                <h3>Smart Power Management</h3>
+                                <p>Take control of your home's energy consumption. We upgrade standard breaker boxes to intelligent load centers that integrate with solar and batteries.</p>
+                            </div>
+                            <div class="tech-grid">
+                                <div class="tech-card"><div class="tech-badge">SPAN</div><div class="tech-icon"><i class="fa-solid fa-bolt"></i></div><div class="tech-info"><h4>Smart Panels</h4><p>Installing next-gen panels for app-based breaker control.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">SHED</div><div class="tech-icon"><i class="fa-solid fa-chart-line"></i></div><div class="tech-info"><h4>Load Shedding</h4><p>Automated systems that pause EV chargers when the house draws heavy load.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">MONITOR</div><div class="tech-icon"><i class="fa-solid fa-mobile-screen"></i></div><div class="tech-info"><h4>Energy Tracking</h4><p>Real-time kilowatt-hour monitoring for individual branch circuits.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">SOLAR</div><div class="tech-icon"><i class="fa-solid fa-solar-panel"></i></div><div class="tech-info"><h4>Inverter Integration</h4><p>Wiring grid-tie systems for rooftop solar arrays.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">BATT</div><div class="tech-icon"><i class="fa-solid fa-battery-full"></i></div><div class="tech-info"><h4>Battery Storage</h4><p>Integrating Tesla Powerwall and essential-load sub-panels.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">UPS</div><div class="tech-icon"><i class="fa-solid fa-plug-circle-bolt"></i></div><div class="tech-info"><h4>UPS Circuits</h4><p>Dedicated Uninterruptible Power Supply lines for home offices.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">V2H</div><div class="tech-icon"><i class="fa-solid fa-car-battery"></i></div><div class="tech-info"><h4>Vehicle-to-Home</h4><p>Bi-directional EV charger wiring for outage backups.</p></div></div>
+                                <div class="tech-card"><div class="tech-badge">SURGE</div><div class="tech-icon"><i class="fa-solid fa-shield-halved"></i></div><div class="tech-info"><h4>Whole-Home SPDs</h4><p>Protecting all smart microprocessors from grid voltage spikes.</p></div></div>
                             </div>
                         </div>
                     </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                                <h3>Smart Lighting</h3>
-                            </div>
-                            <div class="flip-card-back">
-                                <p>We upgrade traditional switches to smart dimmers (like Lutron Caséta), providing the necessary neutral wire integration for modern controls.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-tv"></i></div>
-                                <h3>Frame TVs & A/V</h3>
-                            </div>
-                            <div class="flip-card-back">
-                                <p>Flawless mounting of ultra-thin televisions. We install recessed media boxes behind the screen to hide outlets and HDMI cables inside the wall.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="flip-card">
-                        <div class="flip-card-inner">
-                            <div class="flip-card-front">
-                                <div class="cat-icon"><i class="fa-solid fa-microchip"></i></div>
-                                <h3>Smart Panels</h3>
-                            </div>
-                            <div class="flip-card-back">
-                                <p>We install next-generation load centers (like Span) that allow you to monitor and control individual circuits from your smartphone.</p>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
 
-                <div style="background: var(--light-bg); padding: 40px; border-radius: 8px; border-left: 5px solid var(--primary-navy); margin-bottom: 50px;">
-                    <h3 style="color: var(--primary-navy); margin-bottom: 15px; text-align: center;">The "Neutral Wire" Problem in Older Homes</h3>
-                    <p style="color: var(--steel-grey); font-size: 1.1rem; text-align: center;">If you've tried to install a smart switch in a historic D.C. or Frederick home, you likely discovered a missing white wire. Modern smart switches require a "neutral" wire to maintain continuous power for their Wi-Fi chips, even when the light is off. Our electricians can safely retrofit your older switch boxes to accommodate modern smart technology.</p>
-                </div>
-
-                <h3 style="color: var(--safety-orange); margin-bottom: 20px; font-size: 1.8rem; text-align: center;">The EPS Master-Level Process</h3>
-                <div style="max-width: 900px; margin: 0 auto;">
-                    <ul style="color: var(--steel-grey); font-size: 1.1rem; line-height: 1.8; margin-left: 20px; margin-bottom: 30px;">
-                        <li><strong>Hidden Conduit Routing:</strong> Whether it's running Cat6 ethernet cable to a ceiling-mounted WAP or HDMI cables to a projector, we snake wires through your walls and ceilings with absolute precision to minimize drywall damage.</li>
-                        <li><strong>Low-Voltage Precision:</strong> Smart home technology often blends high-voltage power with delicate low-voltage data. We ensure data lines are separated from power lines to prevent electromagnetic interference (EMI) that ruins video and audio quality.</li>
-                        <li><strong>Load Center Integration:</strong> For ultimate automation, we can replace your standard breaker box with a Smart Electrical Panel, giving you granular insights into your energy usage—perfect for homes with solar arrays and EV chargers.</li>
+                <div style="background: var(--light-bg); padding: 40px; border-radius: 8px; border-left: 5px solid var(--safety-orange); margin-bottom: 50px;">
+                    <h3 style="color: var(--primary-navy); margin-bottom: 15px;">The "Neutral Wire" Problem in Older Homes</h3>
+                    <ul style="color: var(--steel-grey); font-size: 1.1rem; line-height: 1.8; margin-left: 20px;">
+                        <li><strong>The Issue:</strong> If you've tried to install a smart switch in a historic DMV home, you likely discovered a missing white wire. Smart switches need a "neutral" to power their Wi-Fi chips when the light is off.</li>
+                        <li><strong>The Fix:</strong> Our electricians can safely retrofit your older switch boxes, fishing new neutral lines through the walls to perfectly accommodate modern automation hardware.</li>
                     </ul>
                 </div>
             </div>
@@ -107,37 +134,32 @@
 
         <section class="faq-section" style="padding: 80px 0; background: var(--light-bg);">
             <div class="container" style="max-width: 800px;">
-                <h2 style="color: var(--primary-navy); text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Smart Home & A/V FAQs</h2>
+                <h2 style="color: var(--primary-navy); text-align: center; margin-bottom: 40px; font-size: 2.5rem;">Smart Wiring FAQs</h2>
                 <div class="faq-container" style="background: var(--white); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                    <div class="faq-item"><button class="faq-question">Can you hide all the wires for my Samsung Frame TV? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Yes! The Samsung Frame is designed to look like a piece of art, which is ruined if a power cord dangles below it. We install a recessed "media box" directly behind the television mount to house the outlet and act as a hidden tunnel for the bulky One Connect cables.</p></div></div>
                     
                     <div class="faq-item">
-                        <button class="faq-question">Why should I hardwire my Ring cameras instead of using batteries? <span class="faq-icon">+</span></button>
+                        <button class="faq-question">What type of cables are used for smart home and A/V wiring? <span class="faq-icon">+</span></button>
                         <div class="faq-answer">
-                            <p>Battery-powered cameras have a delay. To save battery life, they "sleep" until motion wakes them up, which means they often miss the first few seconds of an event. Hardwired cameras are always on, record continuously, utilize brighter floodlights, and never require you to climb a ladder to swap a battery.</p>
+                            <p>Modern data demands high bandwidth. We strictly install in-wall rated cabling designed to handle current and future smart tech loads without interference.</p>
+                            <div class="seo-spec-container">
+                                <table class="spec-table">
+                                    <thead><tr><th>Cable Type</th><th>Primary Application</th><th>Bandwidth / Rating</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Cat6 Ethernet</td><td>PoE Cameras, WAPs, Smart TVs</td><td>10 Gbps (up to 55 meters)</td></tr>
+                                        <tr><td>14/2 NM-B Romex</td><td>Standard Smart Switch Power</td><td>120V / 15-Amp</td></tr>
+                                        <tr><td>HDMI 2.1 (CL3)</td><td>In-Wall 4K/8K Video Routing</td><td>48 Gbps / Fire-Rated</td></tr>
+                                        <tr><td>16-AWG Speaker Wire</td><td>In-Ceiling Audio (Sonos)</td><td>CL2/CL3 In-Wall Rated</td></tr>
+                                        <tr><td>18/2 Thermostat Wire</td><td>Smart HVAC Controllers (Nest/Ecobee)</td><td>Low-Voltage (24V)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="faq-item">
-                        <button class="faq-question">Can you hide all the wires for my Samsung Frame TV? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>Yes! The Samsung Frame is designed to look like a piece of art, which is ruined if a power cord dangles below it. We install a recessed "media box" directly behind the television mount. This houses the power outlet and acts as a hidden tunnel to route the bulky HDMI and One Connect cables down through the wall to your media console.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">Why do my smart switches require a "neutral wire"? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>A standard light switch simply breaks the circuit to turn a light off. But a smart switch has a built-in computer (Wi-Fi or Zigbee chip) that needs power 24/7 to listen for commands from your phone. The neutral wire completes a small, continuous circuit to power the chip even when the main light bulb is turned off.</p>
-                        </div>
-                    </div>
-
-                    <div class="faq-item">
-                        <button class="faq-question">What is a Smart Electrical Panel? <span class="faq-icon">+</span></button>
-                        <div class="faq-answer">
-                            <p>A smart panel (like SPAN) replaces your standard breaker box. It connects to your phone and allows you to view the real-time energy consumption of every single circuit in your house. It allows you to remotely turn off breakers and is incredibly valuable for managing backup battery storage or solar power during an outage.</p>
-                        </div>
-                    </div>
-
+                    <div class="faq-item"><button class="faq-question">Why should I hardwire my Ring cameras instead of using batteries? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Battery-powered cameras "sleep" to save power, missing the first crucial seconds of an event. Hardwired cameras are always on, record continuously, utilize brighter floodlights, and never require you to climb a ladder to swap a battery.</p></div></div>
+                    <div class="faq-item"><button class="faq-question">What is a Smart Electrical Panel? <span class="faq-icon">+</span></button><div class="faq-answer"><p>A smart panel (like SPAN) replaces your standard breaker box. It connects to an app to show the real-time energy consumption of every circuit in your house. It allows you to remotely turn off breakers and is vital for managing backup battery storage during an outage.</p></div></div>
+                    <div class="faq-item"><button class="faq-question">Why does my smart doorbell keep disconnecting? <span class="faq-icon">+</span></button><div class="faq-answer"><p>Most video doorbells (like Ring Pro or Nest) require a 16V to 24V transformer to maintain power. Many older homes still have 10V transformers for basic chimes. We can locate and upgrade your hidden transformer to provide the proper voltage to the smart doorbell.</p></div></div>
                 </div>
             </div>
         </section>
@@ -152,7 +174,6 @@
     </main>
 
     <div id="footer-placeholder"></div>
-
     <script src="script.js"></script>
 </body>
 </html>
